@@ -1,0 +1,9 @@
+@use '../../../variables.scss' as *;
+.button-back {
+    width: 100px;
+    height: 30px;
+    cursor: pointer;
+    svg {
+        margin-right: 8px;
+    }
+}

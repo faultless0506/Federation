@@ -1,0 +1,129 @@
+@use "./variables.scss" as *;
+
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"');
+
+body,
+html {
+  font-family: "Nunito", sans-serif;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 30px;
+  text-shadow: none;
+}
+
+.header {
+  font-weight: 500;
+  font-size: 1rem;
+  line-height: 1rem;
+  &__logo {
+    font-size: 0.8rem;
+    line-height: 1.2em;
+  }
+}
+
+.header a,
+.header li,
+a,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+span {
+  color: $text-color;
+}
+
+h1 {
+
+  line-height: 1.2em;
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  @media (max-width: 1100px) {
+    font-size: 1.2rem;
+  }
+}
+h2 {
+  line-height: 1em;
+  font-size: 1.25rem;
+  font-weight: 700;
+  // text-align: center;
+  // vertical-align: bottom;
+  @media (max-width: 1100px) {
+    font-size: 1rem;
+  }
+  a {
+    &:hover {
+      text-shadow: -2px -1px 1px rgba(207, 56, 56, 0.2);
+      color: $primary-color;
+    }
+  }
+}
+h3 {
+  line-height: 1em;
+  font-size: 0.7rem;
+  @media (max-width: 1100px) {
+    font-size: 0.6rem;
+  }
+}
+p {
+  line-height: normal;
+  font-size: 0.5rem;
+}
+.news p,
+.competitions p {
+  font-size: 0.6rem;
+}
+span {
+  font-size: 0.5rem;
+}
+.sportsmans__card-info {
+  h3 {
+    font-size: 0.8rem;
+    @media (max-width: 750px) {
+      font-size: 0.8rem;
+    }
+  }
+  p {
+    font-size: 0.6rem;
+    @media (max-width: 750px) {
+      font-size: 0.5rem;
+    }
+  }
+}
+button {
+  font-size: 0.8rem;
+  color: $text-color;
+  &:hover {
+    text-shadow: 0 0 2px rgba(207, 56, 56, 0.3);
+    // color: $primary-color;
+    transition: all 0.2s;
+    a {
+      // color: $primary-color;
+      text-shadow: 0 0 2px rgba(207, 56, 56, 0.3);
+    }
+  }
+}
+.header__logo {
+  a {
+    span {
+      color: $primary-color;
+      font-size: 0.8rem;
+      text-shadow: 0 0 1px rgba(207, 56, 56, 0.1);
+    }
+    &:hover {
+      span {
+        text-shadow: 2px 2px 1px rgba(207, 56, 56, 0.2);
+        color: $primary-color;
+      }
+    }
+  }
+}
+.header__menu-item a {
+  &:hover {
+    color: $primary-color;
+    text-shadow: 2px 2px 1px rgba(207, 56, 56, 0.2);
+  }
+}

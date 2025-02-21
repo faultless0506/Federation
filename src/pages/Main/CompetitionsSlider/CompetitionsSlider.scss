@@ -1,0 +1,44 @@
+.competitions-slider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+
+  .slick-slider {
+    width: 100%;
+    justify-content: center;
+    height: 240px;
+    display: flex;
+    padding: 0 40px;
+  }
+  .slick-slide {
+    display: flex;
+    justify-content: center;
+    opacity: 0.3;
+    transition: opacity 0.5s ease-out;
+  }
+  .slick-initialized {
+   button {
+    box-shadow: none;
+    border: none;
+  }
+  }
+  .slick-slide.slick-active {
+    opacity: 1;
+    transition: opacity 0.5s ease-in;
+  }
+  .slick-dots li {
+    width: 14px;
+    height: 14px;
+    margin: 0;
+  }
+  .slick-dots {
+    margin-bottom: 24px;
+    width: 60%;
+    & button {
+      box-shadow: none;
+    }
+  }
+
+
+}
