@@ -135,7 +135,18 @@ export default function Header() {
               </Link>
             </li>
             <li className="header__menu-item">
-              <Link to="/biba">Главная</Link>
+              <Link
+                to="/federation"
+                onClick={() => {
+                  handleLinkClick("/federation");
+                  handleCloseMenu();
+                }}
+                className={
+                  location.pathname.startsWith("/federation") ? "active" : ""
+                }
+              >
+                Федерация
+              </Link>
             </li>
             <li className="header__menu-item">
               <Link to="/boba">Главная</Link>

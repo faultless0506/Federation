@@ -8,6 +8,7 @@ import Competitions from "./pages/Competitions/Competitions";
 import NewsCardDetailed from "./pages/NewsCardDetailed/NewsCardDetailed"; 
 import CompetitionsCardDetailed from "./pages/CompetitionsCardDetailed/CompetitionsCardDetailed";
 import "./App.scss";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/news" element={<News />} />
         <Route path="/news/:id" element={<NewsCardDetailed />} /> 
+        <Route path="*" element={<Main />} />
       </Routes>
+      <Footer />    
     </BrowserRouter>
   );
 }

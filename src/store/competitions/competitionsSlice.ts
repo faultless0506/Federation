@@ -16,10 +16,11 @@ const initialState: CompetitionState = {
   items: [
     {
       id: 1,
-      title: "Competition adsw asddsdasd asdasddwad asdasd dsadasd sdadadsad dsadadsa",
+      title:
+        "Competition adsw asddsdasd asdasddwad asdasd dsadasd sdadadsad dsadadsa",
       content: "This is the content of competition 1",
       location: "Location 1",
-      date: "2021-10-01",
+      date: "01.10.2021",
       image: competitionImage,
     },
     {
@@ -27,15 +28,16 @@ const initialState: CompetitionState = {
       title: "Competition  12312323123 asd dsa weqe sad qww qwe",
       content: "This is the content of competition 2",
       location: "Location 2",
-      date: "2022-10-02",
+      date: "02.10.2022",
       image: competitionImage,
     },
     {
       id: 3,
-      title: "Competition sadsds asddd qwewed qwe asd wqweqwee eqwes wqed aasd wqweqweew wqe",
+      title:
+        "Competition sadsds asddd qwewed qwe asd wqweqwee eqwes wqed aasd wqweqweew wqe",
       content: "This is the content of competition 3",
       location: "Location 3",
-      date: "2023-10-03",
+      date: "03.10.2023",
       image: competitionImage,
     },
     {
@@ -43,7 +45,7 @@ const initialState: CompetitionState = {
       title: "Competition asddsadsadssda dasdasd asd",
       content: "This is the content of competition 4",
       location: "Location 4",
-      date: "2023-10-04",
+      date: "04.10.2023",
       image: competitionImage,
     },
     {
@@ -51,7 +53,7 @@ const initialState: CompetitionState = {
       title: "Competition asdsdasdds dassad sad",
       content: "This is the content of competition 1",
       location: "Location 1",
-      date: "2025-10-01",
+      date: "01.10.2025",
       image: competitionImage,
     },
     {
@@ -59,7 +61,7 @@ const initialState: CompetitionState = {
       title: "Competition dsasda dasd das sadasdd",
       content: "This is the content of competition 2",
       location: "Location 2",
-      date: "2026-10-02",
+      date: "02.10.2026",
       image: competitionImage,
     },
     {
@@ -67,7 +69,7 @@ const initialState: CompetitionState = {
       title: "Competition asdsa adasdas sads d dasd dd asd",
       content: "This is the content of competition 3",
       location: "Location 3",
-      date: "2027-10-03",
+      date: "03.10.2027",
       image: competitionImage,
     },
     {
@@ -75,21 +77,23 @@ const initialState: CompetitionState = {
       title: "Competition 4",
       content: "This is the content of competition 4",
       location: "Location 4",
-      date: "2028-10-04",
+      date: "04.10.2028",
       image: competitionImage,
-    },{
+    },
+    {
       id: 9,
       title: "Competition asddsasddasdad",
       content: "This is the content of competition 4",
       location: "Location 4",
-      date: "2028-10-04",
+      date: "04.10.2028",
       image: competitionImage,
-    },{
+    },
+    {
       id: 10,
       title: "Competition 123",
       content: "This is the content of competition 4",
       location: "Location 4",
-      date: "2028-10-04",
+      date: "04.10.2028",
       image: competitionImage,
     },
   ],
