@@ -11,7 +11,11 @@ import { Link } from "react-router-dom";
 
 const NewsSlider: React.FC = () => {
   const news = useSelector((state: RootState) => state.news.items);
-
+  const sortedNews = [...news].sort((a, b) => {
+    const dateA = a.date.split(".").reverse().join("-"); // Преобразуем в формат yyyy-mm-dd
+    const dateB = b.date.split(".").reverse().join("-");
+    return new Date(dateB).getTime() - new Date(dateA).getTime();
+  }).splice(0, 10);
   const settings = {
     dots: true,
     dotsClass: "slick-dots",
@@ -69,9 +73,11 @@ const NewsSlider: React.FC = () => {
 
   return (
     <div className="news-slider">
-      <h2><Link to="/news" >Новости</Link></h2>
+      <h2>
+        <Link to="/news">Новости</Link>
+      </h2>
       <Slider {...settings}>
-        {news.map((item) => (
+        {sortedNews.map((item) => (
           <NewsSlide
             key={item.id}
             id={item.id}

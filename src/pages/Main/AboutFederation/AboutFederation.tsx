@@ -1,12 +1,15 @@
 import Sportsmans from "./Sportsmans/Sportsmans";
-import "./Federation.scss";
+import "./AboutFederation.scss";
+import Trainers from "./Trainers/Trainers";
+import FederationLead from "./FederationLead/FederationLead";
 
-export default function Federation() {
+export default function AboutFederation() {
   return (
     <div className="federation">
       <h1>Федерация спортивного метания ножа г. Москва</h1>
-      {/* <FederationHead /> */}
       <Sportsmans />
+      <FederationLead />
+      <Trainers />
     </div>
   );
 }

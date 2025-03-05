@@ -1,6 +1,6 @@
 @use '../../../../variables.scss' as *;
 
-.sportsmans {
+.trainers {
   display: flex;
   flex-direction: column;
   &__list {
@@ -31,20 +31,17 @@
       width: 100%;
     }
 
-    // &:hover {
-    //   transform: translateY(-5px);
-    //   box-shadow: 0 4px 8px rgba(207, 56, 56, 0.2);
-    // }
+  
   
     img {
-      width: 100%;
+      width: auto;
       height: 100%;
       object-fit: cover;
       flex: 0 0 100px;
-      height: 100px;
       overflow: hidden;
       padding:4px;
       align-self: start;
+      border-radius: 10px;
     }
 
     &-info {
@@ -55,6 +52,7 @@
       padding: 16px 6px;
       line-height: normal;
       align-self: start;
+      text-align: right;
 
 
 

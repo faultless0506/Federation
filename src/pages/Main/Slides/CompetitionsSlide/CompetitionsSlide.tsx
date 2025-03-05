@@ -24,8 +24,13 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
     navigate(`/competitions/${id}`);
   };
 
+  const parseDate = (dateString: string) => {
+    const [day, month, year] = dateString.split('.').map(Number);
+    return new Date(year, month - 1, day); // Месяцы в JavaScript начинаются с 0
+  };
+
   const currentDate = new Date();
-  const isFinished = currentDate > new Date(date);
+  const isFinished = currentDate > parseDate(date);
 
   return (
     <div

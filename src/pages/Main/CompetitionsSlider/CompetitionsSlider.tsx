@@ -11,9 +11,21 @@ export default function CompetitionsSlider() {
   const competitions = useSelector(
     (state: RootState) => state.competitions.items
   );
-  const futureCompetitions = competitions.filter((item) => new Date(item.date) > new Date()).sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-  const pastCompetitions = competitions.filter((item) => new Date(item.date) < new Date()).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-  const allCompetitionsFiltered = [...futureCompetitions, ...pastCompetitions];
+  const parseDate = (dateString: string) => {
+    const [day, month, year] = dateString.split(".").map(Number);
+    return new Date(year, month - 1, day); // Месяцы в JavaScript начинаются с 0
+  };
+
+  const futureCompetitions = competitions
+    .filter((item) => parseDate(item.date) > new Date())
+    .sort((a, b) => parseDate(a.date).getTime() - parseDate(b.date).getTime());
+
+  const pastCompetitions = competitions
+    .filter((item) => parseDate(item.date) < new Date())
+    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
+
+  const allCompetitionsFiltered = [...futureCompetitions, ...pastCompetitions].splice(0, 10);
+
   const settings = {
     dots: true,
     dotsClass: "slick-dots",
@@ -71,20 +83,21 @@ export default function CompetitionsSlider() {
 
   return (
     <div className="competitions-slider">
-      <h2><Link to="/competitions"> Соревнования</Link></h2>
+      <h2>
+        <Link to="/competitions"> Соревнования</Link>
+      </h2>
       <Slider {...settings}>
-        {allCompetitionsFiltered
-          .map((item) => (
-            <CompetitionsSlide
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              content={item.content}
-              location={item.location}
-              date={item.date}
-              image={item.image}
-            />
-          ))}
+        {allCompetitionsFiltered.map((item) => (
+          <CompetitionsSlide
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            content={item.content}
+            location={item.location}
+            date={item.date}
+            image={item.image}
+          />
+        ))}
       </Slider>
     </div>
   );
