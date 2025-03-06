@@ -57,13 +57,13 @@ const NewsSlider: React.FC = () => {
         },
       },
       {
-        breakpoint: 550,
+        breakpoint: 560,
         settings: {
           slidesToShow: 2,
         },
       },
       {
-        breakpoint: 400,
+        breakpoint: 430,
         settings: {
           slidesToShow: 1,
         },
@@ -72,7 +72,7 @@ const NewsSlider: React.FC = () => {
   };
 
   return (
-    <div className="news-slider">
+    <section className="news-slider">
       <h2>
         <Link to="/news">Новости</Link>
       </h2>
@@ -84,11 +84,11 @@ const NewsSlider: React.FC = () => {
             title={item.title}
             content={item.content}
             date={item.date}
-            image={item.image}
+            images={item.images}
           />
         ))}
       </Slider>
-    </div>
+    </section>
   );
 };
 

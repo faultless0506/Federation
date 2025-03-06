@@ -1,6 +1,5 @@
-@use "../../../../variables.scss" as *;
-
-.sportsmans {
+@use "../../../variables.scss" as *;
+.trainers {
   display: flex;
   flex-direction: column;
   &__list {
@@ -8,7 +7,14 @@
     flex-wrap: wrap;
     gap: 20px;
     padding: 16px 0;
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height .2s ease-in-out;
+    &.collapsed {
+      max-height: 280px;
+    }
   }
+
   &__title {
     width: 100%;
   }
@@ -22,8 +28,6 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: 120px;
     width: calc(33.333% - 13.333px);
-    transition: transform 0.2s, box-shadow 0.2s;
-
     @media screen and (max-width: 1100px) {
       width: calc(50% - 10px);
     }
@@ -32,7 +36,7 @@
     }
 
     img {
-      width: 100%;
+      width: auto;
       height: 100%;
       object-fit: cover;
       flex: 0 0 100px;
@@ -50,10 +54,32 @@
       padding: 16px 6px;
       line-height: normal;
       align-self: start;
+      text-align: right;
 
       p {
         margin: 4px 0;
       }
+    }
+  }
+  button {
+    position: relative;
+    &:hover {
+      background-color: none;
+    }
+    &::after {
+      content: "";
+      transition: all 0.2s;
+      position: absolute;
+      background-image: url("./../../../assets/svg/arrow-down-black.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      top: -1px;
+    }
+    &.collapsed::after {
+      background-image: url("./../../../assets/svg/arrow-up-red.svg");
     }
   }
 }

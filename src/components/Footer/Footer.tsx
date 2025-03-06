@@ -1,20 +1,33 @@
-import React from "react";
-import "./Footer.scss";
-import { Link } from "react-router-dom";
+
+import './Footer.scss';
+import { Link } from 'react-router-dom';
+import ButtonTG from '../Buttons/ButtonSocial/ButtonTG';
+import ButtonVK from '../Buttons/ButtonSocial/ButtonVK';
 
 export default function Footer() {
   return (
-    <div className="footer">
-      <div className="container footer__box" >
-        <div><Link to="/federation">Уставные документы</Link></div>
-        <div><Link to="/">Общероссийская Федерация</Link></div>
+    <footer className="footer">
+      <div className="container footer__box">
+        <div className="footer__info">
+          <div>
+            <Link to="/federation">Уставные документы</Link>
+          </div>
+          <div>
+            <Link to="https://www.russmn.ru/" target="_blank">
+              Общероссийская Федерация
+            </Link>
+          </div>
+        </div>
         <ul className="footer__contacts">
-          <li><Link to="/contacts">VK</Link></li>
-          <li><Link to="/">Telegram</Link></li>
-          <li><Link to="/">Email</Link></li>
-          {/* <li><Link to="/">Phone</Link></li> */}
+          <li>
+            <Link to="/" target="_blank">
+              fmsnm@moscow.ru
+            </Link>
+          </li>
+          <ButtonTG />
+          <ButtonVK />
         </ul>
       </div>
-    </div>
+    </footer>
   );
 }

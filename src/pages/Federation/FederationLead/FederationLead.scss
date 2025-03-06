@@ -1,4 +1,4 @@
-@use "../../../../variables.scss" as *;
+@use "../../../variables.scss" as *;
 
 .leads {
   display: flex;
@@ -7,7 +7,6 @@
   &__list {
     display: flex;
     flex-wrap: wrap;
-    // gap: 20px;
     padding: 16px 0;
     justify-content: space-between;
   }
@@ -24,7 +23,7 @@
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     height: 380px;
-    width: calc(33.333% - 20px); // Изменено: ширина карточки для адаптивности
+    width: calc(33.333% - 20px);
     transition: transform 0.2s, box-shadow 0.2s;
     padding: 4px;
     @media (max-width: 900px) {
@@ -50,7 +49,6 @@
       max-width: 300px;
       height: 300px;
       object-fit: cover;
-      //   flex: 0 0 200px;
       overflow: hidden;
       padding: 4px;
       align-self: start;
@@ -75,7 +73,6 @@
       img {
         height: 100%;
         width: 300px;
-        // margin-left: 1px;
       }
       @media screen and (max-width: 900px) {
         width: 100%;
@@ -83,6 +80,9 @@
     }
     @media screen and (max-width: 580px) {
       width: 100%;
+
+   
+      
     }
   }
 }

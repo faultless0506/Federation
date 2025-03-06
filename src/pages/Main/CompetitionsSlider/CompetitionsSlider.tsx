@@ -67,13 +67,13 @@ export default function CompetitionsSlider() {
         },
       },
       {
-        breakpoint: 550,
+        breakpoint: 560,
         settings: {
           slidesToShow: 2,
         },
       },
       {
-        breakpoint: 400,
+        breakpoint: 430,
         settings: {
           slidesToShow: 1,
         },
@@ -82,7 +82,7 @@ export default function CompetitionsSlider() {
   };
 
   return (
-    <div className="competitions-slider">
+    <section className="competitions-slider">
       <h2>
         <Link to="/competitions"> Соревнования</Link>
       </h2>
@@ -95,10 +95,10 @@ export default function CompetitionsSlider() {
             content={item.content}
             location={item.location}
             date={item.date}
-            image={item.image}
+            images={item.images}
           />
         ))}
       </Slider>
-    </div>
+    </section>
   );
 }

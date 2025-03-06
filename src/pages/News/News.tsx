@@ -7,7 +7,7 @@ import "./News.scss";
 export default function News(): JSX.Element {
   const news = useSelector((state: RootState) => state.news.items);
   return (
-    <div className="container content  news">
+    <section className="container content  news">
         <h2>News</h2>
         {news.map((item) => (
           <NewsCard
@@ -16,9 +16,9 @@ export default function News(): JSX.Element {
             title={item.title}
             content={item.content}
             date={item.date}
-            image={item.image}
+            images={item.images}
           />
         ))}
-    </div>
+    </section>
   );
 }

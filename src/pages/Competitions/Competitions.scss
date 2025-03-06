@@ -1,11 +1,56 @@
 .competitions {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+  // h2 {
+  //   width: 100%;
+  //   margin-bottom: 20px;
+  // }
+  &__future-list,
+  &__past-list {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    position: relative;
-    h2 {
-      width: 100%;
-      margin-bottom: 20px;
+    justify-content: space-between;
+    // gap: 20px;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+    width: 100%;
+
+    &.collapsed {
+      // max-height: 560px;
+      // padding: 0;
+    }
+
+    &.expanded {
+      max-height: 4000px; /* Достаточно большое значение для любого количества элементов */
     }
   }
-  
+  &__future-list {
+    max-height: 250px;
+  }
+  &__past-list {
+    max-height: 250px;
+  }
+  button {
+    position: relative;
+    &:hover {
+      background-color: none;
+    }
+    &::after {
+      content: '';
+      transition: all 0.2s;
+      position: absolute;
+      background-image: url('./../../assets/svg/arrow-down-black.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      top: -1px;
+    }
+    &.collapsed::after {
+      transform: rotate(180deg);
+    }
+  }
+}

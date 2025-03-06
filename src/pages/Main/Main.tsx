@@ -1,17 +1,20 @@
 // src/pages/News.tsx
-import React from "react";
-import "./Main.scss";
-import NewsSlider from "./NewsSlider/NewsSlider";
-import CompetitionsSlider from "./CompetitionsSlider/CompetitionsSlider";
-import AboutFederation from "./AboutFederation/AboutFederation";
-
+import React from 'react';
+import './Main.scss';
+import NewsSlider from './NewsSlider/NewsSlider';
+import CompetitionsSlider from './CompetitionsSlider/CompetitionsSlider';
+import ClubsAndPartners from '../../components/ClubsAndPartners/ClubsAndPartners';
+import Landing from './Landing/Landing';
 const Main: React.FC = () => {
   return (
-    <div className="container content main">
-      <NewsSlider />
-      <CompetitionsSlider />
-      <AboutFederation />
-    </div>
+    <>
+      <Landing />
+      <div className="container content main">
+        <NewsSlider />
+        <CompetitionsSlider />
+        <ClubsAndPartners />
+      </div>
+    </>
   );
 };
 

@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 interface CompetitionsSlideProps {
   id: number;
   title: string;
-  content: string;
+  content: string[];
   location: string;
   date: string;
-  image: string;
+  images: string[];
 }
 
 const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
@@ -16,7 +16,7 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
   title,
   location,
   date,
-  image,
+  images,
 }) => {
   const navigate = useNavigate();
 
@@ -33,11 +33,11 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
   const isFinished = currentDate > parseDate(date);
 
   return (
-    <div
+    <article
       className={`competition-slide ${isFinished ? "finished" : ""}`}
       onClick={HandleOpenCurrentCompetition}
     >
-      <img src={image} alt={title} />
+      <img src={images[0]} alt={title} />
       {isFinished && (
         <div className="competition-slide__finished">
           <p>Соревнование завершено</p>
@@ -51,7 +51,7 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
           {location}
         </p>
       </div>
-    </div>
+    </article>
   );
 };
 

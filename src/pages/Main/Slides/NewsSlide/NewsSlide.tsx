@@ -5,16 +5,16 @@ import { useNavigate } from "react-router-dom";
 
 interface NewsSlideProps {
   title: string;
-  content: string;
+  content: string[];
   date: string;
-  image: string;
+  images: string[];
   id: number
 }
 
 const NewsSlide: React.FC<NewsSlideProps> = ({
   title,
   date,
-  image,
+  images,  
   id
 }) => {
 
@@ -25,13 +25,13 @@ const NewsSlide: React.FC<NewsSlideProps> = ({
   }
 
   return (
-    <div className="news-slide" onClick={HandleOpenCurrentNew}>
-      <img src={image} alt={title} />
+    <article className="news-slide" onClick={HandleOpenCurrentNew}>
+      <img src={images[0]} alt={title} />
       <div className="news-slide__content">
         <h3>{title}</h3>
         <p>{date}</p>
       </div>
-    </div>
+    </article>
   );
 };
 

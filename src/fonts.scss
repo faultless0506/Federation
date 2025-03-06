@@ -36,7 +36,6 @@ span {
 }
 
 h1 {
-
   line-height: 1.2em;
   font-size: 1.6rem;
   font-weight: 700;
@@ -51,12 +50,15 @@ h2 {
   font-weight: 700;
   // text-align: center;
   // vertical-align: bottom;
-  @media (max-width: 1100px) {
-    font-size: 1rem;
+  @media (max-width: 400px) {
+    font-size: .8rem;
+    font-weight: 600;
+    line-height: normal;
   }
+  
   a {
     &:hover {
-      text-shadow: -2px -1px 1px rgba(207, 56, 56, 0.2);
+      text-shadow: 0 0 2px rgba(207, 56, 56, 0.2);
       color: $primary-color;
     }
   }
@@ -79,7 +81,8 @@ p {
 span {
   font-size: 0.5rem;
 }
-.sportsmans__card-info, .trainers__card-info{
+.sportsmans__card-info,
+.trainers__card-info {
   h3 {
     font-size: 0.8rem;
     @media (max-width: 750px) {
@@ -92,51 +95,148 @@ span {
       font-size: 0.5rem;
     }
   }
-}.leads__card-info {
+}
+.leads__card-info {
   h3 {
     font-size: 1rem;
-    // @media (max-width: 750px) {
-    //   font-size: 1rem;
-    // }
   }
   p {
-    font-size: .8rem;
-    // @media (max-width: 750px) {
-    //   font-size: 0.5rem;
-    // }
+    font-size: 0.8rem;
   }
 }
 button {
   font-size: 0.8rem;
   color: $text-color;
   &:hover {
-    text-shadow: 0 0 2px rgba(207, 56, 56, 0.3);
-    // color: $primary-color;
+    color: $primary-color;
     transition: all 0.2s;
-    a {
-      // color: $primary-color;
-      text-shadow: 0 0 2px rgba(207, 56, 56, 0.3);
-    }
+    text-shadow: 2px 2px 1px rgba(207, 56, 56, 0.2);
   }
 }
 .header__logo {
   a {
     span {
-      color: $primary-color;
       font-size: 0.8rem;
-      text-shadow: 0 0 1px rgba(207, 56, 56, 0.1);
+      text-shadow: 0 0 1px rgba(231, 226, 226, 0.2);
     }
     &:hover {
       span {
-        text-shadow: 2px 2px 1px rgba(207, 56, 56, 0.2);
+        text-shadow: 0 0 2px rgba(207, 56, 56, 0.2);
         color: $primary-color;
       }
     }
   }
 }
-.header__menu-item a {
+.header__menu-item a,
+.footer a {
   &:hover {
     color: $primary-color;
     text-shadow: 2px 2px 1px rgba(207, 56, 56, 0.2);
   }
+}
+.header__menu-contacts a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: $primary-color;
+}
+.footer a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.documents__list-item p {
+  font-size: 0.7rem;
+  &:hover {
+    text-shadow: -2px -1px 1px rgba(207, 56, 56, 0.2);
+    color: $primary-color;
+  }
+}
+
+// .competitions__card-detailed-content, .news__card-detailed-content {
+//   h3 {
+//     font-size: 0.8rem;
+//     font-weight: 600;
+//     line-height: 2em;
+//   }
+//   p {
+//     font-size: 0.7rem;
+//     line-height: 1.5em;
+//   }
+//   span {
+//     font-size: 0.6rem;
+//     // text-align: end;
+//   }
+// }
+
+
+.clubs-and-partners {
+  h3{
+    line-height: 1em;
+    font-size: 1.25rem;
+    font-weight: 700;
+    // text-shadow: none;
+    // text-align: center;
+    // vertical-align: bottom;
+    @media (max-width: 1100px) {
+      font-size: 1rem;
+    }
+    a {
+      &:hover {
+        text-shadow: 0 0 2px rgba(207, 56, 56, 0.2);
+        color: $primary-color;
+      }
+    }
+  }
+}
+.header__logo-socials {
+  a {
+    font-size: .6rem;
+    &:hover {
+      text-shadow: 0 0 2px rgba(207, 56, 56, 0.2);
+      color: $primary-color;
+    }
+  }
+}
+
+.detailed__date {
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.5em;
+}
+
+.textarea {
+  // font-size: 0.8rem;
+  // line-height: 1.4em;
+  h3 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.2em;
+  }
+  p{
+
+    text-indent: 10px;
+    @media (min-width: 768px) {
+      text-indent: 10px;
+      
+    }
+  }
+  p, li {
+    font-size: 0.7rem;
+    line-height: 1.2em;
+  }
+  span {
+    font-size: 0.6rem;
+    // text-align: end;
+  }
+  li {
+    list-style: disc;
+margin-left:20px;
+  }
+
+  // @media (max-width: 768px) {
+  //   h3 {
+
+  //   }
+  // }
 }
