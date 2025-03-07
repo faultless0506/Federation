@@ -1,11 +1,31 @@
 .competitions {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative;
+  &__past, &__rules {
+    margin-top: -10px;
+  }
+  &__future-list,
+  &__past-list {
     display: flex;
-    justify-content: space-between;
     flex-wrap: wrap;
-    position: relative;
-    h2 {
-      width: 100%;
-      margin-bottom: 20px;
+    justify-content: space-between;
+    overflow: hidden;
+    transition: all .5s ease-in-out;
+    width: 100%;
+
+
+
+    &.expanded {
+      max-height: 2000px !important; 
     }
   }
-  
+  &__future-list {
+    max-height: 250px;
+  }
+  &__past-list {
+    max-height: 250px;
+  }
+
+}

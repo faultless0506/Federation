@@ -1,9 +1,10 @@
-import { useLayoutEffect, useState } from "react";
-import "./Header.scss";
+import { useLayoutEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import './Header.scss';
 
-import logo from "./../../assets/img/logo_clear.png";
-import { Link, useLocation } from "react-router-dom";
-
+import logo from './../../assets/img/logo_clear.png';
+import ButtonTG from '../Buttons/ButtonSocial/ButtonTG';
+import ButtonVK from '../Buttons/ButtonSocial/ButtonVK';
 export default function Header() {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
@@ -18,7 +19,7 @@ export default function Header() {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior: "smooth",
+      behavior: 'smooth',
     });
   };
   useLayoutEffect(() => {
@@ -27,14 +28,14 @@ export default function Header() {
   }, [location.pathname]);
 
   useLayoutEffect(() => {
-    const storedMenuState = localStorage.getItem("isMenuOpen");
-    if (storedMenuState === "true") {
+    const storedMenuState = localStorage.getItem('isMenuOpen');
+    if (storedMenuState === 'true') {
       setIsMenuOpen(true);
     }
   }, []);
 
   useLayoutEffect(() => {
-    localStorage.setItem("isMenuOpen", isMenuOpen.toString());
+    localStorage.setItem('isMenuOpen', isMenuOpen.toString());
   }, [isMenuOpen]);
 
   const handleBurgerClick = () => {
@@ -57,11 +58,10 @@ export default function Header() {
   };
 
   return (
-    <div className="header">
-      <div className="container">
-        <div className="header__box">
+    <header className="header">
+        <nav className="container header__box">
           <div
-            className={`header__burger ${isMenuOpen ? "active" : ""}`}
+            className={`header__burger ${isMenuOpen ? 'active' : ''}`}
             onClick={handleBurgerClick}
           >
             <span></span>
@@ -69,7 +69,7 @@ export default function Header() {
           <div
             className="header__logo"
             onClick={() => {
-              handleLinkClick("/");
+              handleLinkClick('/');
               handleCloseMenu();
               scrollToTop();
             }}
@@ -79,15 +79,19 @@ export default function Header() {
               <span>Федерация спортивного метания ножа г. Москва</span>
             </Link>
           </div>
+          <div className="header__logo-socials">
+            <ButtonVK />
+            <ButtonTG />
+          </div>
           <ul
-            className={`header__menu ${isMenuOpen ? "active" : ""} ${
-              isAnimating ? "animating" : ""
+            className={`header__menu ${isMenuOpen ? 'active' : ''} ${
+              isAnimating ? 'animating' : ''
             }`}
           >
             <div
               className="header__logo-mobile"
               onClick={() => {
-                handleLinkClick("/");
+                handleLinkClick('/');
                 handleCloseMenu();
                 scrollToTop();
               }}
@@ -98,10 +102,10 @@ export default function Header() {
               <Link
                 to="/"
                 onClick={() => {
-                  handleLinkClick("/");
+                  handleLinkClick('/');
                   handleCloseMenu();
                 }}
-                className={`${activeLink === "/" ? "active" : ""} `}
+                className={`${activeLink === '/' ? 'active' : ''} `}
               >
                 Главная
               </Link>
@@ -110,11 +114,11 @@ export default function Header() {
               <Link
                 to="/news"
                 onClick={() => {
-                  handleLinkClick("/news");
+                  handleLinkClick('/news');
                   handleCloseMenu();
                 }}
                 className={
-                  location.pathname.startsWith("/news") ? "active" : ""
+                  location.pathname.startsWith('/news') ? 'active' : ''
                 }
               >
                 Новости
@@ -124,11 +128,11 @@ export default function Header() {
               <Link
                 to="/competitions"
                 onClick={() => {
-                  handleLinkClick("/competitions");
+                  handleLinkClick('/competitions');
                   handleCloseMenu();
                 }}
                 className={
-                  location.pathname.startsWith("/competitions") ? "active" : ""
+                  location.pathname.startsWith('/competitions') ? 'active' : ''
                 }
               >
                 Соревнования
@@ -138,25 +142,31 @@ export default function Header() {
               <Link
                 to="/federation"
                 onClick={() => {
-                  handleLinkClick("/federation");
+                  handleLinkClick('/federation');
                   handleCloseMenu();
                 }}
                 className={
-                  location.pathname.startsWith("/federation") ? "active" : ""
+                  location.pathname.startsWith('/federation') ? 'active' : ''
                 }
               >
                 Федерация
               </Link>
             </li>
-            <li className="header__menu-item">
-              <Link to="/boba">Главная</Link>
-            </li>
+
+            <div className="header__menu-contacts">
+              <div className="header__menu-contacts-social">
+                <ButtonVK />
+                <ButtonTG />
+              </div>
+              <Link to="/" target="_blank">
+                fmsnm@moscow.ru
+              </Link>
+            </div>
           </ul>
-        </div>
-      </div>
+        </nav>
       {isMenuOpen && (
         <div className="header__backdrop" onClick={handleBackdropClick}></div>
       )}
-    </div>
+    </header>
   );
 }

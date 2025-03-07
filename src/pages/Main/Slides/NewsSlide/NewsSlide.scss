@@ -1,25 +1,16 @@
 @use './../../../../variables.scss' as *;
+@use './../../../../mixins.scss' as *;
 .news-slide {
-  position: relative;
+@include card-active;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  background-color: $background-color;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   margin-top: 10px;
   height: 200px;
   width: 130px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  will-change: transform;
-  transition: transform .2s, box-shadow .2s;
-  cursor: pointer;
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(207, 56, 56, 0.2);
-  } 
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  // cursor: pointer;
+
   img {
     align-self: center;
     width: 100%;

@@ -1,9 +1,31 @@
 @use '../../../variables.scss' as *;
-.button-back {
-    width: 100px;
+.button__back {
+    position: relative;
+    min-width: 71px;
+    // min-width: 100px !important;
     height: 30px;
+    margin-right: 20px;
     cursor: pointer;
     svg {
         margin-right: 8px;
+    }
+    &::before {
+        content: '';
+        background-image: url('./../../../assets/svg/newarrow-right-black.svg');
+        position: relative;
+        background-position: center;
+        background-repeat: no-repeat;
+        top: 4px;
+        left: -5px;
+        height: 20px;
+        width: 20px;
+        display: inline-block;
+        transition: all 0.2s;
+        transform: rotatey(180deg);
+    }
+    &:hover {
+        &::before {
+            background-image: url('./../../../assets/svg/newarrow-right-red.svg');
+        }
     }
 }

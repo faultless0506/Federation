@@ -5,6 +5,7 @@ import competitionReducer from './competitions/competitionsSlice';
 import sportsmansReducer from './sportsmans/sportsmansSlice';
 import trainersReducer from './trainers/trainersSlice';
 import leadsReducer from './lead/leadsSlice';
+import clubsReducer from './clubs/clubsSlice';
 
 const store = configureStore({
   reducer: {
@@ -13,6 +14,7 @@ const store = configureStore({
     sportsmans: sportsmansReducer,
     trainers: trainersReducer,
     leads: leadsReducer,
+    clubs: clubsReducer
   },
 });
 
