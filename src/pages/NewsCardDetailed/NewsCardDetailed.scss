@@ -1,10 +1,11 @@
 @use './../../variables.scss' as *;
+@use './../../mixins.scss' as *;
 
 .news__card-detailed {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  margin: 0 auto;
+  // margin: 0 auto;
 
   .detailed__main {
     margin: 20px;
@@ -13,13 +14,20 @@
     }
     &-image {
       float: left;
-      margin-right: 20px;
-      margin-bottom: 20px;
+      margin-right: 1.5rem;
+      margin-bottom: 1rem;
       width: 50%;
       min-width: 280px;
       // max-width: 300px;
       border-radius: 8px;
+      transition: all 0.2s;
+      box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.4);
       object-fit: cover;
+      cursor: pointer;
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(207, 56, 56, 0.6);
+      }
       @media (max-width: 768px) {
         width: 100%;
       }
@@ -38,13 +46,13 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      width:auto;
+      width: auto;
       margin: 40px 0;
       padding: 20px;
       border-radius: 8px;
       background-color: $secondary-color;
 
-      box-shadow: 0 0px 8px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.3);
     }
     &-item {
       width: calc(20% - 8px);
@@ -53,9 +61,10 @@
       cursor: pointer;
       border-radius: 8px;
       transition: all 0.2s;
+      box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.4);
       &:hover {
         transform: translateY(-5px);
-        box-shadow: 0 4px 8px rgba(207, 56, 56, 0.2);
+        box-shadow: 0 4px 8px rgba(207, 56, 56, 0.6);
       }
     }
   }
@@ -79,7 +88,6 @@
       object-fit: contain;
       cursor: pointer;
 
-     
       &-close {
         position: absolute;
         top: 40px;
@@ -160,7 +168,6 @@
         left: 40px;
         @media screen and (max-width: 580px) {
           left: 20px;
-          
         }
         &::before {
           transform: rotate(-135deg);

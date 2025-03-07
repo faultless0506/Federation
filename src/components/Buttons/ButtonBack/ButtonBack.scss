@@ -1,9 +1,10 @@
 @use '../../../variables.scss' as *;
-.button-back {
+.button__back {
     position: relative;
     min-width: 71px;
     // min-width: 100px !important;
     height: 30px;
+    margin-right: 20px;
     cursor: pointer;
     svg {
         margin-right: 8px;

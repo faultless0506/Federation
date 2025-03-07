@@ -20,8 +20,8 @@
     height: 4px;
     background: linear-gradient(
       to top,
-      rgba(194, 180, 180, 0.9),
-      rgba(207, 56, 56, 0.4)
+      $secondary-color 2px,
+      rgba(207, 56, 56, 0.7) 3px
     );
     pointer-events: none;
     

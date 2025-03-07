@@ -5,7 +5,7 @@ export default function ButtonBack() {
   };
  
   return (
-    <button className="button-back" onClick={goBack}> Назад
+    <button className="button__back" onClick={goBack}> Назад
     </button>
   );
 }

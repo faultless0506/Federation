@@ -4,7 +4,7 @@ import doc1 from "../../../documents/mezhdunarodnaya-konvencziya-soveta-evropyi-
 import doc2 from "../../../documents/mezhdunarodnaya-konvencziya-yunesko-o-borbe-s-dopingom-v-sporte-(parizh-2005).pdf";
 
 const documents = [
-  { id: 1, name: "Document 1", url: doc1 },
+  { id: 1, name: "Постановление о постановлении о постановлении о постановлении постановления ", url: doc1 },
   { id: 2, name: "Document 2", url: doc2 },
 ];
 
@@ -31,7 +31,7 @@ export default function Documents() {
             <p onClick={() => handleOpenDocument(doc.url)}>
               {doc.name}
             </p>
-            <button onClick={() => handleDownloadDocument(doc.url)} className="download-button">
+            <button onClick={() => handleDownloadDocument(doc.url)} className="documents__download-button">
               Скачать
             </button>
           </li>

@@ -1,7 +1,8 @@
 // src/store/news/newsSlice.ts
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice} from "@reduxjs/toolkit";
 import petImg from "../../assets/img/n02102040_4250.jpg";
 import metImg from '../../assets/img/268677.jpg'
+import { RootState } from "../store";
 
 interface NewsState {
   items: {
@@ -133,20 +134,24 @@ const newsSlice = createSlice({
   name: "news",
   initialState,
   reducers: {
-    addNews: (
-      state,
-      action: PayloadAction<{
-        id: number;
-        title: string;
-        content: string[];
-        date: string;
-        images: string[];
-      }>
-    ) => {
-      state.items.push(action.payload);
-    },
+
   },
 });
+export const selectAllNews = (state: RootState) => state.news.items;
 
-export const { addNews } = newsSlice.actions;
+// Selector to get news items sorted by date (newest first)
+export const selectSortedNews = createSelector(
+  [selectAllNews],
+  (newsItems) => {
+    return [...newsItems].sort((a, b) => {
+      // Convert date strings to Date objects for comparison
+      const dateA = new Date(a.date.split('.').reverse().join('-'));
+      const dateB = new Date(b.date.split('.').reverse().join('-'));
+      
+      // Sort in descending order (newest first)
+      return dateB.getTime() - dateA.getTime();
+    });
+  }
+);
+
 export default newsSlice.reducer;

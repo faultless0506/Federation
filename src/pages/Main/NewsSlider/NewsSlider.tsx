@@ -1,24 +1,26 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import Slider from "react-slick";
-import NewsSlide from "../Slides/NewsSlide/NewsSlide";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./NewsSlider.scss";
-import { NextArrow, PrevArrow } from "../SliderArrows/SliderArrows";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
+import Slider from 'react-slick';
+import NewsSlide from '../Slides/NewsSlide/NewsSlide';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import './NewsSlider.scss';
+import { NextArrow, PrevArrow } from '../SliderArrows/SliderArrows';
+import { Link } from 'react-router-dom';
 
 const NewsSlider: React.FC = () => {
   const news = useSelector((state: RootState) => state.news.items);
-  const sortedNews = [...news].sort((a, b) => {
-    const dateA = a.date.split(".").reverse().join("-"); // Преобразуем в формат yyyy-mm-dd
-    const dateB = b.date.split(".").reverse().join("-");
-    return new Date(dateB).getTime() - new Date(dateA).getTime();
-  }).splice(0, 10);
+  const sortedNews = [...news]
+    .sort((a, b) => {
+      const dateA = a.date.split('.').reverse().join('-'); // Преобразуем в формат yyyy-mm-dd
+      const dateB = b.date.split('.').reverse().join('-');
+      return new Date(dateB).getTime() - new Date(dateA).getTime();
+    })
+    .splice(0, 10);
   const settings = {
     dots: true,
-    dotsClass: "slick-dots",
+    dotsClass: 'slick-dots',
     infinite: false,
     speed: 500,
     slidesToShow: 8,

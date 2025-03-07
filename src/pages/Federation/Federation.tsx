@@ -1,8 +1,8 @@
 import React from "react";
 import "./Federation.scss";
-import Sportsmans from "./Sportsmans/Sportsmans";
+import Sportsmans from "./SportsmansAndTrainers/Sportsmans";
 import FederationLead from "./FederationLead/FederationLead";
-import Trainers from "./Trainers/Trainers";
+import Trainers from "./SportsmansAndTrainers/Trainers";
 import Documents from "./Documents/Documents";
 import ClubsAndPartners from "../../components/ClubsAndPartners/ClubsAndPartners";
 export default function Federation() {

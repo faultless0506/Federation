@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './CompetitionsCardDetailed.scss';
+import './CardDetailed.scss';
 import { RootState } from '../../store/store';
 import ButtonBack from '../../components/Buttons/ButtonBack/ButtonBack';
 
@@ -67,8 +67,11 @@ const CompetitionsCardDetailed: React.FC = () => {
           className="detailed__main-image"
           onClick={() => handleImageClick(0)}
         />
-        <p className="detailed__main-text">{currentCompetition.content[0]}</p>
-        <p className="detailed__main-text">{ currentCompetition.content[1]}</p>
+          {currentCompetition.content.slice(0, currentCompetition.content.length -1).map((text, index) => (
+          <p className="detailed__main-text" key={index}>
+            {text}
+          </p>
+        ))}
         {currentCompetition.images.length > 1 && (
           <div className="detailed__image-list">
             {currentCompetition.images.map((image, index) => (
@@ -82,13 +85,13 @@ const CompetitionsCardDetailed: React.FC = () => {
             ))}
           </div>
         )}
-        {currentCompetition.content.slice(2).map((text, index) => (
+        {currentCompetition.content.slice(-1).map((text, index) => (
           <p className="detailed__main-text" key={index}>
             {text}
           </p>
         ))}
       </div>
-      <span className="detailed__date">{currentCompetition.date}</span>
+      <span className="detailed__date">{currentCompetition.date}, {currentCompetition.location}</span>
       {selectedImageIndex !== null && (
         <div className="detailed__full-image-overlay" onClick={closeFullImage}>
           <img

@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import './NewsCardDetailed.scss';
+import './CardDetailed.scss';
 import { RootState } from '../../store/store';
 import ButtonBack from '../../components/Buttons/ButtonBack/ButtonBack';
 
@@ -66,9 +66,12 @@ const NewsCardDetailed: React.FC = () => {
           alt="Main"
           className="detailed__main-image"
           onClick={() => handleImageClick(0)}
-        />
-        <p className="detailed__main-text">{currentNew.content[0]}</p>
-        <p className="detailed__main-text">{currentNew.content[1]}</p>
+        />{' '}
+        {currentNew.content.slice(0, currentNew.content.length -1).map((text, index) => (
+          <p className="detailed__main-text" key={index}>
+            {text}
+          </p>
+        ))}
         {currentNew.images.length > 1 && (
           <div className="detailed__image-list">
             {currentNew.images.map((image, index) => (
@@ -77,12 +80,12 @@ const NewsCardDetailed: React.FC = () => {
                 src={image}
                 alt={`Image ${index + 1}`}
                 className="detailed__image-item"
-                onClick={() => handleImageClick(index )}
+                onClick={() => handleImageClick(index)}
               />
             ))}
           </div>
         )}
-        {currentNew.content.slice(2).map((text, index) => (
+        {currentNew.content.slice(-1).map((text, index) => (
           <p className="detailed__main-text" key={index}>
             {text}
           </p>

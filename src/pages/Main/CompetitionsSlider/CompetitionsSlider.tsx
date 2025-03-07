@@ -1,18 +1,18 @@
-import "./CompetitionsSlider.scss";
-import { NextArrow, PrevArrow } from "../SliderArrows/SliderArrows";
-import Slider from "react-slick";
-import { useSelector } from "react-redux";
-import { RootState } from "../../../store/store";
-import CompetitionsSlide from "../Slides/CompetitionsSlide/CompetitionsSlide";
+import './CompetitionsSlider.scss';
+import { NextArrow, PrevArrow } from '../SliderArrows/SliderArrows';
+import Slider from 'react-slick';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
+import CompetitionsSlide from '../Slides/CompetitionsSlide/CompetitionsSlide';
 // import ButtonToAll from "../../../components/Buttons/ButtonToAll/ButtonToAll";
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
 export default function CompetitionsSlider() {
   const competitions = useSelector(
     (state: RootState) => state.competitions.items
   );
   const parseDate = (dateString: string) => {
-    const [day, month, year] = dateString.split(".").map(Number);
+    const [day, month, year] = dateString.split('.').map(Number);
     return new Date(year, month - 1, day); // Месяцы в JavaScript начинаются с 0
   };
 
@@ -24,11 +24,14 @@ export default function CompetitionsSlider() {
     .filter((item) => parseDate(item.date) < new Date())
     .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
 
-  const allCompetitionsFiltered = [...futureCompetitions, ...pastCompetitions].splice(0, 10);
+  const allCompetitionsFiltered = [
+    ...futureCompetitions,
+    ...pastCompetitions,
+  ].splice(0, 10);
 
   const settings = {
     dots: true,
-    dotsClass: "slick-dots",
+    dotsClass: 'slick-dots',
     infinite: false,
     speed: 500,
     slidesToShow: 8,
