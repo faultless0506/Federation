@@ -8,7 +8,7 @@ export default function FederationLead() {
 
   return (
     <section className="leads">
-      <h2>Руководство федерации</h2>
+      <h2 className="section-header">Руководство федерации</h2>
       <div className="leads__list">
         {leads.map((lead, index) => (
           <article className="leads__card" key={lead.id}>

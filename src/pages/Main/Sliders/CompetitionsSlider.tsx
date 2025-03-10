@@ -1,11 +1,11 @@
-import './CompetitionsSlider.scss';
 import { NextArrow, PrevArrow } from '../SliderArrows/SliderArrows';
 import Slider from 'react-slick';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../store/store';
-import CompetitionsSlide from '../Slides/CompetitionsSlide/CompetitionsSlide';
+import CompetitionsSlide from '../Slides/CompetitionsSlide';
 // import ButtonToAll from "../../../components/Buttons/ButtonToAll/ButtonToAll";
 import { Link } from 'react-router-dom';
+import './Slider.scss';
 
 export default function CompetitionsSlider() {
   const competitions = useSelector(
@@ -34,49 +34,19 @@ export default function CompetitionsSlider() {
     dotsClass: 'slick-dots',
     infinite: false,
     speed: 500,
-    slidesToShow: 8,
+    slidesToShow: 3,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PrevArrow />,
     responsive: [
       {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 7,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 6,
-        },
-      },
-      {
-        breakpoint: 1000,
-        settings: {
-          slidesToShow: 5,
-        },
-      },
-      {
-        breakpoint: 850,
-        settings: {
-          slidesToShow: 4,
-        },
-      },
-      {
-        breakpoint: 700,
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 560,
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
         },
       },
       {
-        breakpoint: 430,
+        breakpoint: 568,
         settings: {
           slidesToShow: 1,
         },
@@ -86,7 +56,7 @@ export default function CompetitionsSlider() {
 
   return (
     <section className="competitions-slider">
-      <h2>
+      <h2 className="section-header">
         <Link to="/competitions"> Соревнования</Link>
       </h2>
       <Slider {...settings}>

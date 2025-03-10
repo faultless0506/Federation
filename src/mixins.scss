@@ -10,7 +10,7 @@
 }
 @mixin card-active {
   @include card-passive;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: all .2s;
   will-change: transform;
   &:hover {
     transform: translateY(-5px);

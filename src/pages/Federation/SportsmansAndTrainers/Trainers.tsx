@@ -46,11 +46,11 @@ export default function Trainers() {
   return (
     <section className="trainers">
       {/* Заголовок секции с кнопкой переключения */}
-      <div className="trainers__title">
+      <div className="section-header">
         <h2>
           Тренерский состав
-          <ToggleListButton isExpanded={showAll} onClick={toggleShowAll} />
         </h2>
+          <ToggleListButton isExpanded={showAll} onClick={toggleShowAll} />
       </div>
       {/* Список карточек тренеров с классом для анимации */}
       <div className={`trainers__list ${showAll ? 'expanded' : 'collapsed'}`}>

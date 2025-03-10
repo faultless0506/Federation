@@ -15,7 +15,7 @@ const ToggleListButton: React.FC<ToggleButtonProps> = ({
   expandText = 'Развернуть',
   collapseText = 'Свернуть',
   className = '',
-}) => {
+}) => { 
   return (
     <button
       onClick={onClick}

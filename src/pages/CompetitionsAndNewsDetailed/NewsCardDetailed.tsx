@@ -47,19 +47,21 @@ const NewsCardDetailed: React.FC = () => {
 
   if (!currentNew) {
     return (
-      <h2>
-        Новость не найдена.
-        <ButtonBack />
-      </h2>
+      <article className="content">
+        <div className="no-item">
+          <h3>Competition not found</h3>
+          <ButtonBack />
+        </div>
+      </article>
     );
   }
 
   return (
     <article className="container content news__card-detailed">
-      <h2>
-        {currentNew.title}
+      <div className="section-header">
+        <h2>{currentNew.title}</h2>
         <ButtonBack />
-      </h2>
+      </div>
       <div className="detailed__main textarea">
         <img
           src={currentNew.images[0]}
@@ -67,22 +69,26 @@ const NewsCardDetailed: React.FC = () => {
           className="detailed__main-image"
           onClick={() => handleImageClick(0)}
         />{' '}
-        {currentNew.content.slice(0, currentNew.content.length -1).map((text, index) => (
-          <p className="detailed__main-text" key={index}>
-            {text}
-          </p>
-        ))}
+        {currentNew.content
+          .slice(0, currentNew.content.length - 1)
+          .map((text, index) => (
+            <p className="detailed__main-text" key={index}>
+              {text}
+            </p>
+          ))}
         {currentNew.images.length > 1 && (
-          <div className="detailed__image-list">
-            {currentNew.images.map((image, index) => (
-              <img
-                key={index + 1}
-                src={image}
-                alt={`Image ${index + 1}`}
-                className="detailed__image-item"
-                onClick={() => handleImageClick(index)}
-              />
-            ))}
+          <div className="detailed__image-list-container">
+            <div className="detailed__image-list">
+              {currentNew.images.map((image, index) => (
+                <img
+                  key={index + 1}
+                  src={image}
+                  alt={`Image ${index + 1}`}
+                  className="detailed__image-item"
+                  onClick={() => handleImageClick(index)}
+                />
+              ))}
+            </div>
           </div>
         )}
         {currentNew.content.slice(-1).map((text, index) => (

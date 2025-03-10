@@ -1,10 +1,11 @@
 // src/pages/News.tsx
 import React from 'react';
 import './Main.scss';
-import NewsSlider from './NewsSlider/NewsSlider';
-import CompetitionsSlider from './CompetitionsSlider/CompetitionsSlider';
+import NewsSlider from './Sliders/NewsSlider';
+import CompetitionsSlider from './Sliders/CompetitionsSlider';
 import ClubsAndPartners from '../../components/ClubsAndPartners/ClubsAndPartners';
 import Landing from './Landing/Landing';
+import FedLocation from './FedLocation/FedLocation';
 const Main: React.FC = () => {
   return (
     <>
@@ -13,6 +14,7 @@ const Main: React.FC = () => {
         <NewsSlider />
         <CompetitionsSlider />
         <ClubsAndPartners />
+        <FedLocation />
       </div>
     </>
   );

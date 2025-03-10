@@ -37,8 +37,8 @@ export default function ClubsAndPartners() {
 
   return (
     <section className="clubs-and-partners ">
-      <h2>Клубы и партнеры</h2>
-      <article className="clubs">
+      {/* <h2 className='section-header'>Клубы и партнеры</h2> */}
+      {/* <article className="clubs">
         <ul className="clubs__list">
           {clubs.map((club) => (
             <li key={club.id} className="clubs__list-item">
@@ -47,7 +47,7 @@ export default function ClubsAndPartners() {
             </li>
           ))}
         </ul>
-      </article>
+      </article> */}
       <article className="partners">
         <ul className="partners__list">
           {departments.map((department) => (

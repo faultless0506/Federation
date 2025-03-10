@@ -1,9 +1,16 @@
+@use '../../variables.scss' as *;
+
 .competitions {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  position: relative;
-  &__past, &__rules {
+//  margin-top: 0px;
+display: flex;
+justify-content: space-between;
+flex-wrap: wrap;
+
+&__future {
+  
+}
+  &__past,
+  &__rules {
     margin-top: -10px;
   }
   &__future-list,
@@ -12,20 +19,26 @@
     flex-wrap: wrap;
     justify-content: space-between;
     overflow: hidden;
-    transition: all .5s ease-in-out;
+    transition: all 0.5s ease-in-out;
     width: 100%;
-
-
-
+    margin: 0;
     &.expanded {
-      max-height: 2000px !important; 
+      max-height: 1000px !important;
+      @media screen {
+        max-height: 1500px !important;
+      }
     }
   }
   &__future-list {
     max-height: 250px;
+    @media (max-width: 980px) {
+      max-height: 500px;
+    }
   }
   &__past-list {
     max-height: 250px;
+    @media (max-width: 980px) {
+      max-height: 500px;
+    }
   }
-
 }

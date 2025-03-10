@@ -1,5 +1,7 @@
 @use '../../../variables.scss' as *;
+@use '../../../mixins.scss' as *;
 .button__back {
+    // @include card-active;
     position: relative;
     min-width: 71px;
     // min-width: 100px !important;

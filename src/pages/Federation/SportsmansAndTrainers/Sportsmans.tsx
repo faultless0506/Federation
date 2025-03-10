@@ -57,11 +57,11 @@ export default function Sportsmans() {
   return (
     <section className="sportsmans">
       {/* Заголовок секции с кнопкой переключения */}
-      <div className="sportsmans__title">
+      <div className="section-header">
         <h2>
           Ведущие спортсмены сборной Москвы
-          <ToggleListButton isExpanded={showAll} onClick={toggleShowAll} />
         </h2>
+          <ToggleListButton isExpanded={showAll} onClick={toggleShowAll} />
       </div>
       {/* Список карточек спортсменов с классом для анимации */}
       <div className={`sportsmans__list ${showAll ? 'expanded' : 'collapsed'}`}>

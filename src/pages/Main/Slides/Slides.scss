@@ -1,0 +1,64 @@
+@use './../../../variables.scss' as *;
+@use './../../../mixins.scss' as *;
+.news-slide, .competitions-slide {
+  @include card-active;
+  cursor: pointer;
+  width: 97%;
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 10px;
+  margin: 5px 3px;
+
+  img {
+    border-radius: 4px;
+    object-fit: cover;
+    height: 160px;
+    width: 45%;
+  }
+
+  &__content {
+    padding: 8px 6px 4px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    position: relative;
+
+    h3 {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 5;
+      line-clamp: 5;
+      overflow: hidden;
+    }
+
+    p {
+      align-self: flex-end;
+      text-align: right;
+    }
+  }
+
+  &__finished {
+    position: absolute;
+    width: 130px;
+    bottom: 0px;
+    left: 0%;
+    border-radius: 5px;
+    pointer-events: none;
+    @media (max-width:624px) {
+      
+    }
+    p {
+      height: 30px;
+      text-align: center;
+      color: rgba(207, 56, 56);
+      font-size: 0.6rem;
+      text-shadow: 0 0 5px white;
+      font-weight: 700;
+    }
+  }
+
+}

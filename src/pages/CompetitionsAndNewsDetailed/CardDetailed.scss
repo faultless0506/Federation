@@ -1,5 +1,5 @@
 @use './../../variables.scss' as *;
-
+@use './../../mixins.scss' as *;
 .competitions__card-detailed, .news__card-detailed {
   display: flex;
   flex-direction: column;
@@ -40,31 +40,29 @@
     }
   }
   .detailed__image {
+    &-list-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto;
+    }
     &-list {
+      @include card-passive;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 10px;
-      width: 100%;
-      margin: 40px 0;
+      width: auto;
+      margin: 40px auto;
       padding: 20px;
-      border-radius: 8px;
-      background-color: $secondary-color;
 
-      box-shadow: 0 0px 4px 1px rgba(207, 56, 56, 1);
     }
     &-item {
+      @include card-active;
       width: calc(20% - 8px);
       min-width: 140px;
       object-fit: cover;
       cursor: pointer;
-      border-radius: 8px;
-      transition: all 0.2s;
-      box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 8px rgba(207, 56, 56, 0.6);
-      }
     }
   }
   .detailed__full-image-overlay {

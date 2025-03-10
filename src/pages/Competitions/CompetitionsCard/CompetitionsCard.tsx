@@ -37,11 +37,11 @@ const CompetitionsCard: React.FC<CompetitionsCardProps> = ({
         <h3>{title}</h3>
         <p>{content[0]}</p>
         <span>{date}, {location}</span>
-      {isFinished && (
+      {/* {isFinished && (
         <div className="competitions__card-finished">
           <p>Соревнование завершено</p>
         </div>
-      )}
+      )} */}
     </article>
   );
 };

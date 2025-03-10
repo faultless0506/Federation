@@ -25,12 +25,13 @@ const CompetitionsCardDetailed: React.FC = () => {
 
   const navigateImage = useCallback(
     (direction: 'prev' | 'next') => {
-      if (selectedImageIndex === null || !currentCompetition?.images.length) return;
+      if (selectedImageIndex === null || !currentCompetition?.images.length)
+        return;
 
       const newIndex =
         direction === 'prev'
           ? (selectedImageIndex - 1 + currentCompetition.images.length) %
-          currentCompetition.images.length
+            currentCompetition.images.length
           : (selectedImageIndex + 1) % currentCompetition.images.length;
 
       console.log('Navigating image:', {
@@ -47,19 +48,21 @@ const CompetitionsCardDetailed: React.FC = () => {
 
   if (!currentCompetition) {
     return (
-      <h2>
-        Соревнование не найдено.
-        <ButtonBack />
-      </h2>
+      <article className="content">
+        <div className="no-item">
+          <h3>Competition not found</h3>
+          <ButtonBack />
+        </div>
+      </article>
     );
   }
 
   return (
     <article className="container content competitions__card-detailed">
-      <h2>
-        {currentCompetition.title}
+      <div className="section-header">
+        <h2>{currentCompetition.title}</h2>
         <ButtonBack />
-      </h2>
+      </div>
       <div className="detailed__main textarea">
         <img
           src={currentCompetition.images[0]}
@@ -67,11 +70,13 @@ const CompetitionsCardDetailed: React.FC = () => {
           className="detailed__main-image"
           onClick={() => handleImageClick(0)}
         />
-          {currentCompetition.content.slice(0, currentCompetition.content.length -1).map((text, index) => (
-          <p className="detailed__main-text" key={index}>
-            {text}
-          </p>
-        ))}
+        {currentCompetition.content
+          .slice(0, currentCompetition.content.length - 1)
+          .map((text, index) => (
+            <p className="detailed__main-text" key={index}>
+              {text}
+            </p>
+          ))}
         {currentCompetition.images.length > 1 && (
           <div className="detailed__image-list">
             {currentCompetition.images.map((image, index) => (
@@ -80,7 +85,7 @@ const CompetitionsCardDetailed: React.FC = () => {
                 src={image}
                 alt={`Image ${index + 1}`}
                 className="detailed__image-item"
-                onClick={() => handleImageClick(index )}
+                onClick={() => handleImageClick(index)}
               />
             ))}
           </div>
@@ -91,7 +96,9 @@ const CompetitionsCardDetailed: React.FC = () => {
           </p>
         ))}
       </div>
-      <span className="detailed__date">{currentCompetition.date}, {currentCompetition.location}</span>
+      <span className="detailed__date">
+        {currentCompetition.date}, {currentCompetition.location}
+      </span>
       {selectedImageIndex !== null && (
         <div className="detailed__full-image-overlay" onClick={closeFullImage}>
           <img

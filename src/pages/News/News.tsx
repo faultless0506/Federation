@@ -8,7 +8,7 @@ export default function News(): JSX.Element {
 const sortedNews = useSelector(selectSortedNews);
   return (
     <section className="container content news">
-      <h2>News</h2>
+      <h2 className='section-header'>News</h2>
       {sortedNews.map((item) => (
         <NewsCard
           key={item.id}

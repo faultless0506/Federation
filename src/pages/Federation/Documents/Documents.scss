@@ -1,8 +1,16 @@
 @use '../../../variables.scss' as *;
-
+@use '../../../mixins.scss' as *;
 .documents {
+  &__section {
+    margin: 10px 0;
+    padding: 10px 4px 10px 10px;
+    @include card-passive;
+  }
   h2 {
     margin-bottom: 0px;
+  }
+  h3 {
+    margin: 10px;
   }
   &__download-button {
     border: none;
@@ -35,12 +43,20 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px;
+      margin: 0 10px;
+      padding: 6px 10px;
       border-bottom: 1px solid $secondary-color;
       transition: all 0.2s;
       &:hover {
         border-bottom: 1px solid $primary-color;
       }
+      &:last-child {
+        border-bottom: none;
+        &:hover {
+          border-bottom: none;
+        }
+      }
+
       p {
         cursor: pointer;
         transition: all 0.2s;

@@ -1,6 +1,6 @@
 // src/components/NewsSlide.tsx
 import React from "react";
-import "./NewsSlide.scss";
+import "./Slides.scss";
 import { useNavigate } from "react-router-dom";
 
 interface NewsSlideProps {

@@ -17,10 +17,8 @@
   }
 
   h3 {
-  //   font-size: 1rem;
     margin: 4px 0 6px 10px
 
-  //   width: 100%;
   }
 
   p {
@@ -45,7 +43,7 @@
     width: 35%; // Set width to 35% of the container
     float: right;
     margin-left: 10px;
-    min-height: 200px;
+    min-height: 220px;
   }
   span {
     position: absolute;
@@ -63,13 +61,14 @@
 
 @media (max-width: 768px) {
   .news__card {
+    
     p {
     line-clamp: 3;
     -webkit-line-clamp: 3;
     }
-    img {
-      min-height: 140px;
-    }
+    // img {
+    //   min-height: 140px;
+    // }
     
   }
 }

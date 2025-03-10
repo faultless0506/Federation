@@ -1,5 +1,5 @@
 import React from "react";
-import "./CompetitionsSlide.scss";
+import "./Slides.scss";
 import { useNavigate } from "react-router-dom";
 
 interface CompetitionsSlideProps {
@@ -26,7 +26,7 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
 
   const parseDate = (dateString: string) => {
     const [day, month, year] = dateString.split('.').map(Number);
-    return new Date(year, month - 1, day); // Месяцы в JavaScript начинаются с 0
+    return new Date(year, month - 1, day); 
   };
 
   const currentDate = new Date();
@@ -34,16 +34,12 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
 
   return (
     <article
-      className={`competition-slide ${isFinished ? "finished" : ""}`}
+      className={`competitions-slide ${isFinished ? "finished" : ""}`}
       onClick={HandleOpenCurrentCompetition}
     >
       <img src={images[0]} alt={title} />
-      {isFinished && (
-        <div className="competition-slide__finished">
-          <p>Соревнование завершено</p>
-        </div>
-      )}
-      <div className="competition-slide__content">
+      
+      <div className="competitions-slide__content">
         <h3>{title}</h3>
         <p>
           {date}

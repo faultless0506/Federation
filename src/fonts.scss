@@ -1,10 +1,10 @@
-@use "./variables.scss" as *;
+@use './variables.scss' as *;
 
-@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"');
-
+// @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
 body,
 html {
-  font-family: "Nunito", sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
   font-weight: normal;
   font-size: 20px;
   line-height: 30px;
@@ -35,14 +35,17 @@ span {
   color: $text-color;
 }
 .header a {
-  
+  font-size: 0.8rem;
   font-weight: 700;
+}
+.header__menu {
+  text-transform: uppercase;
 }
 .header__logo {
-font-size: .6rem;
-a {
-  font-weight: 700;
-}
+  font-size: 0.6rem;
+  a {
+    font-weight: 700;
+  }
 }
 h1 {
   line-height: 1.2em;
@@ -60,23 +63,22 @@ h2 {
   // text-align: center;
   // vertical-align: bottom;
   @media (max-width: 400px) {
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-weight: 600;
     line-height: normal;
   }
-  
+
   a {
     &:hover {
       // text-shadow: 0 0 2px rgba(207, 56, 56, 0.2);
       color: $primary-color;
-
     }
   }
 }
 h3 {
   line-height: 1em;
   font-size: 0.7rem;
-  @media (max-width: 980px) {
+  @media (max-width: 768px) {
     font-size: 0.6rem;
   }
 }
@@ -95,13 +97,13 @@ span {
 .trainers__card-info {
   h3 {
     font-size: 0.8rem;
-    @media (max-width: 750px) {
+    @media (max-width: 768px) {
       font-size: 0.8rem;
     }
   }
   p {
     font-size: 0.6rem;
-    @media (max-width: 750px) {
+    @media (max-width: 768px) {
       font-size: 0.5rem;
     }
   }
@@ -127,11 +129,7 @@ button {
   a {
     span {
       font-size: 0.8rem;
-      // text-shadow: 0 0 1px ;
-    }
-    &:hover {
-      span {
-        // text-shadow: 0 0 2px;
+      &:hover {
         color: $primary-color;
       }
     }
@@ -154,7 +152,19 @@ button {
   font-weight: 500;
   line-height: normal;
 }
-
+.no-item,
+.no-item h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: $primary-color;
+  text-align: center;
+}
+.documents h3 {
+  color: $primary-color;
+  font-size: 1rem;
+  font-weight: 600;
+  // line-height: 2em;
+}
 .documents__list-item p {
   font-size: 0.7rem;
   &:hover {
@@ -179,9 +189,8 @@ button {
 //   }
 // }
 
-
 .clubs-and-partners {
-  h3{
+  h3 {
     line-height: 1em;
     font-size: 1.25rem;
     font-weight: 700;
@@ -201,7 +210,7 @@ button {
 }
 .header__logo-socials {
   a {
-    font-size: .6rem;
+    font-size: 0.6rem;
     // text-shadow: 5px 2px 5px ;
     &:hover {
       color: $primary-color;
@@ -223,15 +232,14 @@ button {
     font-weight: 600;
     line-height: 1.2em;
   }
-  p{
-
+  p {
     text-indent: 10px;
     @media (min-width: 768px) {
       text-indent: 10px;
-      
     }
   }
-  p, li {
+  p,
+  li {
     font-size: 0.7rem;
     line-height: 1.2em;
   }
@@ -241,7 +249,7 @@ button {
   }
   li {
     list-style: disc;
-margin-left:20px;
+    margin-left: 20px;
   }
 
   // @media (max-width: 768px) {
@@ -249,4 +257,10 @@ margin-left:20px;
 
   //   }
   // }
+}
+.competitions-slide,
+.news-slide {
+  h3 {
+    font-weight: 700;
+  }
 }
