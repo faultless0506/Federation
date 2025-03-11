@@ -1,0 +1,97 @@
+@use '../../variables.scss' as *;
+@use '../../mixins.scss' as *;
+
+.leads {
+  display: flex;
+  flex-direction: column;
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    // justify-content: center;
+    gap: 20px;
+    padding: 16px 0;
+    // justify-content: ;
+  }
+
+  &__card {
+    @include card-passive;
+    // margin: 10px auto 10px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    // align-c: center;
+    height: 320px;
+    width: 240px;
+    width: calc(20% - 16px);
+    transition: transform 0.2s, box-shadow 0.2s;
+    padding: 4px;
+    @media (max-width: 980px) {
+      width: calc(25% - 15px);
+    }
+    @media (max-width: 768px) {
+      width: calc(33% - 12px);
+    }
+    @media (max-width: 580px) {
+      width: calc(50% - 10px);
+    }
+    @media (max-width: 480px) {
+      width: 100%;
+      flex-direction: row;
+      height: 210px;
+    }
+    &-info {
+      // height: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px;
+      line-height: normal;
+      align-self: start;
+      width: 100%;
+      p {
+        margin: 4px 0;
+        font-size: .6rem;
+      }
+    }
+
+    img {
+      width: auto;
+      min-height: 200px !important;
+      height: 200px;
+      object-fit: cover;
+      overflow: hidden;
+      padding: 4px;
+      align-self: start;
+      border-radius: 10px;
+      margin: auto;
+    }
+    // &:first-child {
+    //   width: calc(50% - 7px);
+    //   height: 380px;
+    //   flex-direction: row;
+    //   text-align: left;
+    //   .leads__card-info {
+    //     align-items: flex-start;
+    //     padding: 20px;
+    //     h3 {
+    //       margin-bottom: 20px;
+    //     }
+    //     p {
+    //       margin: 10px 0;
+    //     }
+    //   }
+    //   img {
+    //     height: 100%;
+    //     width: 300px;
+    //   }
+    //   @media screen and (max-width: 900px) {
+    //     width: 100%;
+    //   }
+    // }
+  }
+}

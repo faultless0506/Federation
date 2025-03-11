@@ -1,0 +1,151 @@
+@use '../../mixins.scss' as *;
+@use '../../variables.scss' as *;
+
+.fedlocation {
+    position: relative;
+  height: 1200px;
+  width: 100%;
+
+  &__box {
+    @include card-passive;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 20px;
+    position: relative;
+    height: 700px;
+    background-color: $secondary-color;
+    background-image: url('../../assets/img/op1iJy0_-4c.jpg');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: -1;
+    }
+    img {
+      background-color: $secondary-color;
+      width: 550px;
+      border-radius: 8px 100% 8px 8px;
+      transition: all 0.3s;
+      position: absolute;
+      bottom: 20px;
+      will-change: transform;
+      cursor: pointer;
+      box-shadow: 0 0 20px 20px rgba(0, 0, 0, 0.7);
+      &:hover {
+        box-shadow: 0 0 20px 15px $secondary-color;
+        transform: scale(1.02) translateY(-5px) translateX(5px);
+      }
+    }
+  }
+  &__desc {
+    border-radius: 24px 24px 24px 100%;
+    text-align: right;
+    width: 550px;
+    height: 200px;
+    align-self: flex-end;
+    text-align: end;
+    padding: 10px 20px;
+    h3,
+    p,
+    a,
+    span {
+      color: $background-color;
+    }
+    h3 {
+      font-size: 26px;
+      font-weight: bold;
+    }
+    p {
+      font-size: 18px;
+      line-height: 22px;
+    }
+  }
+  &__lessons {
+    margin-top: 20px;
+    &-req {
+      height: 200px;
+      width: 100%;
+      display: flex;
+      border: 1px solid black;
+      border-radius: 8px;
+      padding: 10px;
+      a {
+        color: $background-color;
+        text-decoration: none;
+        &:hover {
+          color: $primary-color;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 980px) {
+  .fedlocation {
+    &__box {
+      background-image: linear-gradient(
+        30deg,
+        rgba(0, 0, 0, 0.1)30%,
+        rgba(white, 1) 70%,
+      );
+      img {
+        min-width: 400px;
+        width: 60%;
+        height: auto;
+        min-height: none;
+        will-change: none;
+        &:hover {
+          transform: none;
+        }
+      }
+      &::before {
+        background-color: rgba(0, 0, 0, 0.8); // Shading overlay
+      }
+    }
+    &__desc {
+      width: 60%;
+      height: 450px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .fedlocation {
+    &__desc {
+      padding: 10px 20px;
+      width: 100%;
+      height: auto;
+    }
+    img {
+      max-width: 550px;
+      width: calc(100% - 40px);
+      height: auto;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .fedlocation {
+    &__box {
+      img {
+        min-width: 200px;
+        height: auto;
+        min-height: none;
+        border-radius: 24px;
+      }
+    }
+    &__desc {
+      padding: 0;
+      width: 100%;
+    }
+  }
+}

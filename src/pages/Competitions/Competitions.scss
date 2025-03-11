@@ -1,14 +1,11 @@
 @use '../../variables.scss' as *;
 
 .competitions {
-//  margin-top: 0px;
 display: flex;
 justify-content: space-between;
 flex-wrap: wrap;
 
-&__future {
-  
-}
+
   &__past,
   &__rules {
     margin-top: -10px;

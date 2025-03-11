@@ -1,0 +1,97 @@
+@use '../../variables.scss' as *;
+
+.landing {
+  position: relative;
+  height: 700px;
+  width: 100%;
+  background-color: black;
+
+  &__box {
+    position: relative;
+    height: 100%;
+    display: flex;
+    background-image: url('../../assets/img/landing_3.png');
+    background-position: 200px;
+    background-size: cover;
+    z-index: 1; 
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6); 
+      z-index: -1;
+    }
+  }
+
+  &__desc {
+    position: relative;
+    top: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-left: 20px;
+    margin-top: 80px;
+    max-width: 550px;
+    // text-align: right;
+    // color: #fff;
+    // color: whitesmoke;
+    p,
+    li,
+    h1,
+    a {
+      color: $background-color;
+      // text-shadow: 0 0 1px;
+    }
+    p {
+      font-size: 0.8rem;
+      // text-indent: 8px;
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+  &__contacts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+// Responsive breakpoints
+@media (max-width: 980px) {
+  .landing {
+    &__box {
+      background-position: center;
+      &::before {
+        background-color: rgba(0, 0, 0, 0.8); // Shading overlay
+      }
+    }
+    &__desc {
+      max-width: 100%;
+      // max-width: 550px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .landing {
+    &__desc {
+      padding: 10px 20px;
+      h1{
+        margin: 0;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .landing {
+    &__desc {
+      padding: 0;
+    }
+  }
+}

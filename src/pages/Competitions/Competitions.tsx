@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import CompetitionsCard from './CompetitionsCard/CompetitionsCard';
+import CompetitionsCard from '../../components/News&CompetitionsCard/CompetitionsCard';
 import './Competitions.scss';
 import { useState } from 'react';
 import ToggleListButton from '../../components/Buttons/ToggleListButton/ToggleListButton';
@@ -41,12 +41,6 @@ export default function Competitions(): JSX.Element {
       <section className="competitions__future">
         <div className="section-header">
           <h2>Предстоящие соревнования</h2>
-          {/* {(futureCompetitions.length ) > 2 ? (
-            <ToggleListButton
-              isExpanded={showAllFuture}
-              onClick={toggleShowAllFutureCompetitions}
-            />
-          ) : null} */}
         </div>
         {futureCompetitions.length > 0 ? (
           <div
@@ -82,11 +76,6 @@ export default function Competitions(): JSX.Element {
       <section className="competitions__past">
         <div className="section-header">
           <h2>Прошедшие соревнования</h2>
-          {/* {pastCompetitions.length > 2 ? 
-          <ToggleListButton
-            isExpanded={showAllPast}
-            onClick={toggleShowAllPastCompetitions}
-          /> : null} */}
         </div>
         <div
           className={`competitions__past-list ${

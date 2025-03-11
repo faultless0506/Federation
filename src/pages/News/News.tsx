@@ -1,6 +1,6 @@
 // import React from "react";
 import { useSelector } from 'react-redux';
-import NewsCard from './NewsCard/NewsCard';
+import NewsCard from '../../components/News&CompetitionsCard/NewsCard';
 import './News.scss';
 import { selectSortedNews } from '../../store/news/newsSlice';
 

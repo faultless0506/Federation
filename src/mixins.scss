@@ -2,11 +2,14 @@
 
 @mixin card-passive {
   background-color: $card-color;
-  border: 1px solid #ddd;
+  border: 1px solid $secondary-color;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   position: relative;
+  img {
+    border-radius: 8px;
+  }
 }
 @mixin card-active {
   @include card-passive;

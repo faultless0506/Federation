@@ -6,6 +6,7 @@
   width: 100%;
   background-color: $secondary-color;
   border-top: 1px solid rgba(207, 56, 56, 0.4);
+  z-index: 1000;
   @media (max-width: 1100px) {
     display: none;
   }
