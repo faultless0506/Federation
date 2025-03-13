@@ -4,38 +4,31 @@ import './Main.scss';
 import NewsSlider from '../../components/Sliders/NewsSlider';
 import CompetitionsSlider from '../../components/Sliders/CompetitionsSlider';
 import ClubsAndPartners from '../../components/ClubsAndPartners/ClubsAndPartners';
-import Landing from '../../components/Landing/Landing';
+import { MainLanding } from '../../components/Landing/MainLanding';
 import FedLocation from '../../components/FedLocation/FedLocation';
-import FedLead from '../../components/FedLead/FedLead';
-import DocumentSection from '../../components/DocumentsSection/DocumentsSections';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import { handleDownloadDocument, handleOpenDocument } from '../../customHooks/handleDocumentEvents';
+import Lessons from '../../components/Lessons/Lessons';
+import FedDetails from '../../components/FedDetails/FedDetails';
+import PageMenu from '../../components/NavMenu/NavMenu';
 const Main: React.FC = () => {
-  
-  const documents = useSelector((state: RootState) => state.documents.items);
-  const documentsFederaion = documents.filter((doc) => doc.doctype === 1);
-  const documentsProvisions = documents.filter((doc) => doc.doctype === 4);
-
   return (
     <>
-      <Landing />
+      <MainLanding />
+      <PageMenu
+        items={[
+          { id: 'location', label: 'Как добраться' },
+          { id: 'lessons', label: 'Занятия' },
+          { id: 'news', label: 'Новости и соревнования' },
+          { id: 'details', label: 'Устав' },
+          { id: 'clubs-and-partners', label: 'Партнерские организации' },
+        ]}
+      />
       <div className="container content main">
+        <FedLocation />
+        <Lessons />
         <NewsSlider />
         <CompetitionsSlider />
+        <FedDetails />
         <ClubsAndPartners />
-        
-      <section className="documents">
-        <h2 className="section-header">Основные документы</h2>
-
-        <DocumentSection 
-          title="Уставные документы Федерации"
-          documents={documentsFederaion}
-          onOpenDocument={handleOpenDocument}
-          onDownloadDocument={handleDownloadDocument}/>
-          <DocumentSection title='Положения и регламенты' documents={documentsProvisions} onOpenDocument={handleOpenDocument} onDownloadDocument={handleDownloadDocument}/></section>
-        <FedLocation />
-        <FedLead />
       </div>
     </>
   );

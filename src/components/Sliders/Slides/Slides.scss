@@ -1,7 +1,8 @@
 @use '../../../variables.scss' as *;
 @use '../../../mixins.scss' as *;
 
-.news-slide, .competitions-slide {
+.news-slide,
+.competitions-slide {
   @include card-active;
   cursor: pointer;
   width: 97%;
@@ -24,17 +25,23 @@
     display: flex;
     width: 100%;
     flex-direction: column;
-    // justify-content: space-between;
+    justify-content: flex-start;
     height: 100%;
     position: relative;
-
-    h3,p {
+    &-bottom {
+      display: flex;
+      width: 100%;
+      margin-top: auto;
+      justify-self: flex-end;
+      // flex-direction: row-reverse;
+    }
+    h3,
+    p {
       display: -webkit-box;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
     h3 {
-      
       -webkit-line-clamp: 5;
       line-clamp: 5;
     }
@@ -45,30 +52,33 @@
       line-clamp: 3;
     }
     span {
-      // align-self: flex-end;
+    width: 100%;
+      // justify-self: flex-end;
+      font-size: 0.5rem;
+      line-height: 1.2em;
       text-align: right;
-      margin-top: auto;
+      // margin-top: auto;W
     }
   }
 
   &__finished {
     position: absolute;
     width: 130px;
-    bottom: 0px;
-    left: 0%;
-    border-radius: 5px;
+    // height: 40px;
+    bottom: 4px;
+    left: -24px;
+    // border-radius: 5px;
     pointer-events: none;
-    @media (max-width:624px) {
-      
+    @media (max-width: 624px) {
     }
     p {
-      height: 30px;
+      // height: 36px;
       text-align: center;
       color: rgba(207, 56, 56);
-      font-size: 0.6rem;
+      font-size: 0.5rem;
+      line-height: 1.2em;
       text-shadow: 0 0 5px white;
       font-weight: 700;
     }
   }
-
 }

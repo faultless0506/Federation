@@ -6,7 +6,7 @@ export default function FedLead() {
   const leads = useSelector((state: RootState) => state.leads.items);
 
   return (
-    <section className="leads">
+    <section className="leads" id="leads">
       <h2 className="section-header">Руководство федерации</h2>
       <div className="leads__list">
         {leads
@@ -33,7 +33,7 @@ export default function FedLead() {
             </article>
           ))}
       </div>
-      <h2>Попечительский совет</h2>
+      <h2 className="section-header">Попечительский совет</h2>
       <div className="leads__list">
         {leads
           .filter((lead) => lead.class === 2)

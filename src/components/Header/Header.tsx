@@ -60,112 +60,113 @@ export default function Header() {
 
   return (
     <header className="header">
-        <nav className="container header__box">
-          <div
-            className={`header__burger ${isMenuOpen ? 'active' : ''}`}
-            onClick={handleBurgerClick}
-          >
-            <span></span>
-          </div>
-          <ButtonScrollToTop />
-          <div
-            className="header__logo"
+      <nav className="container header__box">
+        <div
+          className={`header__burger ${isMenuOpen ? 'active' : ''}`}
+          onClick={handleBurgerClick}
+        >
+          <span></span>
+        </div>
+        <ButtonScrollToTop />
+        <div
+          className="header__logo"
+          onClick={() => {
+            handleLinkClick('/');
+            handleCloseMenu();
+            scrollToTop();
+          }}
+        >
+          <Link to="/federation">
+            <img src={logo} alt="Logo" />
+            <span>Федерация спортивного метания ножа г. Москва</span>
+          </Link>
+        </div>
+        <div className="header__logo-socials">
+          <ButtonVK />
+          <ButtonTG />
+        </div>
+        <ul
+          className={`header__menu ${isMenuOpen ? 'active' : ''} ${
+            isAnimating ? 'animating' : ''
+          }`}
+        >
+          <Link className="header__logo-mobile"
+            to="/federation"
             onClick={() => {
-              handleLinkClick('/');
+              handleLinkClick('/federation');
               handleCloseMenu();
               scrollToTop();
             }}
           >
-            <Link to="/">
-              <img src={logo} alt="Logo" />
-              <span>Федерация спортивного метания ножа г. Москва</span>
-            </Link>
-          </div>
-          <div className="header__logo-socials">
-            <ButtonVK />
-            <ButtonTG />
-          </div>
-          <ul
-            className={`header__menu ${isMenuOpen ? 'active' : ''} ${
-              isAnimating ? 'animating' : ''
-            }`}
-          >
-            <div
-              className="header__logo-mobile"
+            <img src={logo} alt="Logo" /></Link>
+          <li className="header__menu-item">
+            <Link
+              to="/"
               onClick={() => {
                 handleLinkClick('/');
                 handleCloseMenu();
-                scrollToTop();
               }}
+              className={`${activeLink === '/' ? 'active' : ''} `}
             >
-              <img src={logo} alt="Logo" />
-            </div>
-            <li className="header__menu-item">
-              <Link
-                to="/"
-                onClick={() => {
-                  handleLinkClick('/');
-                  handleCloseMenu();
-                }}
-                className={`${activeLink === '/' ? 'active' : ''} `}
-              >
-                Главная
-              </Link>
-            </li>
-            <li className="header__menu-item">
-              <Link
-                to="/news"
-                onClick={() => {
-                  handleLinkClick('/news');
-                  handleCloseMenu();
-                }}
-                className={
-                  location.pathname.startsWith('/news') ? 'active' : ''
-                }
-              >
-                Новости
-              </Link>
-            </li>
-            <li className="header__menu-item">
-              <Link
-                to="/competitions"
-                onClick={() => {
-                  handleLinkClick('/competitions');
-                  handleCloseMenu();
-                }}
-                className={
-                  location.pathname.startsWith('/competitions') ? 'active' : ''
-                }
-              >
-                Соревнования
-              </Link>
-            </li>
-            <li className="header__menu-item">
-              <Link
-                to="/federation"
-                onClick={() => {
-                  handleLinkClick('/federation');
-                  handleCloseMenu();
-                }}
-                className={
-                  location.pathname.startsWith('/federation') ? 'active' : ''
-                }
-              >
-                Федерация
-              </Link>
-            </li>
+              Главная
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link
+              to="/news"
+              onClick={() => {
+                handleLinkClick('/news');
+                handleCloseMenu();
+              }}
+              className={location.pathname.startsWith('/news') ? 'active' : ''}
+            >
+              Новости
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link
+              to="/competitions"
+              onClick={() => {
+                handleLinkClick('/competitions');
+                handleCloseMenu();
+              }}
+              className={
+                location.pathname.startsWith('/competitions') ? 'active' : ''
+              }
+            >
+              Соревнования
+            </Link>
+          </li>
+          <li className="header__menu-item">
+            <Link
+              to="/federation"
+              onClick={() => {
+                handleLinkClick('/federation');
+                handleCloseMenu();
+              }}
+              className={
+                location.pathname.startsWith('/federation') ? 'active' : ''
+              }
+            >
+              Федерация
+            </Link>
+          </li>
 
-            <div className="header__menu-contacts">
-              <div className="header__menu-contacts-social">
-                <ButtonVK />
-                <ButtonTG />
-              </div>
-              <Link to="/" target="_blank">
-                fmsnm@moscow.ru
-              </Link>
+          <li className="header__menu-contacts">
+            <div className="header__menu-contacts-social">
+              <ButtonVK />
+              <ButtonTG />
             </div>
-          </ul>
-        </nav>
+            <Link
+              className="header__menu-contacts-mail"
+              to="mailto:roofsmn2024@mail.ru"
+              target="_blank"
+            >
+              roofsmn2024@mail.ru
+            </Link>
+          </li>
+        </ul>
+      </nav>
       {isMenuOpen && (
         <div className="header__backdrop" onClick={handleBackdropClick}></div>
       )}

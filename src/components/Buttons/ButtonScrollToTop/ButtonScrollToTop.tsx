@@ -15,7 +15,7 @@ export default function ButtonScrollToTop() {
   // Отслеживание прокрутки страницы
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.scrollY > 500) {
+      if (window.scrollY > 600) {
         setIsVisible(true);
       } else {
         setIsVisible(false);

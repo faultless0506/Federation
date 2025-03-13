@@ -1,0 +1,119 @@
+@use '../../variables.scss' as *;
+@use '../../mixins.scss' as *;
+
+.nav-menu {
+  position: absolute;
+  color: $background-color;
+  z-index: 300;
+  top: 590px;
+  right: 20px;
+  transition: all 0.3s;
+  width:auto;
+  border-right: 1px solid rgba(230, 221, 221, 0.4);
+  margin-right: 20px;
+  margin-left: 20px;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -20px;
+    width: 20px;
+    height: 100%;
+    background: linear-gradient(
+      to right,
+      rgba(230, 221, 221, 0.4),
+      rgba(107, 106, 106, 0) 100%
+    );
+  }
+  &::after {
+    content: '';
+    position: relative !important;
+    top: 0;
+    left: 4px;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(
+      to left,
+      rgb(230, 221, 221),
+      rgba(107, 106, 106, 0) 10%
+    );
+  }
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    // gap: 10px;
+    a {
+      width: auto;
+      height: auto;
+      transition: all 0.3s;
+      cursor: pointer;
+      color: $background-color;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding-right: 10px;
+      padding-top: 10px;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: -20px;
+        width: 20px;
+        height: auto;
+        background: linear-gradient(
+          to right,
+          rgba(230, 221, 221, 0.4),
+          rgba(107, 106, 106, 0) 100%
+        );
+      }
+      &::after {
+        content: '';
+        position: relative !important;
+        top: 0;
+        left: 4px;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(
+          to left,
+          rgb(230, 221, 221),
+          rgba(107, 106, 106, 0) 10%
+        );
+      }
+      &:hover {
+        color: $primary-color;
+       
+      }
+    }
+  }
+
+  h3 {
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    padding-right: 10px;
+    color: $primary-color;
+    text-transform: uppercase;
+    text-align: right;
+  }
+  
+  h3, a {
+    line-height: 1em;
+    // text-align: right;
+  }
+  @media (max-width: 980px) {
+    top: 610px;
+    right: 20px;
+    h3 {
+      font-size: 1rem;
+      line-height: 1em;
+    }
+    a {
+      font-size: 0.6rem;
+    }
+  }
+  @media (max-width: 768px) {
+    right: 0px;
+  }
+}

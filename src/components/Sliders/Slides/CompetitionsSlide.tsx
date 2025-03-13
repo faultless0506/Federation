@@ -1,6 +1,6 @@
-import React from "react";
-import "./Slides.scss";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import './Slides.scss';
+import { useNavigate } from 'react-router-dom';
 
 interface CompetitionsSlideProps {
   id: number;
@@ -17,6 +17,7 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
   location,
   date,
   images,
+  content,
 }) => {
   const navigate = useNavigate();
 
@@ -26,7 +27,7 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
 
   const parseDate = (dateString: string) => {
     const [day, month, year] = dateString.split('.').map(Number);
-    return new Date(year, month - 1, day); 
+    return new Date(year, month - 1, day);
   };
 
   const currentDate = new Date();
@@ -34,23 +35,25 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
 
   return (
     <article
-      className={`competitions-slide ${isFinished ? "finished" : ""}`}
+      className={`competitions-slide ${isFinished ? 'finished' : ''}`}
       onClick={HandleOpenCurrentCompetition}
     >
       <img src={images[0]} alt={title} />
-      
+
       <div className="competitions-slide__content">
         <h3>{title}</h3>
-        {isFinished && (
-        <div className="competitions-slide__finished">
-          <p>Соревнование завершено</p>
+        <p>{content[0]}</p>
+        <div className="competitions-slide__content-bottom">
+          {isFinished && (
+            <div className="competitions-slide__finished">
+              <p>Соревнование завершено</p>
+            </div>
+          )}
+          <span>
+            {location}, <br />
+            {date}
+          </span>
         </div>
-      )}
-        <span>
-          {date}
-          <br />
-          {location}
-        </span>
       </div>
     </article>
   );

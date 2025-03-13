@@ -1,10 +1,11 @@
 import React from 'react';
 import './Landing.scss';
+// import PageMenu from '../PageMenu/PageMenu';
 
-const Landing: React.FC = () => {
+export const MainLanding: React.FC = () => {
   return (
     <section className="landing">
-      <div className="container landing__box">
+      <div className="container landing__box main">
         <div className="landing__desc">
           <h1>Федерация спортивного метания ножа г. Москва</h1>
           <p>
@@ -32,5 +33,3 @@ const Landing: React.FC = () => {
     </section>
   );
 };
-
-export default Landing;

@@ -23,7 +23,7 @@ export default function Sportsmans() {
   }, [showAll]);
 
   return (
-    <section className="sportsmans">
+    <section className="sportsmans" id="sportsmans">
       <div className="section-header">
         <h2>Ведущие спортсмены сборной Москвы</h2>
         {/* <ToggleListButton isExpanded={showAll} onClick={toggleShowAll} /> */}

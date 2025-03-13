@@ -24,7 +24,7 @@ export default function Trainers() {
   }, [showAll]);
 
   return (
-    <section className="trainers">
+    <section className="trainers" id="trainers">
       <div className="section-header">
         <h2>Тренерский состав</h2>
       </div>

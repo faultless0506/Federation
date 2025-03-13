@@ -1,4 +1,3 @@
-
 import './Footer.scss';
 import { Link } from 'react-router-dom';
 import ButtonTG from '../Buttons/ButtonSocial/ButtonTG';
@@ -21,7 +20,7 @@ export default function Footer() {
         <ul className="footer__contacts">
           <li>
             <Link to="/" target="_blank">
-              fmsnm@moscow.ru
+              roofsmn2024@mail.ru
             </Link>
           </li>
           <ButtonTG />

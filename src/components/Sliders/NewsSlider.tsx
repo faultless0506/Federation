@@ -35,7 +35,7 @@ const NewsSlider: React.FC = () => {
         },
       },
       {
-        breakpoint: 568,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
         },
@@ -44,7 +44,7 @@ const NewsSlider: React.FC = () => {
   };
 
   return (
-    <section className="news-slider">
+    <section className="news-slider" id="news">
       <h2 className="section-header">
         <Link to="/news">Новости</Link>
       </h2>

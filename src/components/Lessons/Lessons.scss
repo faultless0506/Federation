@@ -1,0 +1,11 @@
+@use "../../variables.scss" as *;
+@use "../../mixins.scss" as *;
+
+
+.lessons {
+    margin-top: 10px;
+    @include card-passive;
+    width: 100%;
+    height: 200px;
+    padding: 20px;
+}

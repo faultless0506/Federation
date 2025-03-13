@@ -46,7 +46,7 @@ export default function CompetitionsSlider() {
         },
       },
       {
-        breakpoint: 568,
+        breakpoint: 768,
         settings: {
           slidesToShow: 1,
         },
@@ -55,7 +55,7 @@ export default function CompetitionsSlider() {
   };
 
   return (
-    <section className="competitions-slider">
+    <section className="competitions-slider" id="competitions">
       <h2 className="section-header">
         <Link to="/competitions"> Соревнования</Link>
       </h2>

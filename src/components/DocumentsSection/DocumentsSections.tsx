@@ -56,7 +56,7 @@ export default function DocumentSection({
         {documents.length > 3 && (
           <ToggleListButton
             isExpanded={showAll}
-            expandText="Показать всех"
+            expandText="Показать все"
             collapseText="Свернуть"
             onClick={toggleShowAll}
             className="bottom-button"
