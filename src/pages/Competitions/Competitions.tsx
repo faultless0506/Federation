@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import CompetitionsCard from './CompetitionsCard/CompetitionsCard';
+import CompetitionsCard from '../../components/News&CompetitionsCard/CompetitionsCard';
 import './Competitions.scss';
 import { useState } from 'react';
 import ToggleListButton from '../../components/Buttons/ToggleListButton/ToggleListButton';
@@ -39,46 +39,44 @@ export default function Competitions(): JSX.Element {
   return (
     <div className="container content competitions ">
       <section className="competitions__future">
-        <h2>
-          Предстоящие соревнования
+        <div className="section-header">
+          <h2>Предстоящие соревнования</h2>
+        </div>
+        {futureCompetitions.length > 0 ? (
+          <div
+            className={`competitions__future-list ${
+              showAllFuture ? 'expanded' : 'collapsed'
+            }`}
+          >
+            {displayedFutureCompetitions.map((item) => (
+              <CompetitionsCard
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                content={item.content}
+                date={item.date}
+                images={item.images}
+                location={item.location}
+              />
+            ))}
+          </div>
+        ) : (
+          <h3 className="no-item">Нет предстоящих соревнований</h3>
+        )}
+        {futureCompetitions.length > 2 ? (
           <ToggleListButton
             isExpanded={showAllFuture}
+            expandText="Развернуть"
+            collapseText="Свернуть"
             onClick={toggleShowAllFutureCompetitions}
+            className="bottom-button"
           />
-        </h2>
-        <div
-          className={`competitions__future-list ${
-            showAllFuture ? 'expanded' : 'collapsed'
-          }`}
-        >
-          {displayedFutureCompetitions.map((item) => (
-            <CompetitionsCard
-              key={item.id}
-              id={item.id}
-              title={item.title}
-              content={item.content}
-              date={item.date}
-              images={item.images}
-              location={item.location}
-            />
-          ))}
-        </div>
-        
-        <ToggleListButton
-          isExpanded={showAllFuture}
-          expandText="Свернуть"
-          onClick={toggleShowAllFutureCompetitions}
-          className="bottom-button"
-        />
+        ) : null}
       </section>
       <section className="competitions__past">
-        <h2>
-          Прошедшие соревнования
-          <ToggleListButton
-            isExpanded={showAllPast}
-            onClick={toggleShowAllPastCompetitions}
-          />
-        </h2>
+        <div className="section-header">
+          <h2>Прошедшие соревнования</h2>
+        </div>
         <div
           className={`competitions__past-list ${
             showAllPast ? 'expanded' : 'collapsed'
@@ -96,12 +94,15 @@ export default function Competitions(): JSX.Element {
             />
           ))}
         </div>
-        <ToggleListButton
-          isExpanded={showAllPast}
-          expandText="Свернуть"
-          onClick={toggleShowAllPastCompetitions}
-          className="bottom-button"
-        />
+        {pastCompetitions.length > 2 ? (
+          <ToggleListButton
+            isExpanded={showAllPast}
+            expandText="Развернуть"
+            collapseText="Свернуть"
+            onClick={toggleShowAllPastCompetitions}
+            className="bottom-button"
+          />
+        ) : null}
       </section>
       <section className="competitions__rules textarea">
         <h2>Правила и условия соревнований</h2>

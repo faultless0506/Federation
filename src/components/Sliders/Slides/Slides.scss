@@ -1,0 +1,84 @@
+@use '../../../variables.scss' as *;
+@use '../../../mixins.scss' as *;
+
+.news-slide,
+.competitions-slide {
+  @include card-active;
+  cursor: pointer;
+  width: 97%;
+  height: 180px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding: 10px;
+  margin: 5px 3px;
+
+  img {
+    border-radius: 4px;
+    object-fit: cover;
+    height: 160px;
+    width: 45%;
+  }
+
+  &__content {
+    padding: 8px 6px 4px;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    position: relative;
+    &-bottom {
+      display: flex;
+      width: 100%;
+      margin-top: auto;
+      justify-self: flex-end;
+      // flex-direction: row-reverse;
+    }
+    h3,
+    p {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    h3 {
+      -webkit-line-clamp: 5;
+      line-clamp: 5;
+    }
+    p {
+      padding-top: 6px;
+      text-indent: 6px;
+      -webkit-line-clamp: 3;
+      line-clamp: 3;
+    }
+    span {
+    width: 100%;
+      // justify-self: flex-end;
+      font-size: 0.5rem;
+      line-height: 1.2em;
+      text-align: right;
+      // margin-top: auto;W
+    }
+  }
+
+  &__finished {
+    position: absolute;
+    width: 130px;
+    // height: 40px;
+    bottom: 4px;
+    left: -24px;
+    // border-radius: 5px;
+    pointer-events: none;
+    @media (max-width: 624px) {
+    }
+    p {
+      // height: 36px;
+      text-align: center;
+      color: rgba(207, 56, 56);
+      font-size: 0.5rem;
+      line-height: 1.2em;
+      text-shadow: 0 0 5px white;
+      font-weight: 700;
+    }
+  }
+}

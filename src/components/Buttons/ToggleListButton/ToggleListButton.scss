@@ -1,19 +1,15 @@
 @use './../../../variables.scss' as *;
-
+@use './../../../mixins.scss' as *;
 .button__toggle-list {
-  position: relative;
-  margin-right: 20px;
-  background-color: $card-color;
-  padding: 2px 24px 0px 10px;
-//   min-width: 120px;
-  border: 1px solid rgba(207, 56, 56, 0.5);
-  border-radius: 6px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: all .3s;
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(207, 56, 56, 0.2);
-  }
+    
+@include card-active;
+  margin-right: 2px;
+  padding: 6px 24px 6px 10px;
+  min-width: 125px;
+  height: 32px;
+    &:hover {
+        transform: translateY(-2px);
+    }
   @media (max-width: 980px) {
     margin-right: 0;
   }
@@ -21,14 +17,12 @@
     content: '';
     transition: all 0.2s;
     position: absolute;
-    //   background-image: url('./../../../assets/svg/arrow-down-black.svg');
     background-size: contain;
     background-repeat: no-repeat;
     display: inline-block;
     width: 20px;
     height: 20px;
-    top: 1px;
-    // right: -21px;
+    top: 5px;
   }
   &.collapsed::after {
     background-image: url('./../../../assets/svg/arrow-down-black.svg');
@@ -48,12 +42,6 @@
     width: 100%;
     margin: 6px auto;
     padding: auto;
-    &.collapsed {
-        opacity: 0;
-        z-index: -1;
-    }
-    &.expanded {
-        opacity: 1;
-    }
+
   }
 }

@@ -1,0 +1,32 @@
+@use '../../variables.scss' as *;
+@use '../../mixins.scss' as *;
+
+.details {
+    margin-top: 30px;
+    @include card-passive;
+    display: flex;
+    width: 100%;
+    height: auto;
+    &__reqs {
+        width: 50%;
+        margin: 20px 0 20px 10px;
+        padding: 2px 4px 2px 10px;
+    }
+    &__docs {
+        width: 50%;
+        border: none;
+        .documents__section {
+            border: none;
+            box-shadow: none;
+        }
+    }
+    @media (max-width: 768px) {
+        flex-direction: column;
+        &__reqs {
+            width: 100%;
+        }
+        &__docs {
+            width: 100%;
+        }
+    }
+}

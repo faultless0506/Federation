@@ -1,0 +1,64 @@
+@use './../../../variables.scss' as *;
+@use './../../../mixins.scss' as *;
+
+.button__scroll {
+  // @include card-active;
+  // padding-left: 6px;
+  position: fixed;
+  font-size: 14px;
+  top: 110px;
+  right: 30px;
+  padding: 5px;
+  // width: 40px;
+  // height: 40px;
+  border-radius: 50%;
+  // background-color: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  &::after {
+    content: '';
+    transition: background-image 0.3s ease-in-out;
+    transform: rotate(90deg);
+    width: 28px;
+    height: 28px;
+    position: relative;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  &.visible {
+    opacity: 1;
+  }
+
+  @media (max-width: 980px) {
+    top: 22px;
+    transition: all 0.2s ease-in-out;
+    right: 32px;
+    &::after {
+      width: 26px;
+      height: 26px;
+      background-image: url('./../../../assets/svg/newarrow-left-red.svg');
+      background-size: 120%;
+    }
+  }
+
+  @media (min-width: 981px) {
+    background-color: $secondary-color;
+    box-shadow: 0 0 10px;
+    transition: all 0.2s ease-in-out;
+
+    &::after {
+      background-image: url('./../../../assets/svg/newarrow-left-black.svg');
+    }
+    &:hover {
+      // transform: scale(1.1);
+      &::after {
+        background-image: url('./../../../assets/svg/newarrow-left-red.svg');
+        // transform: scale(1.2);
+      }
+    }
+  }
+}

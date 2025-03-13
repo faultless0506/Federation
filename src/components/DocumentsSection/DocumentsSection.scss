@@ -1,0 +1,82 @@
+@use './../../variables.scss' as *;
+@use './../../mixins.scss' as *;
+
+.documents{
+ 
+&__section {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    padding: 2px 4px 2px 10px;
+    @include card-passive;
+    transition: all 0.3s;
+  }
+  h3 {
+    margin: 10px;
+  }
+  &__download-button {
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s;
+    min-width: 100px;
+    &::after {
+      content: '';
+      transition: all 0.2s;
+      background-image: url('./../../assets/svg/download_black.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      position: relative;
+      top: 5px;
+      left: 5px;
+    }
+    &:hover {
+      &::after {
+        background-image: url('./../../assets/svg/download_red.svg');
+      }
+    }
+  }
+  &__list {
+    max-height: 140px;
+    margin-bottom: 0px;
+    transition: all .4s;
+    &.expanded {
+      max-height: 800px;
+    }
+    &-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 10px;
+      padding: 6px 10px;
+      border-bottom: 1px solid $secondary-color;
+      transition: all 0.2s;
+      overflow: hidden;
+      &:hover {
+        border-bottom: 1px solid $primary-color;
+      }
+      &:last-child {
+        border-bottom: none;
+        // margin-bottom: 50px;
+        &:hover {
+          border-bottom: none;
+        }
+
+      }
+
+      p {
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+    }
+  }
+  .button-container {
+    width: 100%;
+    background-color: $card-color;
+  }
+     
+}

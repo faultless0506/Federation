@@ -36,9 +36,9 @@ export default function ClubsAndPartners() {
   const clubs = useSelector((state: RootState) => state.clubs.items);
 
   return (
-    <section className="clubs-and-partners ">
-      <h2>Клубы и партнеры</h2>
-      <article className="clubs">
+    <section className="clubs-and-partners" id="clubs-and-partners">
+      {/* <h2 className='section-header'>Клубы и партнеры</h2> */}
+      {/* <article className="clubs">
         <ul className="clubs__list">
           {clubs.map((club) => (
             <li key={club.id} className="clubs__list-item">
@@ -47,7 +47,7 @@ export default function ClubsAndPartners() {
             </li>
           ))}
         </ul>
-      </article>
+      </article> */}
       <article className="partners">
         <ul className="partners__list">
           {departments.map((department) => (
