@@ -105,7 +105,7 @@ export default function Competitions(): JSX.Element {
         ) : null}
       </section>
       <section className="competitions__rules textarea">
-        <h2>Правила и условия соревнований</h2>
+        <h2 className="section-header">Контент, заменить на блок с документами соревнований, результатами и т.д.</h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis
           finibus velit, non finibus dui bibendum vitae. Donec consectetur nisi

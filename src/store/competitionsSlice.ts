@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import competitionImage from './../../assets/img/268677.jpg';
+import competitionImage from './../assets/img/268677.jpg';
 
 interface CompetitionState {
   items: {

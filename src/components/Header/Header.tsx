@@ -71,9 +71,9 @@ export default function Header() {
         <div
           className="header__logo"
           onClick={() => {
-            handleLinkClick('/');
+            handleLinkClick('/federation');
             handleCloseMenu();
-            scrollToTop();
+            // scrollToTop();
           }}
         >
           <Link to="/federation">
@@ -95,7 +95,6 @@ export default function Header() {
             onClick={() => {
               handleLinkClick('/federation');
               handleCloseMenu();
-              scrollToTop();
             }}
           >
             <img src={logo} alt="Logo" /></Link>

@@ -1,0 +1,63 @@
+@use './../../mixins.scss' as *;
+@use './../../variables.scss' as *;
+
+.sportsmans, .trainers {
+    display: flex;
+    flex-direction: column; 
+    
+    &__list {
+      display: flex; 
+      flex-wrap: wrap; 
+      gap: 10px; 
+      padding: 16px 0; 
+      max-height: 1000px;
+      overflow: hidden; 
+      transition: max-height .2s ease-in-out; 
+      
+      &.collapsed {
+        max-height: 270px; 
+      }
+    }
+  
+    &__card {
+        @include card-passive;
+      display: flex; 
+      align-items: center; 
+      height: 120px; 
+      width: calc(33.333% - 6.7px); 
+      
+      @media screen and (max-width: 1100px) {
+        width: calc(50% - 5px);
+      }
+      
+      @media screen and (max-width: 580px) {
+        width: 100%;
+      }
+  
+      img {
+        width: auto; 
+        height: 100%; 
+        object-fit: cover; 
+        flex: 0 0 100px; 
+        overflow: hidden; 
+        padding: 4px;
+        align-self: start; 
+        border-radius: 10px; 
+      }
+  
+      &-info {
+        flex: 1; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: flex-start; 
+        padding: 16px 6px; 
+        line-height: normal;
+        align-self: start; 
+  
+        p {
+          margin: 4px 0; 
+        }
+      }
+    }
+  }
+  

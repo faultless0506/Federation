@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import photoGarold from "../../assets/img/434.jpeg";
+import photoGarold from "../assets/img/434.jpeg";
 
 interface SportsmansState {
   items: {

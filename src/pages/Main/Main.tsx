@@ -9,6 +9,7 @@ import FedLocation from '../../components/FedLocation/FedLocation';
 import Lessons from '../../components/Lessons/Lessons';
 import FedDetails from '../../components/FedDetails/FedDetails';
 import PageMenu from '../../components/NavMenu/NavMenu';
+import Trainers from '../../components/PeopleLists/Trainers';
 const Main: React.FC = () => {
   return (
     <>
@@ -23,9 +24,10 @@ const Main: React.FC = () => {
         ]}
       />
       <div className="container content main">
+        <NewsSlider />
         <FedLocation />
         <Lessons />
-        <NewsSlider />
+        <Trainers />
         <CompetitionsSlider />
         <FedDetails />
         <ClubsAndPartners />

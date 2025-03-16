@@ -1,6 +1,6 @@
 import { createSlice} from '@reduxjs/toolkit';
-import doc1 from './../../assets/documents/mezhdunarodnaya-konvencziya-soveta-evropyi-protiv-primeneniya-dopinga-(strasburg,-16-noyabrya-1989-g.).pdf';
-import doc2 from './../../assets/documents/mezhdunarodnaya-konvencziya-yunesko-o-borbe-s-dopingom-v-sporte-(parizh-2005).pdf';
+import doc1 from './../assets/documents/mezhdunarodnaya-konvencziya-soveta-evropyi-protiv-primeneniya-dopinga-(strasburg,-16-noyabrya-1989-g.).pdf';
+import doc2 from './../assets/documents/mezhdunarodnaya-konvencziya-yunesko-o-borbe-s-dopingom-v-sporte-(parizh-2005).pdf';
 
 interface DocumentState {
   items: {

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import clubImage from '../../assets/img/268677.jpg';
+import clubImage from '../assets/img/268677.jpg';
 interface ClubsState {
   items: {
     id: number;

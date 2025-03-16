@@ -2,7 +2,7 @@
 import { useSelector } from 'react-redux';
 import NewsCard from '../../components/News&CompetitionsCard/NewsCard';
 import './News.scss';
-import { selectSortedNews } from '../../store/news/newsSlice';
+import { selectSortedNews } from '../../store/newsSlice';
 
 export default function News(): JSX.Element {
 const sortedNews = useSelector(selectSortedNews);

@@ -5,11 +5,9 @@ body {
 
 }
 .content {
-  margin: 0px 0;
-  // display: flex;
+  margin: 90px 0 40px;
   padding: 0 40px;
-  // position: relative;
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 210px);
   position: relative;
 }
 
@@ -24,6 +22,9 @@ body {
   @media (max-width: 768px) {
     padding: 0 20px;
   }
+}
+img {
+  user-select: none !important;
 }
 h1 {
   padding: 20px 0 10px;

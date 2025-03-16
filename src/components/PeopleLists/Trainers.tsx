@@ -4,6 +4,8 @@ import { RootState } from '../../store/store';
 import { useEffect, useState } from 'react';
 import ToggleListButton from '../Buttons/ToggleListButton/ToggleListButton';
 
+import './PeopleList.scss';
+
 export default function Trainers() {
   const trainers = useSelector((state: RootState) => state.trainers.items);
 
@@ -43,14 +45,15 @@ export default function Trainers() {
           </article>
         ))}
       </div>
-      {/* Нижняя кнопка для разворачивания/свертывания списка */}
-      <ToggleListButton
-        isExpanded={showAll}
-        expandText="Показать всех"
-        collapseText="Свернуть"
-        onClick={toggleShowAll}
-        className="bottom-button"
-      />
+      {sortedTrainers.length > 6 && (
+        <ToggleListButton
+          isExpanded={showAll}
+          expandText="Показать всех"
+          collapseText="Свернуть"
+          onClick={toggleShowAll}
+          className="bottom-button"
+        />
+      )}
     </section>
   );
 }

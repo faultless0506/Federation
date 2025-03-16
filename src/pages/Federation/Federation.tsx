@@ -1,7 +1,7 @@
 import './Federation.scss';
-import Sportsmans from '../../components/SportsmansAndTrainers/Sportsmans';
+import Sportsmans from '../../components/PeopleLists/Sportsmans';
 import FederationLead from '../../components/FedLead/FedLead';
-import Trainers from '../../components/SportsmansAndTrainers/Trainers';
+// import Trainers from '../../components/SportsmansAndTrainers/Trainers';
 import ClubsAndPartners from '../../components/ClubsAndPartners/ClubsAndPartners';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
@@ -74,7 +74,7 @@ export default function Federation() {
           />
         </section>
         <Sportsmans />
-        <Trainers />
+        {/* <Trainers /> */}
         <section className="federation__membership textarea" id="membership">
           <h2 className="section-header">Членство в Федерации</h2>
 

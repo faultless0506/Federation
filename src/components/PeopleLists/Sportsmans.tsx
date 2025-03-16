@@ -2,6 +2,7 @@ import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { RootState } from '../../store/store';
 import ToggleListButton from '../Buttons/ToggleListButton/ToggleListButton';
+import './PeopleList.scss';
 
 export default function Sportsmans() {
   const sportsmans = useSelector((state: RootState) => state.sportsmans.items);
@@ -44,14 +45,15 @@ export default function Sportsmans() {
           </article>
         ))}
       </div>
-
-      <ToggleListButton
-        isExpanded={showAll}
-        expandText="Показать всех"
-        collapseText="Свернуть"
-        onClick={toggleShowAll}
-        className="bottom-button"
-      />
+      {sortedSportsmans.length > 6 && (
+        <ToggleListButton
+          isExpanded={showAll}
+          expandText="Показать всех"
+          collapseText="Свернуть"
+          onClick={toggleShowAll}
+          className="bottom-button"
+        />
+      )}
     </section>
   );
 }

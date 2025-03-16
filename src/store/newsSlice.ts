@@ -1,8 +1,8 @@
 // src/store/news/newsSlice.ts
 import { createSelector, createSlice} from "@reduxjs/toolkit";
-import petImg from "../../assets/img/n02102040_4250.jpg";
-import metImg from '../../assets/img/268677.jpg'
-import { RootState } from "../store";
+import petImg from "../assets/img/n02102040_4250.jpg";
+import metImg from '../assets/img/268677.jpg'
+import { RootState } from "./store";
 
 interface NewsState {
   items: {
