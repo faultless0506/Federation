@@ -90,14 +90,16 @@ export default function Header() {
             isAnimating ? 'animating' : ''
           }`}
         >
-          <Link className="header__logo-mobile"
+          <Link
+            className="header__logo-mobile"
             to="/federation"
             onClick={() => {
               handleLinkClick('/federation');
               handleCloseMenu();
             }}
           >
-            <img src={logo} alt="Logo" /></Link>
+            <img src={logo} alt="Logo" />
+          </Link>
           <li className="header__menu-item">
             <Link
               to="/"
@@ -151,7 +153,7 @@ export default function Header() {
             </Link>
           </li>
 
-          <li className="header__menu-contacts">
+          <div className="header__menu-contacts">
             <div className="header__menu-contacts-social">
               <ButtonVK />
               <ButtonTG />
@@ -163,7 +165,7 @@ export default function Header() {
             >
               roofsmn2024@mail.ru
             </Link>
-          </li>
+          </div>
         </ul>
       </nav>
       {isMenuOpen && (

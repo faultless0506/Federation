@@ -15,9 +15,9 @@
   @include card-passive;
   transition: all .2s;
   will-change: transform;
+  cursor: pointer;
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 8px rgba(207, 56, 56, 0.2);
-    cursor: pointer;
   }
 }

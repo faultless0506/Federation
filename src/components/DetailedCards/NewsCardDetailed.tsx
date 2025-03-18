@@ -1,20 +1,32 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import './CardDetailed.scss';
-import { RootState } from '../../store/store';
+import { AppDispatch, RootState } from '../../store/store';
 import ButtonBack from '../Buttons/ButtonBack/ButtonBack';
+import { fetchNewsById } from '../../store/newsSlice';
+import imgPlaceholder from '../../assets/img/29D5fZxnA78.jpg';
 
 const NewsCardDetailed: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams<{ id: string }>();
+  const { selectedNews, status, error } = useSelector(
+    (state: RootState) => state.news
+  );
+
+  useEffect(() => {
+    if (id) {
+      dispatch(fetchNewsById(id));
+    }
+  }, [id, dispatch]);
+
+  const images = selectedNews?.images.map(
+    (img) => `http://localhost:5000${img}`
+  ) || [imgPlaceholder];
+
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
     null
   );
-
-  const currentNew = useSelector((state: RootState) =>
-    state.news.items.find((item) => item.id === Number(id))
-  );
-
   const handleImageClick = useCallback((index: number) => {
     setSelectedImageIndex(index);
   }, []);
@@ -25,13 +37,12 @@ const NewsCardDetailed: React.FC = () => {
 
   const navigateImage = useCallback(
     (direction: 'prev' | 'next') => {
-      if (selectedImageIndex === null || !currentNew?.images.length) return;
+      if (selectedImageIndex === null || !images.length) return;
 
       const newIndex =
         direction === 'prev'
-          ? (selectedImageIndex - 1 + currentNew.images.length) %
-            currentNew.images.length
-          : (selectedImageIndex + 1) % currentNew.images.length;
+          ? (selectedImageIndex - 1 + images.length) % images.length
+          : (selectedImageIndex + 1) % images.length;
 
       console.log('Navigating image:', {
         direction,
@@ -40,16 +51,21 @@ const NewsCardDetailed: React.FC = () => {
       });
       setSelectedImageIndex(newIndex);
     },
-    [selectedImageIndex, currentNew?.images.length]
+    [selectedImageIndex, images.length]
   );
 
-  // console.log('Current selected image index:', selectedImageIndex);
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
 
-  if (!currentNew) {
+  if (status === 'failed') {
+    return <div>{error}</div>;
+  }
+  if (!selectedNews) {
     return (
       <article className="content">
         <div className="no-item">
-          <h3>Competition not found</h3>
+          <h3>News not found</h3>
           <ButtonBack />
         </div>
       </article>
@@ -59,27 +75,27 @@ const NewsCardDetailed: React.FC = () => {
   return (
     <article className="container content news__card-detailed">
       <div className="section-header">
-        <h2>{currentNew.title}</h2>
+        <h2>{selectedNews.title}</h2>
         <ButtonBack />
       </div>
       <div className="detailed__main textarea">
         <img
-          src={currentNew.images[0]}
+          src={images[0]}
           alt="Main"
           className="detailed__main-image"
           onClick={() => handleImageClick(0)}
         />{' '}
-        {currentNew.content
-          .slice(0, currentNew.content.length - 1)
+        {selectedNews.content
+          .slice(0, selectedNews.content.length - 1)
           .map((text, index) => (
             <p className="detailed__main-text" key={index}>
               {text}
             </p>
           ))}
-        {currentNew.images.length > 1 && (
+        {images.length > 1 && (
           <div className="detailed__image-list-container">
             <div className="detailed__image-list">
-              {currentNew.images.map((image, index) => (
+              {images.map((image, index) => (
                 <img
                   key={index + 1}
                   src={image}
@@ -91,17 +107,24 @@ const NewsCardDetailed: React.FC = () => {
             </div>
           </div>
         )}
-        {currentNew.content.slice(-1).map((text, index) => (
+        {selectedNews.content.slice(-1).map((text, index) => (
           <p className="detailed__main-text" key={index}>
             {text}
           </p>
         ))}
+        <p className="detailed__date">
+          {selectedNews.createdAt
+            .toString()
+            .split('T')[0]
+            .split('-')
+            .reverse()
+            .join('/')}
+        </p>
       </div>
-      <span className="detailed__date">{currentNew.date}</span>
       {selectedImageIndex !== null && (
         <div className="detailed__full-image-overlay" onClick={closeFullImage}>
           <img
-            src={currentNew.images[selectedImageIndex]}
+            src={images[selectedImageIndex]}
             alt="Full size"
             className="detailed__full-image"
           />

@@ -1,21 +1,25 @@
 import React from 'react';
 import './Slides.scss';
 import { useNavigate } from 'react-router-dom';
+import imgPlaceholder from '../../../assets/img/29D5fZxnA78.jpg';
 
 interface CompetitionsSlideProps {
   id: number;
   title: string;
   content: string[];
   location: string;
-  date: string;
+  startDate: string;
   images: string[];
 }
-
+const parseDate = (dateString: string) => {
+  const [day, month, year] = dateString.split('.').map(Number);
+  return new Date(year, month - 1, day); 
+};
 const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
   id,
   title,
   location,
-  date,
+  startDate,
   images,
   content,
 }) => {
@@ -24,14 +28,15 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
   const HandleOpenCurrentCompetition = () => {
     navigate(`/competitions/${id}`);
   };
-
-  const parseDate = (dateString: string) => {
-    const [day, month, year] = dateString.split('.').map(Number);
-    return new Date(year, month - 1, day);
-  };
+  if (!images || images.length === 0) {
+    images = [imgPlaceholder];
+  } else {
+    const imagesPath = images.map((img) => `http://localhost:5000${img}`);
+    images = imagesPath;
+  }
 
   const currentDate = new Date();
-  const isFinished = currentDate > parseDate(date);
+  const isFinished = currentDate > parseDate(startDate);
 
   return (
     <article
@@ -51,7 +56,7 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
           )}
           <span>
             {location}, <br />
-            {date}
+            {startDate}
           </span>
         </div>
       </div>

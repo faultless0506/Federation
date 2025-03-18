@@ -13,7 +13,6 @@ import Trainers from '../../components/PeopleLists/Trainers';
 const Main: React.FC = () => {
   return (
     <>
-      <MainLanding />
       <PageMenu
         items={[
           { id: 'location', label: 'Как добраться' },
@@ -23,6 +22,7 @@ const Main: React.FC = () => {
           { id: 'clubs-and-partners', label: 'Партнерские организации' },
         ]}
       />
+      <MainLanding />
       <div className="container content main">
         <NewsSlider />
         <FedLocation />

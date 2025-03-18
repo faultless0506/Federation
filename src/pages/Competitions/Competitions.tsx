@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
-import CompetitionsCard from '../../components/News&CompetitionsCard/CompetitionsCard';
+import CompetitionsCard from '../../components/Cards/CompetitionsCard';
 import './Competitions.scss';
 import { useState } from 'react';
 import ToggleListButton from '../../components/Buttons/ToggleListButton/ToggleListButton';
@@ -105,7 +105,10 @@ export default function Competitions(): JSX.Element {
         ) : null}
       </section>
       <section className="competitions__rules textarea">
-        <h2 className="section-header">Контент, заменить на блок с документами соревнований, результатами и т.д.</h2>
+        <h2 className="section-header">
+          Контент, заменить на блок с документами соревнований, результатами и
+          т.д.
+        </h2>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis
           finibus velit, non finibus dui bibendum vitae. Donec consectetur nisi
