@@ -10,30 +10,31 @@ interface NewsState {
     createdAt: Date;
     updatedAt: Date;
   }>;
-  selectedNews: {
-    id: number;
-    title: string;
-    content: string[];
-    images: string[];
-    createdAt: Date;
-    updatedAt: Date;
-  } | null;
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | null;
+  // selectedNews: {
+  //   id: number;
+  //   title: string;
+  //   content: string[];
+  //   images: string[];
+  //   createdAt: Date;
+  //   updatedAt: Date;
+  // } | null;
+  newsStatus: 'idle' | 'loading' | 'succeeded' | 'failed';
+  newsError: string | null;
 }
 
 const initialState: NewsState = {
   news: [],
-  selectedNews: null,
-  status: 'idle',
-  error: null,
+  // selectedNews: null,
+  newsStatus: 'idle',
+  newsError: null,
 };
 
 export const fetchNews = createAsyncThunk('news/fetchNews', async () => {
   try {
-    console.log('Sending request to: /api/news');
+    // console.log('Sending request to: /api/news');
     const response = await axios.get('http://localhost:5000/api/news');
-    console.log('Response data:', response.data);
+    // console.log('Response data:', response.data);
+
     return response.data;
   } catch (error) {
     console.error('Error fetching news:', error);
@@ -41,14 +42,7 @@ export const fetchNews = createAsyncThunk('news/fetchNews', async () => {
   }
 });
 
-export const fetchNewsById = createAsyncThunk(
-  'news/fetchNewsById',
-  async (id: string) => {
-    const response = await axios.get(`http://localhost:5000/api/news/${id}`);
-    // console.log(response.data);
-    return response.data;
-  }
-);
+
 
 const newsSlice = createSlice({
   name: 'news',
@@ -57,27 +51,27 @@ const newsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchNews.pending, (state) => {
-        state.status = 'loading';
+        state.newsStatus = 'loading';
       })
       .addCase(fetchNews.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.newsStatus = 'succeeded';
         state.news = action.payload;
       })
       .addCase(fetchNews.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message || 'Failed to fetch news';
+        state.newsStatus = 'failed';
+        state.newsError = action.error.message || 'Failed to fetch news';
       })
-      .addCase(fetchNewsById.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(fetchNewsById.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.selectedNews = action.payload;
-      })
-      .addCase(fetchNewsById.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message || 'Failed to fetch news by id';
-      });
+      // .addCase(fetchNewsById.pending, (state) => {
+      //   state.status = 'loading';
+      // })
+      // .addCase(fetchNewsById.fulfilled, (state, action) => {
+      //   state.status = 'succeeded';
+      //   state.selectedNews = action.payload;
+      // })
+      // .addCase(fetchNewsById.rejected, (state, action) => {
+      //   state.status = 'failed';
+      //   state.error = action.error.message || 'Failed to fetch news by id';
+      // });
   },
 });
 

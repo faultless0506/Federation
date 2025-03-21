@@ -7,41 +7,68 @@ interface CompetitionsState {
     title: string;
     content: string[];
     images: string[];
-    location: string; 
+    location: string;
     startDate: string;
+    resultsId: number;
     createdAt: Date;
     updatedAt: Date;
   }>;
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | null;
+  // selectedCompetition: {
+  //   id: number;
+  //   title: string;
+  //   content: string[];
+  //   images: string[];
+  //   location: string;
+  //   startDate: string;
+  //   resultsId: number;
+  //   createdAt: Date;
+  //   updatedAt: Date;
+  // } | null;
+  competitionsStatus: 'idle' | 'loading' | 'succeeded' | 'failed';
+  competitionsError: string | null;
 }
 
 const initialState: CompetitionsState = {
   competitions: [],
-  status: 'idle',
-  error: null,
+  // selectedCompetition: null,
+  competitionsStatus: 'idle',
+  competitionsError: null,
 };
 
-export const fetchCompetitions = createAsyncThunk('competitions/fetchCompetitions', async () => {
-  try {
-    console.log('Sending request to: /api/competitions');
-    const response = await axios.get('http://localhost:5000/api/competitions');
-    console.log('Response data:', response.data);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching competitions:', error);
-    throw error;
-  }
-});
-
-export const fetchCompetitionById = createAsyncThunk(
-  'competitions/fetchCompetitionById',
-  async (id: number) => {
-    const response = await axios.get(`http://localhost:5000/api/competitions/${id}`);
-    // console.log(response.data);
-    return response.data;
+export const fetchCompetitions = createAsyncThunk(
+  'competitions/fetchCompetitions',
+  async () => {
+    try {
+      // console.log('Sending request to: /api/competitions');
+      const response = await axios.get(
+        'http://localhost:5000/api/competitions'
+      );
+      // console.log('Response data:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching competitions:', error);
+      throw error;
+    }
   }
 );
+
+// export const fetchCompetitionById = createAsyncThunk(
+//   'competitions/fetchCompetitionById',
+//   async (id: string) => {
+//     try {
+//         const response = await axios.get(
+//           `http://localhost:5000/api/competitions/${id}`
+//         );
+//         // console.log(response.data);
+//         return response.data;
+      
+//     } catch (error) {
+//       console.error('Error fetching competition by id:', error);
+//       throw error;
+//     }
+//   }
+  
+// );
 
 const competitionsSlice = createSlice({
   name: 'competitions',
@@ -50,16 +77,16 @@ const competitionsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCompetitions.pending, (state) => {
-        state.status = 'loading';
+        state.competitionsStatus = 'loading';
       })
       .addCase(fetchCompetitions.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+        state.competitionsStatus = 'succeeded';
         state.competitions = action.payload;
       })
       .addCase(fetchCompetitions.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message || 'Failed to fetch competitions';
-      });
+        state.competitionsStatus = 'failed';
+        state.competitionsError = action.error.message || 'Failed to fetch competitions';
+      })
   },
 });
 export default competitionsSlice.reducer;

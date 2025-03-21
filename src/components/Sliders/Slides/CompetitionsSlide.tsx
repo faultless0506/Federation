@@ -23,6 +23,7 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
   images,
   content,
 }) => {
+
   const navigate = useNavigate();
 
   const HandleOpenCurrentCompetition = () => {

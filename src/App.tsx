@@ -8,11 +8,33 @@ import NewsCardDetailed from './components/DetailedCards/NewsCardDetailed';
 import CompetitionsCardDetailed from './components/DetailedCards/CompetitionsCardDetailed';
 import './App.scss';
 import Footer from './components/Footer/Footer';
-import Federation from './pages/Federation/Federation';
-// import ButtonScrollToTop from "./components/Buttons/ButtonScrollToTop/ButtonScrollToTop";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from './store/store';
+import { fetchCompetitions } from './store/competitionsSlice';
+import { fetchNews } from './store/newsSlice';
+import ButtonScrollToTop from "./components/Buttons/ButtonScrollToTop/ButtonScrollToTop";
 // import Clubs from "./pages/Clubs/Clubs";
 
 function App() {
+  const dispatch = useDispatch<AppDispatch>();
+  const {competitionsStatus} = useSelector(
+    (state: RootState) => state.competitions
+  );
+  const {newsStatus} = useSelector(
+    (state: RootState) => state.news
+  );
+  useEffect(() => {
+    if (competitionsStatus === 'idle') {
+      dispatch(fetchCompetitions());
+    }
+  }, [competitionsStatus, dispatch]);
+  useEffect(() => {
+    if (newsStatus === 'idle') {
+      dispatch(fetchNews());
+    }
+  }, [newsStatus, dispatch]);
+
   return (
     <BrowserRouter>
       <Header />
@@ -26,10 +48,10 @@ function App() {
         />
         <Route path="/news" element={<News />} />
         <Route path="/news/:id" element={<NewsCardDetailed />} />
-        <Route path="/federation" element={<Federation />} />
+        {/* <Route path="/federation" element={<Federation />} /> */}
       </Routes>
       <Footer />
-      {/* <ButtonScrollToTop /> */}
+      <ButtonScrollToTop />
     </BrowserRouter>
   );
 }

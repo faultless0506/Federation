@@ -1,10 +1,12 @@
 @use './../../variables.scss' as *;
 @use './../../mixins.scss' as *;
-.competitions__card-detailed, .news__card-detailed {
+.competitions__card-detailed,
+.news__card-detailed {
   display: flex;
   flex-direction: column;
   padding: 20px;
-  // margin: 0 auto;
+  min-height: 100vh;
+  margin: 90px auto;
 
   .detailed__main {
     margin: 20px;
@@ -13,21 +15,20 @@
       margin: 0;
     }
     &-image {
+      @include card-active;
+      padding: 0px;
       float: left;
-      margin-right: 1.5rem;
+      // margin;
       // margin-bottom: 2rem;
       width: 50%;
       min-width: 280px;
       // max-width: 300px;
-      border-radius: 8px;
-      transition: all 0.2s;
-      box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
+      // border-radius: 8px;
+      // transition: all 0.2s;
+      // box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
       object-fit: cover;
       cursor: pointer;
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 4px 8px rgba(207, 56, 56, 0.6);
-      }
+
       @media (max-width: 768px) {
         width: 100%;
       }
@@ -42,6 +43,7 @@
   }
   .detailed__image {
     &-list-container {
+      // @include card-passive;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -49,6 +51,9 @@
       float: left;
       width: 50%;
       min-width: 280px;
+      @media (max-width: 768px) {
+        width: 100%;
+      }
     }
     &-list {
       @include card-passive;
@@ -59,7 +64,6 @@
       width: auto;
       margin: 40px auto;
       padding: 20px;
-
     }
     &-item {
       @include card-active;

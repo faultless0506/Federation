@@ -4,19 +4,19 @@ import './News&CometitionsCard.scss';
 import imgPlaceholder from '../../assets/img/29D5fZxnA78.jpg';
 
 interface NewsCardProps {
+  id: number;
   title: string;
   date: string;
   images: string[];
   content: string[];
-  id: number;
 }
 
 const NewsCard: React.FC<NewsCardProps> = ({
+  id,
   title,
   date,
   images,
   content,
-  id,
 }) => {
   const navigate = useNavigate();
 

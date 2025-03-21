@@ -5,9 +5,9 @@ body {
 
 }
 .content {
-  margin: 90px 0 40px;
+  // margin: 90px 0 40px;
   padding: 0 40px;
-  min-height: calc(100vh - 210px);
+  min-height: calc(100vh - 80px);
   position: relative;
 }
 
@@ -30,20 +30,14 @@ h1 {
   padding: 20px 0 10px;
   margin: 20px 0 30px;
 }
-.no-item,
-.no-item h3 {
-  height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+
 .section-header {
   display: flex;
   align-items: center;
-
+  // width: 100%;
   border-bottom: 1px solid $primary-color;
   margin: 10px 0 16px;
+  max-height: fit-content;
 }
 h2 {
   padding: 20px 0 10px 20px;

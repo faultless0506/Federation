@@ -1,27 +1,34 @@
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
 import CompetitionsCard from '../../components/Cards/CompetitionsCard';
 import './Competitions.scss';
 import { useState } from 'react';
 import ToggleListButton from '../../components/Buttons/ToggleListButton/ToggleListButton';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
+import LoadingIndicator from '../../components/Indicators/LoadingIndicator/LoadingIndicator';
+import FailedIndicator from '../../components/Indicators/FailedIndicator/FailedIndicator';
+const parseDate = (dateString: string) => {
+  const [day, month, year] = dateString.split('/').map(Number);
+  return new Date(year, month - 1, day);
+};
 
-export default function Competitions(): JSX.Element {
-  const competitions = useSelector(
-    (state: RootState) => state.competitions.items
+export default function Competitions() {
+  const competitionsContainer = useSelector(
+    (state: RootState) => state.competitions
   );
 
-  const parseDate = (dateString: string) => {
-    const [day, month, year] = dateString.split('.').map(Number);
-    return new Date(year, month - 1, day);
-  };
+  const futureCompetitions = competitionsContainer.competitions
+    .filter((item) => parseDate(item.startDate) > new Date())
+    .sort(
+      (a, b) =>
+        parseDate(a.startDate).getTime() - parseDate(b.startDate).getTime()
+    );
 
-  const futureCompetitions = competitions
-    .filter((item) => parseDate(item.date) > new Date())
-    .sort((a, b) => parseDate(a.date).getTime() - parseDate(b.date).getTime());
-
-  const pastCompetitions = competitions
-    .filter((item) => parseDate(item.date) < new Date())
-    .sort((a, b) => parseDate(b.date).getTime() - parseDate(a.date).getTime());
+  const pastCompetitions = competitionsContainer.competitions
+    .filter((item) => parseDate(item.startDate) < new Date())
+    .sort(
+      (a, b) =>
+        parseDate(b.startDate).getTime() - parseDate(a.startDate).getTime()
+    );
 
   const [showAllPast, setShowAllPast] = useState(false);
   const [showAllFuture, setShowAllFuture] = useState(false);
@@ -35,13 +42,44 @@ export default function Competitions(): JSX.Element {
   };
   const displayedPastCompetitions = pastCompetitions;
   const displayedFutureCompetitions = futureCompetitions;
+  if (competitionsContainer.competitionsStatus === 'loading') {
+    return (
+      <>
+        <div className="container content competitions">
+          <section className="competitions__future">
+            <h2 className="section-header">Предстоящие соревнования</h2>
+            <LoadingIndicator />
+          </section>
 
-  return (
-    <div className="container content competitions ">
-      <section className="competitions__future">
-        <div className="section-header">
-          <h2>Предстоящие соревнования</h2>
+          <section className="competitions__past">
+            <h2 className="section-header">Прошедшие соревнования</h2>
+            <LoadingIndicator />
+          </section>
         </div>
+      </>
+    );
+  }
+  if (competitionsContainer.competitionsStatus === 'failed') {
+    return (
+      <>
+        <div className="container content competitions">
+          <section className="competitions__future">
+            <h2 className="section-header">Предстоящие соревнования</h2>
+            <FailedIndicator />
+          </section>
+
+          <section className="competitions__past">
+            <h2 className="section-header">Прошедшие соревнования</h2>
+            <FailedIndicator />
+          </section>
+        </div>
+      </>
+    );
+  }
+  return (
+    <div className="container content competitions">
+      <section className="competitions__future">
+        <h2 className="section-header">Предстоящие соревнования</h2>
         {futureCompetitions.length > 0 ? (
           <div
             className={`competitions__future-list ${
@@ -54,14 +92,14 @@ export default function Competitions(): JSX.Element {
                 id={item.id}
                 title={item.title}
                 content={item.content}
-                date={item.date}
+                date={item.startDate}
                 images={item.images}
                 location={item.location}
               />
             ))}
           </div>
         ) : (
-          <h3 className="no-item">Нет предстоящих соревнований</h3>
+          <p className="failed">Нет предстоящих соревнований</p>
         )}
         {futureCompetitions.length > 2 ? (
           <ToggleListButton
@@ -74,9 +112,7 @@ export default function Competitions(): JSX.Element {
         ) : null}
       </section>
       <section className="competitions__past">
-        <div className="section-header">
-          <h2>Прошедшие соревнования</h2>
-        </div>
+        <h2 className="section-header">Прошедшие соревнования</h2>
         <div
           className={`competitions__past-list ${
             showAllPast ? 'expanded' : 'collapsed'
@@ -88,7 +124,7 @@ export default function Competitions(): JSX.Element {
               id={item.id}
               title={item.title}
               content={item.content}
-              date={item.date}
+              date={item.startDate}
               images={item.images}
               location={item.location}
             />
@@ -103,42 +139,6 @@ export default function Competitions(): JSX.Element {
             className="bottom-button"
           />
         ) : null}
-      </section>
-      <section className="competitions__rules textarea">
-        <h2 className="section-header">
-          Контент, заменить на блок с документами соревнований, результатами и
-          т.д.
-        </h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis
-          finibus velit, non finibus dui bibendum vitae. Donec consectetur nisi
-          ac justo hendrerit, in congue felis faucibus. Sed vitae luctus felis,
-          at ultricies velit. Nulla facilisi. Donec at nunc id nunc cursus
-          semper. Sed euismod, justo eu consectetur eleifend, enim velit semper
-          velit, vel elementum dolor dui vel ex. Maecenas vel eros id nisi
-          placerat consectetur. Nullam ut ipsum vel arcu convallis luctus. Proin
-          quis urna vel purus rutrum consectetur. Donec at congue felis.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis
-          finibus velit, non finibus dui bibendum vitae. Donec consectetur nisi
-          ac justo hendrerit, in congue felis faucibus. Sed vitae luctus felis,
-          at ultricies velit. Nulla facilisi. Donec at nunc id nunc cursus
-          semper. Sed euismod, justo eu consectetur eleifend, enim velit semper
-          velit, vel elementum dolor dui vel ex. Maecenas vel eros id nisi
-          placerat consectetur. Nullam ut ipsum vel arcu convallis luctus. Proin
-          quis urna vel purus rutrum consectetur. Donec at congue felis.
-        </p>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis
-          finibus velit, non finibus dui bibendum vitae. Donec consectetur nisi
-          ac justo hendrerit, in congue felis faucibus. Sed vitae luctus felis,
-          at ultricies velit. Nulla facilisi. Donec at nunc id nunc cursus
-          semper. Sed euismod, justo eu consectetur eleifend, enim velit semper
-          velit, vel elementum dolor dui vel ex. Maecenas vel eros id nisi
-          placerat consectetur. Nullam ut ipsum vel arcu convallis luctus. Proin
-          quis urna vel purus rutrum consectetur. Donec at congue felis.
-        </p>
       </section>
     </div>
   );

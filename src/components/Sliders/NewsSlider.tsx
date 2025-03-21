@@ -1,6 +1,3 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
 import Slider from 'react-slick';
 import NewsSlide from './Slides/NewsSlide';
 import 'slick-carousel/slick/slick.css';
@@ -8,8 +5,10 @@ import 'slick-carousel/slick/slick-theme.css';
 import './Slider.scss';
 import { NextArrow, PrevArrow } from './SliderArrows/SliderArrows';
 import { Link } from 'react-router-dom';
-import { fetchNews } from '../../store/newsSlice';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import LoadingIndicator from '../Indicators/LoadingIndicator/LoadingIndicator';
+import FailedIndicator from '../Indicators/FailedIndicator/FailedIndicator';
 const settings = {
   dots: true,
   dotsClass: 'slick-dots',
@@ -34,25 +33,29 @@ const settings = {
     },
   ],
 };
-const NewsSlider: React.FC = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const { news, status, error } = useSelector((state: RootState) => state.news);
+const NewsSlider = () => {
+  const newsContainer = useSelector((state: RootState) => state.news);
 
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchNews());
-    }
-  }, [status, dispatch]);
-
-  if (status === 'loading') {
-    return <div>Loading...</div>;
+  if (newsContainer.newsStatus === 'loading') {
+    return (
+      <>
+        <h2 className="section-header">
+          <Link to="/news">Новости</Link>
+        </h2>
+        <LoadingIndicator />
+      </>
+    );
   }
-
-  if (status === 'failed') {
-    return <div>{error}</div>;
+  if (newsContainer.newsStatus === 'failed') {
+    return (
+      <>
+        <h2 className="section-header">
+          <Link to="/news">Новости</Link>
+        </h2>
+        <FailedIndicator />
+      </>
+    );
   }
-
-  // console.log('News data:', news);
 
   return (
     <section className="news-slider" id="news">
@@ -60,13 +63,18 @@ const NewsSlider: React.FC = () => {
         <Link to="/news">Новости</Link>
       </h2>
       <Slider {...settings}>
-        {news.map((item) => (
+        {newsContainer.news.map((item) => (
           <NewsSlide
             key={item.id}
             id={item.id}
             title={item.title}
             content={item.content}
-            date={item.createdAt}
+            date={item.createdAt
+              .toString()
+              .split('T')[0]
+              .split('-')
+              .reverse()
+              .join('/')}
             images={item.images}
           />
         ))}

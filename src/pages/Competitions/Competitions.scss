@@ -2,22 +2,23 @@
 
 .competitions {
 display: flex;
-justify-content: space-between;
+ flex-direction: column;
 flex-wrap: wrap;
 
 margin-top: 90px !important;
 
-  &__past,
-  &__rules {
-    margin-top: -10px;
+  &__future,
+  &__past {
+    
+    min-height: 376px;
   }
   &__future-list,
   &__past-list {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
     overflow: hidden;
     transition: all 0.5s ease-in-out;
+    min-width: 100%;
     width: 100%;
     margin: 0;
     &.expanded {

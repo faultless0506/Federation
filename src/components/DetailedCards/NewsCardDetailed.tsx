@@ -4,22 +4,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import './CardDetailed.scss';
 import { AppDispatch, RootState } from '../../store/store';
 import ButtonBack from '../Buttons/ButtonBack/ButtonBack';
-import { fetchNewsById } from '../../store/newsSlice';
+import { fetchNews } from '../../store/newsSlice';
 import imgPlaceholder from '../../assets/img/29D5fZxnA78.jpg';
 
-const NewsCardDetailed: React.FC = () => {
+const NewsCardDetailed = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams<{ id: string }>();
-  const { selectedNews, status, error } = useSelector(
+  const { news, newsStatus, newsError } = useSelector(
     (state: RootState) => state.news
   );
 
   useEffect(() => {
-    if (id) {
-      dispatch(fetchNewsById(id));
+    if (newsStatus === 'idle') {
+      dispatch(fetchNews());
     }
-  }, [id, dispatch]);
-
+  }, [newsStatus, dispatch]);
+  const selectedNews = news.find((item) => item.id === Number(id));
   const images = selectedNews?.images.map(
     (img) => `http://localhost:5000${img}`
   ) || [imgPlaceholder];
@@ -54,102 +54,95 @@ const NewsCardDetailed: React.FC = () => {
     [selectedImageIndex, images.length]
   );
 
-  if (status === 'loading') {
+  if (newsStatus === 'loading') {
     return <div>Loading...</div>;
   }
 
-  if (status === 'failed') {
-    return <div>{error}</div>;
+  if (newsStatus === 'failed') {
+    return <div>{newsError}</div>;
   }
-  if (!selectedNews) {
+  if (selectedNews) {
     return (
-      <article className="content">
-        <div className="no-item">
-          <h3>News not found</h3>
+      <article className="container content news__card-detailed">
+        <div className="section-header">
+          <h2>{selectedNews.title}</h2>
           <ButtonBack />
         </div>
-      </article>
-    );
-  }
-
-  return (
-    <article className="container content news__card-detailed">
-      <div className="section-header">
-        <h2>{selectedNews.title}</h2>
-        <ButtonBack />
-      </div>
-      <div className="detailed__main textarea">
-        <img
-          src={images[0]}
-          alt="Main"
-          className="detailed__main-image"
-          onClick={() => handleImageClick(0)}
-        />{' '}
-        {selectedNews.content
-          .slice(0, selectedNews.content.length - 1)
-          .map((text, index) => (
+        <div className="detailed__main textarea">
+          <img
+            src={images[0]}
+            alt="Main"
+            className="detailed__main-image"
+            onClick={() => handleImageClick(0)}
+          />{' '}
+          {selectedNews.content
+            .slice(0, selectedNews.content.length - 1)
+            .map((text, index) => (
+              <p className="detailed__main-text" key={index}>
+                {text}
+              </p>
+            ))}
+          {images.length > 1 && (
+            <div className="detailed__image-list-container">
+              <div className="detailed__image-list">
+                {images.map((image, index) => (
+                  <img
+                    key={index + 1}
+                    src={image}
+                    alt={`Image ${index + 1}`}
+                    className="detailed__image-item"
+                    onClick={() => handleImageClick(index)}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+          {selectedNews.content.slice(-1).map((text, index) => (
             <p className="detailed__main-text" key={index}>
               {text}
             </p>
           ))}
-        {images.length > 1 && (
-          <div className="detailed__image-list-container">
-            <div className="detailed__image-list">
-              {images.map((image, index) => (
-                <img
-                  key={index + 1}
-                  src={image}
-                  alt={`Image ${index + 1}`}
-                  className="detailed__image-item"
-                  onClick={() => handleImageClick(index)}
-                />
-              ))}
-            </div>
+          <p className="detailed__date">
+            {selectedNews.createdAt
+              .toString()
+              .split('T')[0]
+              .split('-')
+              .reverse()
+              .join('/')}
+          </p>
+        </div>
+        {selectedImageIndex !== null && (
+          <div
+            className="detailed__full-image-overlay"
+            onClick={closeFullImage}
+          >
+            <img
+              src={images[selectedImageIndex]}
+              alt="Full size"
+              className="detailed__full-image"
+            />
+            <div
+              className="detailed__full-image-close"
+              onClick={closeFullImage}
+            ></div>
+            <div
+              className="detailed__nav-button detailed__nav-button-prev"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigateImage('prev');
+              }}
+            ></div>
+            <div
+              className="detailed__nav-button detailed__nav-button-next"
+              onClick={(e) => {
+                e.stopPropagation();
+                navigateImage('next');
+              }}
+            ></div>
           </div>
         )}
-        {selectedNews.content.slice(-1).map((text, index) => (
-          <p className="detailed__main-text" key={index}>
-            {text}
-          </p>
-        ))}
-        <p className="detailed__date">
-          {selectedNews.createdAt
-            .toString()
-            .split('T')[0]
-            .split('-')
-            .reverse()
-            .join('/')}
-        </p>
-      </div>
-      {selectedImageIndex !== null && (
-        <div className="detailed__full-image-overlay" onClick={closeFullImage}>
-          <img
-            src={images[selectedImageIndex]}
-            alt="Full size"
-            className="detailed__full-image"
-          />
-          <div
-            className="detailed__full-image-close"
-            onClick={closeFullImage}
-          ></div>
-          <div
-            className="detailed__nav-button detailed__nav-button-prev"
-            onClick={(e) => {
-              e.stopPropagation();
-              navigateImage('prev');
-            }}
-          ></div>
-          <div
-            className="detailed__nav-button detailed__nav-button-next"
-            onClick={(e) => {
-              e.stopPropagation();
-              navigateImage('next');
-            }}
-          ></div>
-        </div>
-      )}
-    </article>
-  );
+      </article>
+    );
+  }
 };
-
 export default NewsCardDetailed;

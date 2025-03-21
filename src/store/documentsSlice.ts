@@ -1,80 +1,110 @@
-import { createSlice} from '@reduxjs/toolkit';
-import doc1 from './../assets/documents/mezhdunarodnaya-konvencziya-soveta-evropyi-protiv-primeneniya-dopinga-(strasburg,-16-noyabrya-1989-g.).pdf';
-import doc2 from './../assets/documents/mezhdunarodnaya-konvencziya-yunesko-o-borbe-s-dopingom-v-sporte-(parizh-2005).pdf';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import axios from 'axios';
 
 interface DocumentState {
-  items: {
+  documents: {
     id: number;
     name: string;
-    url: string;
-    doctype: number;
+    fileUrl: string;
+    category: string;
   }[];
+  // selectedDocumentsByCategory:
+  //   | {
+  //       id: number;
+  //       name: string;
+  //       fileUrl: string;
+  //       category: string;
+  //     }[]
+  //   | null;
+  // selectedDocumentById: {
+  //   id: number;
+  //   name: string;
+  //   fileUrl: string;
+  //   category: string;
+  // } | null;
+  DocumentsStatus: 'idle' | 'loading' | 'succeeded' | 'failed';
+  DocumentsError: string | null;
 }
 
 const initialState: DocumentState = {
-  items: [
-    {
-      id: 1,
-      name: 'Постановление о постановлении о постановлении о постановлении постановления ',
-      url: doc1,
-      doctype: 1,
-    },
-    { id: 2, name: 'Document 2', url: doc2, doctype: 2 },
-    {
-      id: 3,
-      name: 'Document 3',
-      url: doc2,
-      doctype: 2,
-    },
-    {
-      id: 4,
-      name: 'Постановление о постановлении о постановлении о постановлении постановления ',
-      url: doc1,
-      doctype: 3,
-    },
-    { id: 5, name: 'Document 2', url: doc2, doctype: 5 },
-    { id: 5, name: 'Document 2', url: doc2, doctype: 3 },
-    {
-      id: 6,
-      name: 'Document 2',
-      url: doc2,
-      doctype: 3,
-    },
-    {
-      id: 7,
-      name: 'Постановление о постановлении о постановлении о постановлении постановления ',
-      url: doc1,
-      doctype: 3,
-    },
-    { id: 8, name: 'Document 2', url: doc2, doctype: 2 },
-    {
-      id: 9,
-      name: 'Document 3',
-      url: doc2,
-      doctype: 3,
-    },{
-      id: 10,
-      name: 'Document 3',
-      url: doc2,
-      doctype: 3,
-    },{
-      id: 11,
-      name: 'Document 3',
-      url: doc2,
-      doctype: 3,
-    },{
-      id: 12,
-      name: 'Document 3',
-      url: doc2,
-      doctype: 3,
-    },
-  ],
+  documents: [],
+  // selectedDocumentsByCategory: null,
+  // selectedDocumentById: null,
+  DocumentsStatus: 'idle',
+  DocumentsError: null,
 };
 
-const documentSlice = createSlice({
+export const fetchDocuments = createAsyncThunk(
+  'documents/fetchDocuments',
+  async () => {
+    try {
+      console.log('Sending request to: /api/documents');
+      const response = await axios.get('http://localhost:5000/api/documents');
+      console.log('Response data:', response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error fetching documents:', error);
+      throw error;
+    }
+  }
+);
+
+// export const fetchDocumentById = createAsyncThunk(
+//   'documents/fetchDocumentById',
+//   async (id: number) => {
+//     try {
+//       console.log(`Sending request to: /api/documents/${id}`);
+//       const response = await axios.get(`http://localhost:5000/api/documents/${id}`);
+//       console.log('Response data:', response.data);
+//       return response.data;
+//     } catch (error) {
+//       console.error('Error fetching document by ID:', error);
+//       throw error;
+//     }
+//   }
+// );
+
+export const documentSlice = createSlice({
   name: 'documents',
   initialState,
   reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchDocuments.pending, (state) => {
+        state.DocumentsStatus = 'loading';
+      })
+      .addCase(fetchDocuments.fulfilled, (state, action) => {
+        state.DocumentsStatus = 'succeeded';
+        state.documents = action.payload;
+      })
+      .addCase(fetchDocuments.rejected, (state, action) => {
+        state.DocumentsStatus = 'failed';
+        state.DocumentsError = action.error.message || 'Failed to fetch competitions';
+      });
+    // .addCase(fetchDocumentsByCategory.pending, (state) => {
+    //   state.status = 'loading';
+    // })
+    // .addCase(fetchDocumentsByCategory.fulfilled, (state, action) => {
+    //   state.status = 'succeeded';
+    //   state.selectedDocumentsByCategory = action.payload;
+    // })
+    // .addCase(fetchDocumentsByCategory.rejected, (state, action) => {
+    //   state.status = 'failed';
+    //   state.error =
+    //     action.error.message || 'Failed to fetch competition by id';
+    // })
+    // .addCase(fetchDocumentById.pending, (state) => {
+    //   state.status = 'loading';
+    // })
+    // .addCase(fetchDocumentById.fulfilled, (state, action) => {
+    //   state.status = 'succeeded';
+    //   state.selectedDocumentById = action.payload;
+    // })
+    // .addCase(fetchDocumentById.rejected, (state, action) => {
+    //   state.status = 'failed';
+    //   state.error = action.error.message || 'Failed to fetch document by id';
+    // });
+  },
 });
 
 export default documentSlice.reducer;

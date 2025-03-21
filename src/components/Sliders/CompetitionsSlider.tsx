@@ -1,17 +1,14 @@
-import { NextArrow, PrevArrow } from './SliderArrows/SliderArrows';
 import Slider from 'react-slick';
-import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import CompetitionsSlide from './Slides/CompetitionsSlide';
-// import ButtonToAll from "../../../components/Buttons/ButtonToAll/ButtonToAll";
+import { NextArrow, PrevArrow } from './SliderArrows/SliderArrows';
 import { Link } from 'react-router-dom';
 import './Slider.scss';
-import { fetchCompetitions } from '../../store/competitionsSlice';
-import { useEffect } from 'react';
-// const parseDate = (dateString: string) => {
-//   const [day, month, year] = dateString.split('.').map(Number);
-//   return new Date(year, month - 1, day); 
-// };
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import LoadingIndicator from '../Indicators/LoadingIndicator/LoadingIndicator';
+import FailedIndicator from '../Indicators/FailedIndicator/FailedIndicator';
 const settings = {
   dots: true,
   dotsClass: 'slick-dots',
@@ -36,51 +33,37 @@ const settings = {
     },
   ],
 };
-
-export default function CompetitionsSlider() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { competitions, status, error } = useSelector(
+const CompetitionsSlider = () => {
+  const competitionsContainer = useSelector(
     (state: RootState) => state.competitions
   );
-//   const futureCompetitions = competitions
-//   .filter((item) => item.startDate > new Date())
-//   .sort(
-//     (a, b) =>
-//       parseDate(a.startDate.toString()).getTime() -
-//       parseDate(b.startDate.toString()).getTime()
-//   );
-
-// const pastCompetitions = competitions
-//   .filter((item) => item.startDate < new Date())
-//   .sort(
-//     (a, b) =>
-//       parseDate(b.startDate.toString()).getTime() -
-//       parseDate(a.startDate.toString()).getTime()
-//   );
-
-// const allCompetitionsFiltered = [...futureCompetitions, ...pastCompetitions];
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchCompetitions());
-      // console.log('Sending request to: /api/competitions', competitions);
-    }
-  }, [status, dispatch]);
-  if (status === 'loading') {
-    return <div>Loading...</div>;
+  if (competitionsContainer.competitionsStatus === 'loading') {
+    return (
+      <>
+        <h2 className="section-header">
+          <Link to="/competitions">Соревнования</Link>
+        </h2>
+        <LoadingIndicator />
+      </>
+    );
   }
-
-  if (status === 'failed') {
-    return <div>{error}</div>;
+  if (competitionsContainer.competitionsStatus === 'failed') {
+    return (
+      <>
+        <h2 className="section-header">
+          <Link to="/competitions">Соревнования</Link>
+        </h2>
+        <FailedIndicator />
+      </>
+    );
   }
-
-
   return (
-    <section className="competitions-slider" id="competitions">
+    <section className="competitions-slider">
       <h2 className="section-header">
-        <Link to="/competitions"> Соревнования</Link>
+        <Link to="/competitions">Соревнования</Link>
       </h2>
       <Slider {...settings}>
-        {competitions.map((item) => (
+        {competitionsContainer.competitions.map((item) => (
           <CompetitionsSlide
             key={item.id}
             id={item.id}
@@ -94,4 +77,6 @@ export default function CompetitionsSlider() {
       </Slider>
     </section>
   );
-}
+};
+
+export default CompetitionsSlider;

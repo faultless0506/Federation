@@ -152,12 +152,22 @@ button {
   font-weight: 500;
   line-height: normal;
 }
-.no-item,
-.no-item h3 {
-  font-size: 2rem;
-  font-weight: 700;
-  color: $primary-color;
-  text-align: center;
+.loading, .failed {
+  p{
+
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $primary-color;
+    text-align: center;
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+  }
+  button {
+    font-size: 1rem;
+    color: $primary-color;
+  
+  }
 }
 .documents h3, .details h3, .lessons h3 {
   color: $primary-color;

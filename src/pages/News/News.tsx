@@ -1,42 +1,52 @@
-// import React from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import NewsCard from '../../components/Cards/NewsCard';
 import './News.scss';
-import { fetchNews } from '../../store/newsSlice';
-import { AppDispatch, RootState } from '../../store/store';
-import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
+import LoadingIndicator from '../../components/Indicators/LoadingIndicator/LoadingIndicator';
+import FailedIndicator from '../../components/Indicators/FailedIndicator/FailedIndicator';
+import NewsCard from '../../components/Cards/NewsCard';
+export default function News() {
+  const newsContainer = useSelector((state: RootState) => state.news);
 
-export default function News(): JSX.Element {
-  const dispatch = useDispatch<AppDispatch>();
-  const { news, status, error } = useSelector((state: RootState) => state.news);
-
-  useEffect(() => {
-    if (status === 'idle') {
-      dispatch(fetchNews());
-    }
-  }, [status, dispatch]);
-
-  if (status === 'loading') {
-    return <div>Loading...</div>;
+  if (newsContainer.newsStatus === 'loading') {
+    return (
+      <>
+      <section className="container content news">
+        <h2 className="section-header">News</h2>
+        <LoadingIndicator />
+      </section>
+      </>
+    );
   }
-
-  if (status === 'failed') {
-    return <div>{error}</div>;
+  if (newsContainer.newsStatus === 'failed') {
+    return (
+      <>
+    <section className="container content news">
+        <h2 className="section-header">News</h2>
+        <FailedIndicator />
+      </section>
+      </>
+    );
   }
-
   return (
     <section className="container content news">
       <h2 className="section-header">News</h2>
-      {news.map((item) => (
-        <NewsCard
-          key={item.id}
-          id={item.id}
-          title={item.title}
-          content={item.content}
-          date={item.createdAt.toString().split('T')[0].split('-').reverse().join('/')}
-          images={item.images}
-        />
-      ))}
+      <div className="news__list">
+        {newsContainer.news.map((item) => (
+          <NewsCard
+            key={item.id}
+            id={item.id}
+            title={item.title}
+            content={item.content}
+            date={item.createdAt
+              .toString()
+              .split('T')[0]
+              .split('-')
+              .reverse()
+              .join('/')}
+            images={item.images}
+          />
+        ))}
+      </div>
     </section>
   );
 }

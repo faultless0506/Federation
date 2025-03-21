@@ -7,6 +7,9 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   position: relative;
+  margin: 5px;
+  
+  padding: 10px;
   img {
     border-radius: 8px;
   }
@@ -17,7 +20,7 @@
   will-change: transform;
   cursor: pointer;
   &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(207, 56, 56, 0.2);
+    // transform: translateY(-5px);
+    box-shadow: 0 0 4px 2px rgba(207, 56, 56, 0.4);
   }
 }

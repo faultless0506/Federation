@@ -4,15 +4,13 @@ import './ButtonScrollToTop.scss';
 export default function ButtonScrollToTop() {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Функция для прокрутки страницы наверх
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: 'smooth',
     });
   };
 
-  // Отслеживание прокрутки страницы
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 600) {
@@ -24,15 +22,15 @@ export default function ButtonScrollToTop() {
 
     window.addEventListener('scroll', toggleVisibility);
 
-    // Очистка слушателя событий при размонтировании компонента
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
-    
+
   return (
     <>
-      
-        <div className={`button__scroll ${isVisible ? 'visible' : ''}`} onClick={scrollToTop}>
-        </div>
+      <div
+        className={`button__scroll ${isVisible ? 'visible' : ''}`}
+        onClick={scrollToTop}
+      ></div>
     </>
   );
 }

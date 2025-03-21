@@ -1,17 +1,16 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import DocumentSection from '../DocumentsSection/DocumentsSections';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../store/store';
+import DocumentSection from '../DocumentsSection/DocumentsSection';
 import {
   handleDownloadDocument,
   handleOpenDocument,
 } from '../../customHooks/handleDocumentEvents';
-import './FedDetails.scss'
+import './FedDetails.scss';
 
 export default function FedDetails() {
-  const documents = useSelector((state: RootState) => state.documents.items);
-  const documentsFederaion = documents.filter((doc) => doc.doctype === 1);
-  // const documentsProvisions = documents.filter((doc) => doc.doctype === 4);
+  const dispatch = useDispatch<AppDispatch>();
+  const { documents, status } = useSelector((state: RootState) => state.documents);
   return (
     <section className="details" id="details">
       <div className="details__reqs">

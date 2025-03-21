@@ -3,23 +3,44 @@ import Sportsmans from '../../components/PeopleLists/Sportsmans';
 import FederationLead from '../../components/FedLead/FedLead';
 // import Trainers from '../../components/SportsmansAndTrainers/Trainers';
 import ClubsAndPartners from '../../components/ClubsAndPartners/ClubsAndPartners';
-import { RootState } from '../../store/store';
-import { useSelector } from 'react-redux';
-import DocumentSection from '../../components/DocumentsSection/DocumentsSections';
+import DocumentSection from '../../components/DocumentsSection/DocumentsSection';
 import {
   handleDownloadDocument,
   handleOpenDocument,
 } from '../../customHooks/handleDocumentEvents';
-import FedDetails from '../../components/FedDetails/FedDetails';
 import { FedLanding } from '../../components/Landing/FedLanding';
 import PageMenu from '../../components/NavMenu/NavMenu';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { AppDispatch, RootState } from '../../store/store';
+// import { useEffect } from 'react';
+// import { fetchDocuments } from '../../store/documentsSlice';
 export default function Federation() {
-  const documents = useSelector((state: RootState) => state.documents.items);
-  const documentsSportsmans = documents.filter((doc) => doc.doctype === 2);
-  const documentsExamples = documents.filter((doc) => doc.doctype === 3);
-  const documentsProvisions = documents.filter((doc) => doc.doctype === 4);
-  const documentsOther = documents.filter((doc) => doc.doctype === 5);
+  // const dispatch = useDispatch<AppDispatch>();
+  // const { documents, status, error } = useSelector((state: RootState) => state.documents);
 
+  // useEffect(() => {
+  //   if (status === 'idle') {
+  //     dispatch(fetchDocuments());
+  //   }
+  // })
+  const documentSections = [
+    {
+      title: 'Уставные документы Федерации',
+      category: 'Уставные',
+    },
+    {
+      title: 'Вступление в федерацию',
+      category: 'Вступление в федерацию',
+    },
+    {
+      title: 'Вступление в сборную',
+      category: 'Вступление в сборную',
+    },
+    {
+      title: 'Положения и регламенты',
+      category: 'Положения',
+    },
+  ];
   return (
     <>
       <PageMenu
@@ -34,44 +55,19 @@ export default function Federation() {
       <FedLanding />
       <div className="container content federation">
         <FederationLead />
-        <FedDetails />
+        {/* <FedDetails /> */}
         <section className="documents" id="documents">
           <h2 className="section-header">Документы</h2>
 
-          {/* <DocumentSection
-          title="Уставные документы Федерации"
-          documents={documentsFederaion}
-          onOpenDocument={handleOpenDocument}
-          onDownloadDocument={handleDownloadDocument}
-        /> */}
-
-          <DocumentSection
-            title="Документы для спортсменов"
-            documents={documentsSportsmans}
-            onOpenDocument={handleOpenDocument}
-            onDownloadDocument={handleDownloadDocument}
-          />
-
-          <DocumentSection
-            title="Образцы документов"
-            documents={documentsExamples}
-            onOpenDocument={handleOpenDocument}
-            onDownloadDocument={handleDownloadDocument}
-          />
-
-          <DocumentSection
-            title="Положения и регламенты"
-            documents={documentsProvisions}
-            onOpenDocument={handleOpenDocument}
-            onDownloadDocument={handleDownloadDocument}
-          />
-
-          <DocumentSection
-            title="Другое"
-            documents={documentsOther}
-            onOpenDocument={handleOpenDocument}
-            onDownloadDocument={handleDownloadDocument}
-          />
+          {documentSections.map((section, index) => (
+            <DocumentSection
+              key={index}
+              title={section.title}
+              category={section.category}
+              onOpenDocument={handleOpenDocument}
+              onDownloadDocument={handleDownloadDocument}
+            />
+          ))}
         </section>
         <Sportsmans />
         {/* <Trainers /> */}

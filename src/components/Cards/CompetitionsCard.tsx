@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './News&CometitionsCard.scss';
+import imgPlaceholder from '../../assets/img/29D5fZxnA78.jpg';
 
 interface CompetitionsCardProps {
   id: number;
@@ -30,7 +31,12 @@ const CompetitionsCard: React.FC<CompetitionsCardProps> = ({
   };
   const currentDate = new Date();
   const isFinished = currentDate > parseDate(date);
-
+  if (!images || images.length === 0) {
+    images = [imgPlaceholder];
+  } else {
+    const imagesPath = images.map((img) => `http://localhost:5000${img}`);
+    images = imagesPath;
+  }
   return (
     <article
       className={`competitions__card textarea ${isFinished ? 'finished' : ''}`}
