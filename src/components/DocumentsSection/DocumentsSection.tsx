@@ -9,6 +9,7 @@ interface Document {
   id: number;
   title: string;
   fileUrl: string;
+  category: string;
 }
 
 interface DocumentSectionProps {
@@ -16,7 +17,7 @@ interface DocumentSectionProps {
   category: string;
   onOpenDocument: (fileUrl: string) => void;
   onDownloadDocument: (fileUrl: string) => void;
-  documents?: Document[]; // Опциональные документы (если переданы напрямую)
+  documents?: Document[];
 }
 
 export default function DocumentSection({

@@ -5,7 +5,7 @@ import { getApiBaseUrl } from '../utils/apiUtils';
 interface DocumentState {
   documents: {
     id: number;
-    name: string;
+    title: string;
     fileUrl: string;
     category: string;
   }[];

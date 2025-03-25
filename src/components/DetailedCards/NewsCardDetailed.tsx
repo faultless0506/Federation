@@ -65,49 +65,46 @@ const NewsCardDetailed = () => {
           <h2>{selectedNews.title}</h2>
           <ButtonBack />
         </div>
-        <div className="detailed__main textarea">
-          <img
-            src={images[0]}
-            alt="Main"
-            className="detailed__main-image"
-            onClick={() => handleImageClick(0)}
-          />{' '}
-          {selectedNews.content
-            .slice(0, selectedNews.content.length - 1)
-            .map((text, index) => (
-              <p className="detailed__main-text" key={index}>
-                {text}
-              </p>
-            ))}
-          {images.length > 1 && (
-            <div className="detailed__image-list-container">
-              <div className="detailed__image-list">
+        <div className="detailed">
+          <div className="detailed__gallery">
+            <img
+              src={images[0]}
+              alt="Main"
+              className="detailed__gallery-main-image"
+              onClick={() => handleImageClick(0)}
+            />
+
+            {images.length > 1 && (
+              <div className="detailed__gallery-image-list">
                 {images.map((image, index) => (
                   <img
                     key={index + 1}
                     src={image}
                     alt={`Image ${index + 1}`}
-                    className="detailed__image-item"
+                    className="detailed__gallery-image-item"
                     onClick={() => handleImageClick(index)}
                   />
                 ))}
               </div>
-            </div>
-          )}
-          {selectedNews.content.slice(-1).map((text, index) => (
-            <p className="detailed__main-text" key={index}>
-              {text}
-            </p>
-          ))}
-          <p className="detailed__date">
-            {selectedNews.createdAt
-              .toString()
-              .split('T')[0]
-              .split('-')
-              .reverse()
-              .join('/')}
-          </p>
+            )}
+          </div>
+          <div className="detailed__text-content  textarea">
+            {selectedNews.content.map((text, index) => (
+              <p className="detailed__main-text" key={index}>
+                {text}
+              </p>
+            ))}
+           <p className="detailed__date">
+{selectedNews.createdAt
+  .toString()
+  .split('T')[0]
+  .split('-')
+  .reverse()
+  .join('/')}
+</p>
+          </div>
         </div>
+        
         {selectedImageIndex !== null && (
           <div
             className="detailed__full-image-overlay"

@@ -8,63 +8,81 @@
   min-height: 100vh;
   margin-top: 90px;
 
-  .detailed__main {
+  .detailed {
     // margin: 20px;
-    // display: flex;
-    @media (max-width: 768px) {
-      margin: 0;
-    }
-    &-image {
-      @include card-active;
-      padding: 0px;
+    display: flex;
+    flex: 1 1 auto;
+    // @media (max-width: 768px) {
+    //   margin: 0;
+    // }
+    &__gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      // margin: 0 auto;
       float: left;
-      width: 50%;
+      width: calc(50%);
       min-width: 280px;
-      object-fit: cover;
-      cursor: pointer;
-
       @media (max-width: 768px) {
         width: 100%;
       }
+      &-main-image {
+        @include card-active;
+        padding: 0px;
+        margin: 10px;
+        float: left;
+        width: calc(100% - 10px);
+        min-width: 280px;
+        object-fit: cover;
+        cursor: pointer;
+
+        @media (max-width: 768px) {
+          width: calc(100% - 10px);
+        }
+      }
+      &-image {
+        &-list {
+          @include card-passive;
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px;
+          width: auto;
+          margin: 5px 5px 25px;
+          padding: 20px;
+        }
+        &-item {
+          @include card-active;
+          width: calc(20% - 10px);
+          padding: 0;
+          border: 0;
+          min-width: 140px;
+          object-fit: cover;
+          cursor: pointer;
+        }
+      }
     }
 
-    &-text {
+    &__text-content {
+      width: calc(50% - 10px);
+      min-width: 280px;
+      @media (max-width: 768px) {
+        width: calc(100% - 10px);
+      }
+    }
+    &__main-text {
       margin-top: 20px;
       &:first-of-type {
-        margin-top: -2px;
+        margin-top: 8px;
       }
     }
   }
   .detailed__image {
     &-list-container {
       // @include card-passive;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 0 auto;
-      float: left;
-      width: 50%;
-      min-width: 280px;
-      @media (max-width: 768px) {
-        width: 100%;
-      }
-    }
-    &-list {
-      @include card-passive;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      width: auto;
-      margin: 40px auto;
-      padding: 20px;
-    }
-    &-item {
-      @include card-active;
-      width: calc(20% - 8px);
-      min-width: 140px;
-      object-fit: cover;
-      cursor: pointer;
     }
   }
   .detailed__full-image-overlay {
@@ -186,7 +204,7 @@
       }
     }
   }
-  .detailed__date { 
+  .detailed__date {
     margin-top: 20px;
   }
 }

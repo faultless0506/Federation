@@ -6,29 +6,34 @@ import { AppDispatch, RootState } from '../../store/store';
 import ButtonBack from '../Buttons/ButtonBack/ButtonBack';
 import imgPlaceholder from '../../assets/img/29D5fZxnA78.jpg';
 import { fetchCompetitions } from '../../store/competitionsSlice';
-import { processImageUrls, getImageUrl } from '../../utils/apiUtils';
+import { processImageUrls } from '../../utils/apiUtils';
 // import DocumentSection from '../DocumentsSection/DocumentsSection';
 
 const CompetitionsCardDetailed = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams<{ id: string }>();
-  const { competitions, competitionsStatus, competitionsError } = useSelector(
+  const { competitions, competitionsStatus } = useSelector(
     (state: RootState) => state.competitions
   );
+  const [images, setImages] = useState<string[]>([]);
 
-  // useEffect(() => {
-  //   if (competitionsStatus === 'idle') {
-  //     dispatch(fetchCompetitions());
-  //   }
-  // }, [dispatch, competitionsStatus]);
+  useEffect(() => {
+    if (competitionsStatus === 'idle') {
+      dispatch(fetchCompetitions());
+    }
+  }, [competitionsStatus, dispatch]);
+
   const selectedCompetition = competitions.find(
     (item) => item.id === Number(id)
   );
 
-  // Обработка изображений с использованием утилиты
-  const images = selectedCompetition
-    ? processImageUrls(selectedCompetition.images, imgPlaceholder)
-    : [imgPlaceholder];
+  useEffect(() => {
+    if (selectedCompetition) {
+      processImageUrls(selectedCompetition.images, imgPlaceholder).then(
+        setImages
+      );
+    }
+  }, [selectedCompetition]);
 
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
     null
@@ -50,11 +55,6 @@ const CompetitionsCardDetailed = () => {
           ? (selectedImageIndex - 1 + images.length) % images.length
           : (selectedImageIndex + 1) % images.length;
 
-      console.log('Navigating image:', {
-        direction,
-        currentIndex: selectedImageIndex,
-        newIndex,
-      });
       setSelectedImageIndex(newIndex);
     },
     [selectedImageIndex, images.length]
@@ -67,41 +67,39 @@ const CompetitionsCardDetailed = () => {
           <h2>{selectedCompetition.title}</h2>
           <ButtonBack />
         </div>
-        <div className="detailed__main textarea">
-          <img
-            src={images[0]}
-            alt="Main"
-            className="detailed__main-image"
-            onClick={() => handleImageClick(0)}
-          />
-          {selectedCompetition.content
-            .slice(0, selectedCompetition.content.length - 1)
-            .map((text, index) => (
+        <div className="detailed">
+          <div className="detailed__gallery">
+            <img
+              src={images[0]}
+              alt="Main"
+              className="detailed__gallery-main-image"
+              onClick={() => handleImageClick(0)}
+            />
+
+            {images.length > 1 && (
+              <div className="detailed__gallery-image-list">
+                {images.map((image, index) => (
+                  <img
+                    key={index + 1}
+                    src={image}
+                    alt={`Image ${index + 1}`}
+                    className="detailed__gallery-image-item"
+                    onClick={() => handleImageClick(index)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="detailed__text-content  textarea">
+            {selectedCompetition.content.map((text, index) => (
               <p className="detailed__main-text" key={index}>
                 {text}
               </p>
             ))}
-          {selectedCompetition.images.length > 1 && (
-            <div className="detailed__image-list">
-              {images.map((image, index) => (
-                <img
-                  key={index + 1}
-                  src={image}
-                  alt={`Image ${index + 1}`}
-                  className="detailed__image-item"
-                  onClick={() => handleImageClick(index)}
-                />
-              ))}
-            </div>
-          )}
-          {selectedCompetition.content.slice(-1).map((text, index) => (
-            <p className="detailed__main-text" key={index}>
-              {text}
+            <p className="detailed__date">
+              {selectedCompetition.startDate}, {selectedCompetition.location}
             </p>
-          ))}
-          <p className="detailed__date">
-            {selectedCompetition.startDate}, {selectedCompetition.location}
-          </p>
+          </div>
         </div>
         {selectedImageIndex !== null && (
           <div
