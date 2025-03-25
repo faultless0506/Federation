@@ -1,0 +1,82 @@
+@use '../../variables.scss' as *;
+@use '../../mixins.scss' as *;
+
+.lessons-schedule {
+  @include card-passive;
+  margin: 20px auto;
+  width: calc(100% - 10px);
+
+  h3 {
+    
+    color: $primary-color;
+    margin: 16px 10px 20px ;
+  }
+
+  &__table {
+    margin: 10px;
+    width: calc(100% - 20px);
+    border-collapse: collapse;
+    &:last-child {
+      margin-bottom: 10px;
+      border-bottom: 0;
+    }
+  }
+
+  &__header {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 8px;
+    background-color: rgba($primary-color, 0.1);
+    border-radius: 4px;
+    margin-bottom: 8px;
+  }
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 8px;
+    padding: 8px;
+    border-bottom: 1px solid rgba($primary-color, 0.1);
+    transition: $transition-base;
+
+    &:hover {
+      background-color: rgba($primary-color, 0.05);
+    }
+  }
+
+  &__cell {
+    padding: 8px;
+    font-size: 0.7rem;
+    line-height: 1.2em;
+    word-break: break-word;
+  }
+
+  @include responsive(mobile) {
+    &__header {
+      display: none;
+    }
+
+    &__row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+      padding: 16px;
+      margin-bottom: 8px;
+      border: 1px solid rgba($primary-color, 0.1);
+      border-radius: 4px;
+    }
+
+    &__cell {
+      display: flex;
+      align-items: center;
+      padding: 4px 0;
+
+      &::before {
+        content: attr(data-label);
+        font-weight: 600;
+        margin-right: 8px;
+        min-width: 100px;
+      }
+    }
+  }
+}

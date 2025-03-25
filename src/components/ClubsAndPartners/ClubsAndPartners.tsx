@@ -1,7 +1,6 @@
-import React from 'react';
 import './ClubsAndPartners.scss';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
+// import { useSelector } from 'react-redux';
+// import { RootState } from '../../store/store';
 import depPhoto from '../../assets/img/logo_clear.png';
 
 const departments = [
@@ -33,11 +32,11 @@ const departments = [
 ];
 
 export default function ClubsAndPartners() {
-  const clubs = useSelector((state: RootState) => state.clubs.items);
+  // const clubs = useSelector((state: RootState) => state.clubs.items);
 
   return (
     <section className="clubs-and-partners" id="clubs-and-partners">
-      {/* <h2 className='section-header'>Клубы и партнеры</h2> */}
+      <h2 className='section-header'>Клубы и партнеры</h2>
       {/* <article className="clubs">
         <ul className="clubs__list">
           {clubs.map((club) => (

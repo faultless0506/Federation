@@ -1,4 +1,3 @@
-import React from 'react';
 import DocumentSection from '../DocumentsSection/DocumentsSection';
 import {
   handleDownloadDocument,
@@ -15,7 +14,7 @@ export default function FedDetails() {
           <b>ИНН/КПП</b>: 7728491773 772801001
         </p>
         <p>
-          <b>ОГРН</b>: 1197700016580{' '}
+          <b>ОГРН</b>: 1197700016580
         </p>
         <p>
           <b>Юридический адрес</b>: 117335, город Москва, ул. Архитектора

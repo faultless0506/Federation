@@ -17,15 +17,13 @@ export default function Footer() {
             </Link>
           </div>
         </div>
-        <ul className="footer__contacts">
-          <li>
-            <Link to="/" target="_blank">
-              roofsmn2024@mail.ru
-            </Link>
-          </li>
-          <ButtonTG />
-          <ButtonVK />
-        </ul>
+        <div className="footer__contacts">
+          <a href="mailto:roofsmn2024@mail.ru">roofsmn2024@mail.ru</a>
+          <div className="footer__contacts-social">
+            <ButtonTG />
+            <ButtonVK />
+          </div>
+        </div>
       </div>
     </footer>
   );

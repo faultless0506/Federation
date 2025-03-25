@@ -1,107 +1,60 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface Lesson {
-  id: string;
-  trainer: string;
-  location: string;
-  day: string;
+  id: number;
+  dayOfWeek: string;
   time: string;
+  location: string;
+  trainer: string;
 }
 
 interface LessonsState {
   lessons: Lesson[];
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
 }
 
 const initialState: LessonsState = {
   lessons: [
     {
-      id: '1',
-      trainer: 'Иванов А.П.',
-      location: 'Сокольники',
-      day: 'Пн',
-      time: '10:00',
+      id: 1,
+      dayOfWeek: 'Понедельник',
+      time: '18:00 - 19:30',
+      location: 'Спортивный зал №1',
+      trainer: 'Иванов Иван Иванович',
     },
     {
-      id: '2',
-      trainer: 'Петров В.С.',
-      location: 'Сокольники',
-      day: 'Пн',
-      time: '15:00',
+      id: 2,
+      dayOfWeek: 'Среда',
+      time: '19:00 - 20:30',
+      location: 'Спортивный зал №2',
+      trainer: 'Петров Петр Петрович',
     },
     {
-      id: '3',
-      trainer: 'Сидоров К.Л.',
-      location: 'Сокольники',
-      day: 'Вт',
-      time: '11:00',
-    },
-    {
-      id: '4',
-      trainer: 'Иванов А.П.',
-      location: 'Сокольники',
-      day: 'Ср',
-      time: '10:00',
-    },
-    {
-      id: '5',
-      trainer: 'Петров В.С.',
-      location: 'Сокольники',
-      day: 'Чт',
-      time: '15:00',
-    },
-    {
-      id: '6',
-      trainer: 'Сидоров К.Л.',
-      location: 'Сокольники',
-      day: 'Пт',
-      time: '17:00',
-    },
-    {
-      id: '7',
-      trainer: 'Иванов А.П.',
-      location: 'Сокольники',
-      day: 'Сб',
-      time: '12:00-13:00, 15:00-17:00, 17:00-18:00',
-    },
-    {
-      id: '8',
-      trainer: 'Петров В.С.',
-      location: 'Сокольники',
-      day: 'Вс',
-      time: '10:00',
-    },
-    {
-      id: '9',
-      trainer: 'Боширов В.С.',
-      location: 'Сокольники',
-      day: 'Вс',
-      time: '10:00',
+      id: 3,
+      dayOfWeek: 'Пятница',
+      time: '17:00 - 18:30',
+      location: 'Спортивный зал №1',
+      trainer: 'Иванов Иван Иванович',
     },
   ],
+  status: 'idle',
 };
 
 const lessonsSlice = createSlice({
   name: 'lessons',
   initialState,
   reducers: {
-    addLesson: (state, action: PayloadAction<Lesson>) => {
-      state.lessons.push(action.payload);
+    setLessons: (state, action: PayloadAction<Lesson[]>) => {
+      state.lessons = action.payload;
     },
-    removeLesson: (state, action: PayloadAction<string>) => {
-      state.lessons = state.lessons.filter(
-        (lesson) => lesson.id !== action.payload
-      );
-    },
-    updateLesson: (state, action: PayloadAction<Lesson>) => {
-      const index = state.lessons.findIndex(
-        (lesson) => lesson.id === action.payload.id
-      );
-      if (index !== -1) {
-        state.lessons[index] = action.payload;
-      }
+    setStatus: (
+      state,
+      action: PayloadAction<'idle' | 'loading' | 'succeeded' | 'failed'>
+    ) => {
+      state.status = action.payload;
     },
   },
 });
 
-export const { addLesson, removeLesson, updateLesson } = lessonsSlice.actions;
+export const { setLessons, setStatus } = lessonsSlice.actions;
 export default lessonsSlice.reducer;
