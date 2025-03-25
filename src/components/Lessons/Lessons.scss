@@ -2,9 +2,6 @@
 @use './../../mixins.scss' as *;
 
 .lessons {
-  //   @include card-passive;
-  //   padding: 20px;
-
   margin-top: 10px;
   height: 100%;
   display: flex;
@@ -16,16 +13,13 @@
   &__container {
     display: flex;
     flex-direction: column;
-    // justify-content: center;
     align-items: center;
     @include card-passive;
     width: fit-content;
   }
   &__table {
-    // margin-bottom: 20px;
     width: auto;
     border-collapse: collapse;
-    // padding: 5px;
     th,
     td {
       text-align: center;
@@ -40,7 +34,6 @@
       min-width: 40px;
       font-size: 0.8rem;
       line-height: normal;
-      // align-self: start;
       &:last-child {
         border-right: none;
       }
@@ -48,17 +41,14 @@
         padding: 4px;
       }
     }
-
     .day-cell {
       font-weight: 600;
       position: sticky;
       left: 0;
       z-index: 2;
-      // max-width: 120px;
       border-right: 1px solid $secondary-color;
       font-size: 0.6rem;
     }
-
     .lesson-cell {
       vertical-align: center;
       min-width: 60px;
@@ -69,12 +59,7 @@
         border-right: none;
       }
     }
-
     .lesson-item {
-      //   background-color: red;
-      // border: 2px solid red;
-      //   border-radius: 6px;
-      //   margin: 5px 0;
       line-height: 1.4em;
       padding: 6px;
       font-size: 14px;
@@ -82,20 +67,16 @@
       font-weight: 500;
       color: $primary-color;
       transition: transform 0.2s, box-shadow 0.2s;
-      //   width: 50%;;
     }
-
     tbody tr {
       transition: background-color 0.2s;
       &:nth-child(even) {
         background-color: $background-color;
       }
-
       &:hover {
         background-color: rgb(192, 190, 190);
       }
     }
-
     thead tr {
       border-bottom: 1px solid $secondary-color;
     }
@@ -105,13 +86,11 @@
     h3 {
       font-size: 24px;
     }
-
     .lessons-table {
       th,
       td {
         padding: 8px;
       }
-
       .lesson-item {
         padding: 6px 8px;
         font-size: 13px;

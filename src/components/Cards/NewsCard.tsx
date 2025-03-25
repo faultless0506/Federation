@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './News&CometitionsCard.scss';
 import imgPlaceholder from '../../assets/img/29D5fZxnA78.jpg';
+import { processImageUrls } from '../../utils/apiUtils';
 
 interface NewsCardProps {
   id: number;
@@ -19,16 +20,20 @@ const NewsCard: React.FC<NewsCardProps> = ({
   content,
 }) => {
   const navigate = useNavigate();
+  const [processedImage, setProcessedImage] = useState(imgPlaceholder);
+
+  useEffect(() => {
+    const processImages = async () => {
+      const processedImages = await processImageUrls(images, imgPlaceholder);
+      setProcessedImage(processedImages[0] || imgPlaceholder);
+    };
+    processImages();
+  }, [images]);
 
   const handleClick = () => {
     navigate(`/news/${id}`);
   };
-  if (!images || images.length === 0) {
-    images = [imgPlaceholder];
-  } else {
-    const imagesPath = images.map((img) => `http://localhost:5000${img}`);
-    images = imagesPath;
-  }
+
   return (
     <article className="news__card textarea" onClick={handleClick}>
       <div className="competitions__card-content">
@@ -36,7 +41,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
         <p>{content[0]}</p>
         <span>{date}</span>
       </div>
-      <img src={images[0]} alt={title} />
+      <img src={processedImage} alt={title} />
     </article>
   );
 };

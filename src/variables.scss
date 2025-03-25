@@ -4,4 +4,13 @@ $background-color: rgb(230, 221, 221);
 $text-color: rgb(36, 34, 34);
 $card-color: whitesmoke;
 
+// Breakpoints
+$breakpoint-mobile: 768px;
+$breakpoint-tablet: 980px;
 
+// Transitions
+$transition-base: all 0.3s;
+$transition-fast: all 0.2s;
+
+// Shadows
+$shadow-hover: 0 0 4px 2px rgba(207, 56, 56, 0.4);

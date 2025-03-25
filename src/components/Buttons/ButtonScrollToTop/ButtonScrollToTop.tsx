@@ -12,6 +12,7 @@ export default function ButtonScrollToTop() {
   };
 
   useEffect(() => {
+    
     const toggleVisibility = () => {
       if (window.scrollY > 600) {
         setIsVisible(true);
@@ -19,12 +20,9 @@ export default function ButtonScrollToTop() {
         setIsVisible(false);
       }
     };
-
     window.addEventListener('scroll', toggleVisibility);
-
     return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
-
   return (
     <>
       <div

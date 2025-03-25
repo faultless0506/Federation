@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import './CardDetailed.scss';
@@ -6,23 +6,27 @@ import { AppDispatch, RootState } from '../../store/store';
 import ButtonBack from '../Buttons/ButtonBack/ButtonBack';
 import { fetchNews } from '../../store/newsSlice';
 import imgPlaceholder from '../../assets/img/29D5fZxnA78.jpg';
+import { processImageUrls } from '../../utils/apiUtils';
 
 const NewsCardDetailed = () => {
   const dispatch = useDispatch<AppDispatch>();
   const { id } = useParams<{ id: string }>();
-  const { news, newsStatus, newsError } = useSelector(
-    (state: RootState) => state.news
-  );
+  const { news, newsStatus } = useSelector((state: RootState) => state.news);
+  const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
     if (newsStatus === 'idle') {
       dispatch(fetchNews());
     }
   }, [newsStatus, dispatch]);
+
   const selectedNews = news.find((item) => item.id === Number(id));
-  const images = selectedNews?.images.map(
-    (img) => `http://localhost:5000${img}`
-  ) || [imgPlaceholder];
+
+  useEffect(() => {
+    if (selectedNews) {
+      processImageUrls(selectedNews.images, imgPlaceholder).then(setImages);
+    }
+  }, [selectedNews]);
 
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
     null
@@ -54,13 +58,6 @@ const NewsCardDetailed = () => {
     [selectedImageIndex, images.length]
   );
 
-  if (newsStatus === 'loading') {
-    return <div>Loading...</div>;
-  }
-
-  if (newsStatus === 'failed') {
-    return <div>{newsError}</div>;
-  }
   if (selectedNews) {
     return (
       <article className="container content news__card-detailed">

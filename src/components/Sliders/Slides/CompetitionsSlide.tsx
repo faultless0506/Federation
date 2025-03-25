@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './Slides.scss';
 import { useNavigate } from 'react-router-dom';
 import imgPlaceholder from '../../../assets/img/29D5fZxnA78.jpg';
+import { processImageUrls } from '../../../utils/apiUtils';
 
 interface CompetitionsSlideProps {
   id: number;
@@ -11,10 +12,12 @@ interface CompetitionsSlideProps {
   startDate: string;
   images: string[];
 }
+
 const parseDate = (dateString: string) => {
   const [day, month, year] = dateString.split('.').map(Number);
-  return new Date(year, month - 1, day); 
+  return new Date(year, month - 1, day);
 };
+
 const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
   id,
   title,
@@ -23,18 +26,20 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
   images,
   content,
 }) => {
-
   const navigate = useNavigate();
+  const [processedImage, setProcessedImage] = useState(imgPlaceholder);
+
+  useEffect(() => {
+    const processImages = async () => {
+      const processedImages = await processImageUrls(images, imgPlaceholder);
+      setProcessedImage(processedImages[0] || imgPlaceholder);
+    };
+    processImages();
+  }, [images]);
 
   const HandleOpenCurrentCompetition = () => {
     navigate(`/competitions/${id}`);
   };
-  if (!images || images.length === 0) {
-    images = [imgPlaceholder];
-  } else {
-    const imagesPath = images.map((img) => `http://localhost:5000${img}`);
-    images = imagesPath;
-  }
 
   const currentDate = new Date();
   const isFinished = currentDate > parseDate(startDate);
@@ -44,7 +49,7 @@ const CompetitionsSlide: React.FC<CompetitionsSlideProps> = ({
       className={`competitions-slide ${isFinished ? 'finished' : ''}`}
       onClick={HandleOpenCurrentCompetition}
     >
-      <img src={images[0]} alt={title} />
+      <img src={processedImage} alt={title} />
 
       <div className="competitions-slide__content">
         <h3>{title}</h3>

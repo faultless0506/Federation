@@ -4,15 +4,17 @@
 .documents{
  
 &__section {
+  @include card-passive;
     display: flex;
     flex-direction: column;
-    margin: 10px 0;
+    margin: 10px 5px;
+    padding: 0;
+    width: calc(100% - 10px);
     padding: 2px 4px 2px 10px;
-    @include card-passive;
     transition: all 0.3s;
   }
   h3 {
-    margin: 10px;
+    margin: 16px 10px 10px;
   }
   &__download-button {
     border: none;
@@ -20,7 +22,7 @@
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.2s;
-    min-width: 100px;
+    min-width: 110px;
     &::after {
       content: '';
       transition: all 0.2s;

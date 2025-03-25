@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getApiBaseUrl } from '../utils/apiUtils';
 
 interface CompetitionsState {
   competitions: Array<{
@@ -40,9 +41,10 @@ export const fetchCompetitions = createAsyncThunk(
   async () => {
     try {
       // console.log('Sending request to: /api/competitions');
-      const response = await axios.get(
-        'http://localhost:5000/api/competitions'
-      );
+      // Используем утилиту для получения базового URL
+      const apiUrl = `${getApiBaseUrl()}/api/competitions`;
+      console.log('Using API URL:', apiUrl);
+      const response = await axios.get(apiUrl);
       // console.log('Response data:', response.data);
       return response.data;
     } catch (error) {
@@ -56,18 +58,17 @@ export const fetchCompetitions = createAsyncThunk(
 //   'competitions/fetchCompetitionById',
 //   async (id: string) => {
 //     try {
-//         const response = await axios.get(
-//           `http://localhost:5000/api/competitions/${id}`
-//         );
+//         const apiUrl = `${getApiBaseUrl()}/api/competitions/${id}`;
+//         const response = await axios.get(apiUrl);
 //         // console.log(response.data);
 //         return response.data;
-      
+//
 //     } catch (error) {
 //       console.error('Error fetching competition by id:', error);
 //       throw error;
 //     }
 //   }
-  
+//
 // );
 
 const competitionsSlice = createSlice({
@@ -85,8 +86,9 @@ const competitionsSlice = createSlice({
       })
       .addCase(fetchCompetitions.rejected, (state, action) => {
         state.competitionsStatus = 'failed';
-        state.competitionsError = action.error.message || 'Failed to fetch competitions';
-      })
+        state.competitionsError =
+          action.error.message || 'Failed to fetch competitions';
+      });
   },
 });
 export default competitionsSlice.reducer;

@@ -6,6 +6,7 @@ import logo from './../../assets/img/logo_clear.png';
 import ButtonTG from '../Buttons/ButtonSocial/ButtonTG';
 import ButtonVK from '../Buttons/ButtonSocial/ButtonVK';
 import ButtonScrollToTop from '../Buttons/ButtonScrollToTop/ButtonScrollToTop';
+
 export default function Header() {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState(location.pathname);
@@ -23,6 +24,7 @@ export default function Header() {
       behavior: 'smooth',
     });
   };
+
   useLayoutEffect(() => {
     scrollToTop();
     setActiveLink(location.pathname);

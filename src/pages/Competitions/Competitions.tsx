@@ -99,7 +99,10 @@ export default function Competitions() {
             ))}
           </div>
         ) : (
-          <p className="failed">Нет предстоящих соревнований</p>
+          <div className="failed">
+
+            <p>Нет предстоящих соревнований</p>
+          </div>
         )}
         {futureCompetitions.length > 2 ? (
           <ToggleListButton

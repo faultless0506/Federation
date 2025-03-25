@@ -1,10 +1,12 @@
 .news {
   margin-top: 90px !important;
+  margin-bottom: 90px !important;
   display: flex;
   flex-direction: column;
   min-height: 100vh !important;
   &__list {
     display: flex;
+    // gap: 10px;
   justify-content: space-between;
   flex-wrap: wrap;
   }

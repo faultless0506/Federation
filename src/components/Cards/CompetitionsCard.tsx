@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './News&CometitionsCard.scss';
 import imgPlaceholder from '../../assets/img/29D5fZxnA78.jpg';
+import { processImageUrls } from '../../utils/apiUtils';
 
 interface CompetitionsCardProps {
   id: number;
@@ -21,22 +22,28 @@ const CompetitionsCard: React.FC<CompetitionsCardProps> = ({
   location,
 }) => {
   const navigate = useNavigate();
+  const [processedImage, setProcessedImage] = useState(imgPlaceholder);
+
+  useEffect(() => {
+    const processImages = async () => {
+      const processedImages = await processImageUrls(images, imgPlaceholder);
+      setProcessedImage(processedImages[0] || imgPlaceholder);
+    };
+    processImages();
+  }, [images]);
 
   const handleClick = () => {
     navigate(`/competitions/${id}`);
   };
+
   const parseDate = (dateString: string) => {
     const [day, month, year] = dateString.split('.').map(Number);
     return new Date(year, month - 1, day);
   };
+
   const currentDate = new Date();
   const isFinished = currentDate > parseDate(date);
-  if (!images || images.length === 0) {
-    images = [imgPlaceholder];
-  } else {
-    const imagesPath = images.map((img) => `http://localhost:5000${img}`);
-    images = imagesPath;
-  }
+
   return (
     <article
       className={`competitions__card textarea ${isFinished ? 'finished' : ''}`}
@@ -49,7 +56,7 @@ const CompetitionsCard: React.FC<CompetitionsCardProps> = ({
           {date}, {location}
         </span>
       </div>
-      <img src={images[0]} alt={title} />
+      <img src={processedImage} alt={title} />
       {/* {isFinished && (
         <div className="competitions__card-finished">
           <p>Соревнование завершено</p>

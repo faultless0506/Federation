@@ -30,7 +30,6 @@
       width: 100%;
       margin-top: auto;
       justify-self: flex-end;
-      // flex-direction: row-reverse;
     }
     h3,
     p {
@@ -44,32 +43,26 @@
     }
     p {
       padding-top: 6px;
-      // text-indent: 6px;
       -webkit-line-clamp: 3;
       line-clamp: 3;
     }
     span {
     width: 100%;
-      // justify-self: flex-end;
       font-size: 0.5rem;
       line-height: 1.2em;
       text-align: right;
-      // margin-top: auto;W
     }
   }
 
   &__finished {
     position: absolute;
     width: 130px;
-    // height: 40px;
     bottom: 4px;
     left: -24px;
-    // border-radius: 5px;
     pointer-events: none;
     @media (max-width: 624px) {
     }
     p {
-      // height: 36px;
       text-align: center;
       color: rgba(207, 56, 56);
       font-size: 0.5rem;

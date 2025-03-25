@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getApiBaseUrl } from '../utils/apiUtils';
 
 interface DocumentState {
   documents: {
@@ -39,7 +40,10 @@ export const fetchDocuments = createAsyncThunk(
   async () => {
     try {
       console.log('Sending request to: /api/documents');
-      const response = await axios.get('http://localhost:5000/api/documents');
+      // Используем утилиту для получения базового URL
+      const apiUrl = `${getApiBaseUrl()}/api/documents`;
+      console.log('Using API URL:', apiUrl);
+      const response = await axios.get(apiUrl);
       console.log('Response data:', response.data);
       return response.data;
     } catch (error) {
@@ -54,7 +58,8 @@ export const fetchDocuments = createAsyncThunk(
 //   async (id: number) => {
 //     try {
 //       console.log(`Sending request to: /api/documents/${id}`);
-//       const response = await axios.get(`http://localhost:5000/api/documents/${id}`);
+//       const apiUrl = `${getApiBaseUrl()}/api/documents/${id}`;
+//       const response = await axios.get(apiUrl);
 //       console.log('Response data:', response.data);
 //       return response.data;
 //     } catch (error) {
@@ -79,7 +84,8 @@ export const documentSlice = createSlice({
       })
       .addCase(fetchDocuments.rejected, (state, action) => {
         state.DocumentsStatus = 'failed';
-        state.DocumentsError = action.error.message || 'Failed to fetch competitions';
+        state.DocumentsError =
+          action.error.message || 'Failed to fetch competitions';
       });
     // .addCase(fetchDocumentsByCategory.pending, (state) => {
     //   state.status = 'loading';

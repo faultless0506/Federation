@@ -8,19 +8,32 @@
   overflow: hidden;
   position: relative;
   margin: 5px;
-  
   padding: 10px;
+
   img {
     border-radius: 8px;
   }
 }
+
 @mixin card-active {
   @include card-passive;
-  transition: all .2s;
+  transition: $transition-fast;
   will-change: transform;
   cursor: pointer;
+
   &:hover {
-    // transform: translateY(-5px);
-    box-shadow: 0 0 4px 2px rgba(207, 56, 56, 0.4);
+    box-shadow: $shadow-hover;
+  }
+}
+
+@mixin responsive($breakpoint) {
+  @if $breakpoint == mobile {
+    @media (max-width: $breakpoint-mobile) {
+      @content;
+    }
+  } @else if $breakpoint == tablet {
+    @media (max-width: $breakpoint-tablet) {
+      @content;
+    }
   }
 }

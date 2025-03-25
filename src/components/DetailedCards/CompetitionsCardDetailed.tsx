@@ -6,6 +6,7 @@ import { AppDispatch, RootState } from '../../store/store';
 import ButtonBack from '../Buttons/ButtonBack/ButtonBack';
 import imgPlaceholder from '../../assets/img/29D5fZxnA78.jpg';
 import { fetchCompetitions } from '../../store/competitionsSlice';
+import { processImageUrls, getImageUrl } from '../../utils/apiUtils';
 // import DocumentSection from '../DocumentsSection/DocumentsSection';
 
 const CompetitionsCardDetailed = () => {
@@ -15,17 +16,19 @@ const CompetitionsCardDetailed = () => {
     (state: RootState) => state.competitions
   );
 
-  useEffect(() => {
-    if (competitionsStatus === 'idle') {
-      dispatch(fetchCompetitions());
-    }
-  }, [dispatch, competitionsStatus]);
+  // useEffect(() => {
+  //   if (competitionsStatus === 'idle') {
+  //     dispatch(fetchCompetitions());
+  //   }
+  // }, [dispatch, competitionsStatus]);
   const selectedCompetition = competitions.find(
     (item) => item.id === Number(id)
   );
-  const images = selectedCompetition?.images.map(
-    (img) => `http://localhost:5000${img}`
-  ) || [imgPlaceholder];
+
+  // Обработка изображений с использованием утилиты
+  const images = selectedCompetition
+    ? processImageUrls(selectedCompetition.images, imgPlaceholder)
+    : [imgPlaceholder];
 
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(
     null
@@ -57,7 +60,6 @@ const CompetitionsCardDetailed = () => {
     [selectedImageIndex, images.length]
   );
 
-
   if (selectedCompetition) {
     return (
       <article className="container content competitions__card-detailed">
@@ -67,7 +69,7 @@ const CompetitionsCardDetailed = () => {
         </div>
         <div className="detailed__main textarea">
           <img
-            src={selectedCompetition.images[0]}
+            src={images[0]}
             alt="Main"
             className="detailed__main-image"
             onClick={() => handleImageClick(0)}
@@ -81,7 +83,7 @@ const CompetitionsCardDetailed = () => {
             ))}
           {selectedCompetition.images.length > 1 && (
             <div className="detailed__image-list">
-              {selectedCompetition.images.map((image, index) => (
+              {images.map((image, index) => (
                 <img
                   key={index + 1}
                   src={image}
@@ -107,7 +109,7 @@ const CompetitionsCardDetailed = () => {
             onClick={closeFullImage}
           >
             <img
-              src={selectedCompetition.images[selectedImageIndex]}
+              src={images[selectedImageIndex]}
               alt="Full size"
               className="detailed__full-image"
             />

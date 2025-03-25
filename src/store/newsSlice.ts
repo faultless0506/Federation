@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { getApiBaseUrl } from '../utils/apiUtils';
 
 interface NewsState {
   news: Array<{
@@ -32,7 +33,10 @@ const initialState: NewsState = {
 export const fetchNews = createAsyncThunk('news/fetchNews', async () => {
   try {
     // console.log('Sending request to: /api/news');
-    const response = await axios.get('http://localhost:5000/api/news');
+    // Используем утилиту для получения базового URL
+    const apiUrl = `${getApiBaseUrl()}/api/news`;
+    console.log('Using API URL:', apiUrl);
+    const response = await axios.get(apiUrl);
     // console.log('Response data:', response.data);
 
     return response.data;
@@ -41,8 +45,6 @@ export const fetchNews = createAsyncThunk('news/fetchNews', async () => {
     throw error;
   }
 });
-
-
 
 const newsSlice = createSlice({
   name: 'news',
@@ -60,18 +62,18 @@ const newsSlice = createSlice({
       .addCase(fetchNews.rejected, (state, action) => {
         state.newsStatus = 'failed';
         state.newsError = action.error.message || 'Failed to fetch news';
-      })
-      // .addCase(fetchNewsById.pending, (state) => {
-      //   state.status = 'loading';
-      // })
-      // .addCase(fetchNewsById.fulfilled, (state, action) => {
-      //   state.status = 'succeeded';
-      //   state.selectedNews = action.payload;
-      // })
-      // .addCase(fetchNewsById.rejected, (state, action) => {
-      //   state.status = 'failed';
-      //   state.error = action.error.message || 'Failed to fetch news by id';
-      // });
+      });
+    // .addCase(fetchNewsById.pending, (state) => {
+    //   state.status = 'loading';
+    // })
+    // .addCase(fetchNewsById.fulfilled, (state, action) => {
+    //   state.status = 'succeeded';
+    //   state.selectedNews = action.payload;
+    // })
+    // .addCase(fetchNewsById.rejected, (state, action) => {
+    //   state.status = 'failed';
+    //   state.error = action.error.message || 'Failed to fetch news by id';
+    // });
   },
 });
 

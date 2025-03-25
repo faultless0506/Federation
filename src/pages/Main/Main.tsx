@@ -1,4 +1,3 @@
-
 import NewsSlider from '../../components/Sliders/NewsSlider';
 import CompetitionsSlider from '../../components/Sliders/CompetitionsSlider';
 import ClubsAndPartners from '../../components/ClubsAndPartners/ClubsAndPartners';
@@ -7,8 +6,8 @@ import Lessons from '../../components/Lessons/Lessons';
 import Trainers from '../../components/PeopleLists/Trainers';
 import NavMenu from '../../components/NavMenu/NavMenu';
 import FedLocation from '../../components/FedLocation/FedLocation';
+import FedDetails from '../../components/FedDetails/FedDetails';
 const Main = () => {
-  
   return (
     <>
       <NavMenu
@@ -22,16 +21,12 @@ const Main = () => {
       />
       <MainLanding />
       <div className="container content main">
-          <NewsSlider
-          />
-          <CompetitionsSlider
-          />
-       
+        <NewsSlider />
+        <CompetitionsSlider />
         <FedLocation />
         <Lessons />
         <Trainers />
-
-        {/* <FedDetails /> */}
+        <FedDetails />
         <ClubsAndPartners />
       </div>
     </>

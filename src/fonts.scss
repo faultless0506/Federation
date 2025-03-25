@@ -1,7 +1,10 @@
 @use './variables.scss' as *;
+@use './mixins.scss' as *;
 
 // @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+
+// Base typography
 body,
 html {
   font-family: 'Source Sans Pro', sans-serif;
@@ -11,16 +14,35 @@ html {
   text-shadow: none;
 }
 
+// Header typography
 .header {
   font-weight: 500;
   font-size: 1rem;
   line-height: 1rem;
+
   &__logo {
     font-size: 0.8rem;
     line-height: 1.2em;
   }
+
+  a {
+    font-size: 0.8rem;
+    font-weight: 700;
+  }
+
+  &__menu {
+    text-transform: uppercase;
+  }
+
+  &__logo {
+    font-size: 0.6rem;
+    a {
+      font-weight: 700;
+    }
+  }
 }
 
+// Common text elements
 .header a,
 .header li,
 a,
@@ -34,35 +56,25 @@ h6,
 span {
   color: $text-color;
 }
-.header a {
-  font-size: 0.8rem;
-  font-weight: 700;
-}
-.header__menu {
-  text-transform: uppercase;
-}
-.header__logo {
-  font-size: 0.6rem;
-  a {
-    font-weight: 700;
-  }
-}
+
+// Headings
 h1 {
   line-height: 1.2em;
   font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
-  @media (max-width: 980px) {
+
+  @include responsive(tablet) {
     font-size: 1.2rem;
   }
 }
+
 h2 {
   line-height: 1em;
   font-size: 1.25rem;
   font-weight: 700;
-  // text-align: center;
-  // vertical-align: bottom;
-  @media (max-width: 400px) {
+
+  @include responsive(mobile) {
     font-size: 0.8rem;
     font-weight: 600;
     line-height: normal;
@@ -70,44 +82,53 @@ h2 {
 
   a {
     &:hover {
-      // text-shadow: 0 0 2px rgba(207, 56, 56, 0.2);
       color: $primary-color;
     }
   }
 }
+
 h3 {
   line-height: 1em;
   font-size: 0.7rem;
-  @media (max-width: 768px) {
+
+  @include responsive(mobile) {
     font-size: 0.6rem;
   }
 }
+
+// Paragraphs and text
 p {
   line-height: normal;
   font-size: 0.5rem;
 }
+
 .news p,
 .competitions p {
   font-size: 0.6rem;
 }
+
 span {
   font-size: 0.5rem;
 }
+
+// Card info typography
 .sportsmans__card-info,
 .trainers__card-info {
   h3 {
     font-size: 0.8rem;
-    @media (max-width: 768px) {
+    @include responsive(mobile) {
       font-size: 0.8rem;
     }
   }
+
   p {
     font-size: 0.6rem;
-    @media (max-width: 768px) {
+    @include responsive(mobile) {
       font-size: 0.5rem;
     }
   }
 }
+
 .leads__card-info {
   h3 {
     font-size: 1rem;
@@ -116,15 +137,19 @@ span {
     font-size: 0.8rem;
   }
 }
+
+// Interactive elements
 button {
   font-size: 0.8rem;
   color: $text-color;
+
   &:hover {
     color: $primary-color;
-    transition: all 0.2s;
-    // text-shadow: 0 0 1px ;
+    transition: $transition-fast;
   }
 }
+
+// Links
 .header__logo {
   a {
     span {
@@ -135,46 +160,54 @@ button {
     }
   }
 }
+
 .header__menu-item a,
 .footer a {
   &:hover {
     color: $primary-color;
-    // text-shadow: 2px 2px 1px rgba(207, 56, 56, 0.2);
   }
 }
+
 .header__menu-contacts a {
   font-size: 0.8rem;
   font-weight: 500;
   color: $primary-color;
 }
+
 .footer a {
   font-size: 0.8rem;
   font-weight: 500;
   line-height: normal;
 }
-.loading, .failed {
-  p{
 
+// Status messages
+.loading,
+.failed {
+  p {
     font-size: 1.5rem;
     font-weight: 700;
     color: $primary-color;
     text-align: center;
-    @media (max-width: 768px) {
+    @include responsive(mobile) {
       font-size: 1rem;
     }
   }
+
   button {
     font-size: 1rem;
     color: $primary-color;
-  
   }
 }
-.documents h3, .details h3, .lessons h3 {
+
+// Section headings
+.documents h3,
+.details h3,
+.lessons h3 {
   color: $primary-color;
   font-size: 1rem;
   font-weight: 600;
-  // line-height: 2em;
 }
+
 .documents__list-item p {
   font-size: 0.7rem;
   &:hover {
@@ -183,33 +216,17 @@ button {
   }
 }
 
-// .competitions__card-detailed-content, .news__card-detailed-content {
-//   h3 {
-//     font-size: 0.8rem;
-//     font-weight: 600;
-//     line-height: 2em;
-//   }
-//   p {
-//     font-size: 0.7rem;
-//     line-height: 1.5em;
-//   }
-//   span {
-//     font-size: 0.6rem;
-//     // text-align: end;
-//   }
-// }
-
+// Clubs and partners
 .clubs-and-partners {
   h3 {
     line-height: 1em;
     font-size: 1.25rem;
     font-weight: 700;
-    // text-shadow: none;
-    // text-align: center;
-    // vertical-align: bottom;
-    @media (max-width: 980px) {
+
+    @include responsive(tablet) {
       font-size: 1rem;
     }
+
     a {
       &:hover {
         text-shadow: 0 0 2px rgba(207, 56, 56, 0.2);
@@ -218,16 +235,17 @@ button {
     }
   }
 }
+
 .header__logo-socials {
   a {
     font-size: 0.6rem;
-    // text-shadow: 5px 2px 5px ;
     &:hover {
       color: $primary-color;
     }
   }
 }
 
+// Detailed content
 .detailed__date {
   font-size: 0.8rem;
   font-weight: 600;
@@ -235,39 +253,36 @@ button {
 }
 
 .textarea {
-  // font-size: 0.8rem;
-  // line-height: 1.4em;
   h3 {
     font-size: 0.8rem;
     font-weight: 600;
     line-height: 1.2em;
   }
+
   p {
     text-indent: 10px;
-    @media (min-width: 768px) {
+    @include responsive(mobile) {
       text-indent: 10px;
     }
   }
+
   p,
   li {
     font-size: 0.7rem;
     line-height: 1.2em;
   }
+
   span {
     font-size: 0.6rem;
-    // text-align: end;
   }
+
   li {
     list-style: disc;
     margin-left: 20px;
   }
-
-  // @media (max-width: 768px) {
-  //   h3 {
-
-  //   }
-  // }
 }
+
+// Slides
 .competitions-slide,
 .news-slide {
   h3 {

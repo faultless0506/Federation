@@ -14,6 +14,7 @@ import { AppDispatch, RootState } from './store/store';
 import { fetchCompetitions } from './store/competitionsSlice';
 import { fetchNews } from './store/newsSlice';
 import ButtonScrollToTop from "./components/Buttons/ButtonScrollToTop/ButtonScrollToTop";
+import Federation from './pages/Federation/Federation';
 // import Clubs from "./pages/Clubs/Clubs";
 
 function App() {
@@ -48,7 +49,7 @@ function App() {
         />
         <Route path="/news" element={<News />} />
         <Route path="/news/:id" element={<NewsCardDetailed />} />
-        {/* <Route path="/federation" element={<Federation />} /> */}
+        <Route path="/federation" element={<Federation />} />
       </Routes>
       <Footer />
       <ButtonScrollToTop />

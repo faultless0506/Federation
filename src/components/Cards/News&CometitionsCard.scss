@@ -3,6 +3,7 @@
 
 .competitions__card, .news__card {
   @include card-active;
+  
   display: flex;
   // justify-content: space-between;
   // padding: 10px;

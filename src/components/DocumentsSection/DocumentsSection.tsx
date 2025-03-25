@@ -3,63 +3,55 @@ import './DocumentsSection.scss';
 import ToggleListButton from '../Buttons/ToggleListButton/ToggleListButton';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
-import { fetchDocumentsByCategory } from '../../store/documentsSlice';
+import { fetchDocuments } from '../../store/documentsSlice';
 
-interface DocumentProps {
-  name: string;
+interface Document {
+  id: number;
+  title: string;
   fileUrl: string;
-  onOpenDocument: (fileUrl: string) => void;
-  onDownloadDocument: (fileUrl: string) => void;
-} 
+}
+
 interface DocumentSectionProps {
   title: string;
   category: string;
-  documents: DocumentProps[];
-  // onOpenDocument: (fileUrl: string) => void;
-  // onDownloadDocument: (fileUrl: string) => void;
+  onOpenDocument: (fileUrl: string) => void;
+  onDownloadDocument: (fileUrl: string) => void;
+  documents?: Document[]; // Опциональные документы (если переданы напрямую)
 }
 
 export default function DocumentSection({
   title,
   category,
-  documents,
-  // onOpenDocument,
-  // onDownloadDocument,
+  onOpenDocument,
+  onDownloadDocument,
+  documents: propDocuments,
 }: DocumentSectionProps) {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const { documents, status, error } = useSelector(
-  //   (state: RootState) => state.documents
-  // );
+  const dispatch = useDispatch<AppDispatch>();
+  const { documents: storeDocuments, DocumentsStatus: status } = useSelector(
+    (state: RootState) => state.documents
+  );
 
-  // useEffect(() => {
-  //   if (status === 'idle') {
-  //     dispatch(fetchDocumentsByCategory(category));
-  //   }
-  // }, [status, dispatch, category]);
+  // Используем документы из пропсов, если они есть, или фильтруем из стора по категории
+  const filteredDocuments =
+    propDocuments || storeDocuments.filter((doc) => doc.category === category);
+
+  // Загружаем документы при необходимости
+  useEffect(() => {
+    if (status === 'idle' && !propDocuments) {
+      dispatch(fetchDocuments());
+    }
+  }, [status, dispatch, propDocuments]);
 
   const [showAll, setShowAll] = useState(false);
   const toggleShowAll = () => {
     setShowAll((prevState) => !prevState);
   };
-  useEffect(() => {
-    if (!showAll) {
-      setShowAll(false);
-    } else {
-      setShowAll(true);
-    }
-  }, [showAll]);
-  // if (status === 'loading') {
-  //   return <div>Loading...</div>;
-  // }
 
-  // if (status === 'failed') {
-  //   return <div>{error}</div>;
-  // }
   return (
     <div className="documents__section">
       <h3>{title}</h3>
       <ul className={`documents__list ${showAll ? 'expanded' : 'collapsed'}`}>
-        {documents.map((doc) => (
+        {filteredDocuments.map((doc) => (
           <li key={doc.id} className="documents__list-item">
             <p onClick={() => onOpenDocument(doc.fileUrl)}>{doc.title}</p>
             <button
@@ -72,7 +64,7 @@ export default function DocumentSection({
         ))}
       </ul>
       <div className="button-container">
-        {documents.length > 3 && (
+        {filteredDocuments.length > 3 && (
           <ToggleListButton
             isExpanded={showAll}
             expandText="Показать все"

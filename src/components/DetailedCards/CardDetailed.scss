@@ -6,10 +6,10 @@
   flex-direction: column;
   padding: 20px;
   min-height: 100vh;
-  margin: 90px auto;
+  margin-top: 90px;
 
   .detailed__main {
-    margin: 20px;
+    // margin: 20px;
     // display: flex;
     @media (max-width: 768px) {
       margin: 0;
@@ -18,14 +18,8 @@
       @include card-active;
       padding: 0px;
       float: left;
-      // margin;
-      // margin-bottom: 2rem;
       width: 50%;
       min-width: 280px;
-      // max-width: 300px;
-      // border-radius: 8px;
-      // transition: all 0.2s;
-      // box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
       object-fit: cover;
       cursor: pointer;
 
@@ -192,9 +186,7 @@
       }
     }
   }
-  .detailed__date {
-    width: 100%;
-    text-align: end;
+  .detailed__date { 
     margin-top: 20px;
   }
 }

@@ -10,24 +10,13 @@ import {
 } from '../../customHooks/handleDocumentEvents';
 import { FedLanding } from '../../components/Landing/FedLanding';
 import PageMenu from '../../components/NavMenu/NavMenu';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { AppDispatch, RootState } from '../../store/store';
-// import { useEffect } from 'react';
-// import { fetchDocuments } from '../../store/documentsSlice';
+import FedDetails from '../../components/FedDetails/FedDetails';
 export default function Federation() {
-  // const dispatch = useDispatch<AppDispatch>();
-  // const { documents, status, error } = useSelector((state: RootState) => state.documents);
-
-  // useEffect(() => {
-  //   if (status === 'idle') {
-  //     dispatch(fetchDocuments());
-  //   }
-  // })
   const documentSections = [
-    {
-      title: 'Уставные документы Федерации',
-      category: 'Уставные',
-    },
+    // {
+    //   title: 'Уставные документы Федерации',
+    //   category: 'Уставные',
+    // },
     {
       title: 'Вступление в федерацию',
       category: 'Вступление в федерацию',
@@ -55,7 +44,7 @@ export default function Federation() {
       <FedLanding />
       <div className="container content federation">
         <FederationLead />
-        {/* <FedDetails /> */}
+        <FedDetails />
         <section className="documents" id="documents">
           <h2 className="section-header">Документы</h2>
 
